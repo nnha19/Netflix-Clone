@@ -1,0 +1,16 @@
+.netflix-btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 400;
+  cursor: pointer;
+  margin: 0.5rem;
+}
+.play-button i {
+  margin-right: 1rem;
+}
+.play-button:hover {
+  background: rgba(255, 255, 255, 0.692);
+}

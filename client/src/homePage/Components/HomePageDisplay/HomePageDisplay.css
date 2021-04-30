@@ -1,0 +1,26 @@
+.display-movie {
+  height: 60vh;
+  margin: 3rem;
+  width: 70%;
+}
+.container {
+  height: 100%;
+  display: flex;
+}
+.display-movie__poster {
+  width: 25rem;
+  display: inline-block;
+}
+.display-movie__content {
+  margin-left: 3rem;
+  color: rgba(255, 255, 255, 0.822);
+}
+
+.display-movie__content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 2.4rem;
+}
+.display-movie__content p {
+  font-weight: 500;
+  letter-spacing: 1px;
+}
