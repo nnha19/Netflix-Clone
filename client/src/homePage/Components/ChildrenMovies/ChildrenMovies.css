@@ -11,6 +11,11 @@
   margin-right: 1rem;
   position: absolute;
 }
+.movies-container {
+  border: 5px solid green;
+  height: 100%;
+  position: relative;
+}
 .movie-category__heading {
   margin-bottom: 1rem;
 }

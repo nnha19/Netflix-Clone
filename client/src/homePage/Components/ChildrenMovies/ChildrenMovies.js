@@ -5,13 +5,20 @@ import "./ChildrenMovies.css";
 import ArrowIcon from "../../../share/UI/arrowIcon/arrowIcon";
 
 const ChildrenMovies = (props) => {
-  const [showRightArrow, setShowRightArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+  const [curView, setCurView] = useState(0);
+
+  console.log(showRightArrow);
 
   const showArrowHandler = () => {
-    setShowRightArrow(true);
+    // setShowRightArrow(true);
   };
   const hideArrowHandler = () => {
-    setShowRightArrow(false);
+    // setShowRightArrow(false);
+  };
+
+  const moveRightHandler = () => {
+    console.log("Move right");
   };
 
   const childrenMovies = props.childrenMovies;
@@ -38,13 +45,19 @@ const ChildrenMovies = (props) => {
       <h3 className="primary-heading movie-category__heading">
         Children Movies
       </h3>
-      <div className="movies-container">{moviesOutput}</div>
-      <ArrowIcon
-        style={{ left: "0" }}
-        showArrow={showRightArrow}
-        arrowType="left"
-      />
-      <ArrowIcon showArrow={showRightArrow} arrowType="right" />
+      <div className="movies-container">
+        {moviesOutput}
+        <ArrowIcon
+          style={{ left: "0" }}
+          showArrow={showRightArrow}
+          arrowType="left"
+        />
+        <ArrowIcon
+          clicked={moveRightHandler}
+          showArrow={showRightArrow}
+          arrowType="right"
+        />
+      </div>
     </div>
   ) : null;
 };
