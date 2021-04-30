@@ -6,19 +6,18 @@ import ArrowIcon from "../../../share/UI/arrowIcon/arrowIcon";
 
 const ChildrenMovies = (props) => {
   const childrenMovies = props.childrenMovies;
-  const moviesPerView = 4;
+  const moviesPerView = 5;
 
   const [showRightArrow, setShowRightArrow] = useState(false);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [leftMovies, setLeftMovies] = useState(null);
   const [curView, setCurView] = useState(0);
-  const [leftMovie, setLeftMovie] = useState(0);
 
   const getWidth = createRef();
 
   const showArrowHandler = () => {
-    leftMovie !== 0 && setShowRightArrow(true);
-    leftMovie !== childrenMovies.length - moviesPerView &&
-      setShowLeftArrow(true);
+    setShowRightArrow(true);
+    setShowLeftArrow(true);
   };
 
   const hideArrowHandler = () => {
@@ -27,40 +26,17 @@ const ChildrenMovies = (props) => {
   };
 
   const moveHandler = (type) => {
-    const imgWidth = getWidth.current.offsetWidth;
+    const width = getWidth.current.offsetWidth;
     if (type === "right") {
-      if (leftMovie > moviesPerView) {
-        setCurView(curView + -imgWidth * moviesPerView);
-        setLeftMovie(leftMovie - moviesPerView);
-      } else {
-        console.log("Reached");
-        setCurView(curView + -imgWidth * leftMovie);
-        setLeftMovie(leftMovie - leftMovie);
-      }
-    } else {
-      if (leftMovie !== childrenMovies.length - moviesPerView) {
-        setCurView(curView + imgWidth * moviesPerView);
-        setLeftMovie(leftMovie + moviesPerView);
-      }
+      //   setCurView(curView + (-width * moviesPerView + 16 * 5));
+      setLeftMovies(leftMovies - moviesPerView);
     }
   };
 
   useEffect(() => {
-    setLeftMovie(childrenMovies.length - moviesPerView);
+    setLeftMovies(childrenMovies.length - moviesPerView);
   }, [childrenMovies.length]);
-
-  useEffect(() => {
-    if (leftMovie === 0) {
-      setShowRightArrow(false);
-    } else {
-      setShowRightArrow(true);
-    }
-    if (leftMovie === childrenMovies.length - moviesPerView) {
-      setShowLeftArrow(false);
-    } else {
-      setShowLeftArrow(true);
-    }
-  }, [leftMovie]);
+  console.log(leftMovies);
 
   const moviesOutput =
     childrenMovies &&

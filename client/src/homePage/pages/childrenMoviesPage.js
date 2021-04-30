@@ -17,6 +17,8 @@ const ChildrenMoviesPage = (props) => {
     })();
   }, []);
 
+  console.log(childrenMovies);
+
   return (
     <>
       <ChildrenMovies childrenMovies={childrenMovies} />
