@@ -5,6 +5,7 @@
   right: 0;
   background: rgba(0, 0, 0, 0.555);
   align-items: center;
+  width: 4rem;
 }
 .arrow-icon {
   font-size: 3rem;

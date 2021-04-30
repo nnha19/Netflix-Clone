@@ -39,6 +39,11 @@ const ChildrenMovies = (props) => {
         Children Movies
       </h3>
       <div className="movies-container">{moviesOutput}</div>
+      <ArrowIcon
+        style={{ left: "0" }}
+        showArrow={showRightArrow}
+        arrowType="left"
+      />
       <ArrowIcon showArrow={showRightArrow} arrowType="right" />
     </div>
   ) : null;
