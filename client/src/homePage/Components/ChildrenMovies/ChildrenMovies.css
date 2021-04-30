@@ -1,8 +1,9 @@
 .movie-category {
   margin: 3rem;
-  height: 26rem;
-  width: 100vw;
+  height: 25rem;
   overflow: hidden;
+  position: relative;
+  margin-right: 0;
 }
 .movie-category__img {
   display: inline-block;

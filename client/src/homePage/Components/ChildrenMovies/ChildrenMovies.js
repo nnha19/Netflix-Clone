@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./ChildrenMovies.css";
 
+import ArrowIcon from "../../../share/UI/arrowIcon/arrowIcon";
+
 const ChildrenMovies = (props) => {
+  const [showRightArrow, setShowRightArrow] = useState(false);
+
+  const showArrowHandler = () => {
+    setShowRightArrow(true);
+  };
+  const hideArrowHandler = () => {
+    setShowRightArrow(false);
+  };
+
   const childrenMovies = props.childrenMovies;
   const moviesOutput =
     childrenMovies &&
@@ -17,12 +28,18 @@ const ChildrenMovies = (props) => {
         />
       );
     });
+
   return childrenMovies ? (
-    <div className="movie-category">
+    <div
+      onMouseEnter={showArrowHandler}
+      onMouseLeave={hideArrowHandler}
+      className="movie-category"
+    >
       <h3 className="primary-heading movie-category__heading">
         Children Movies
       </h3>
       <div className="movies-container">{moviesOutput}</div>
+      <ArrowIcon showArrow={showRightArrow} arrowType="right" />
     </div>
   ) : null;
 };

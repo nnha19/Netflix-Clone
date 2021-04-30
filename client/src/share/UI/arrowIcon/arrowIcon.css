@@ -1,0 +1,19 @@
+.icon-container {
+  height: 95%;
+  position: absolute;
+  display: flex;
+  right: 0;
+  background: rgba(0, 0, 0, 0.555);
+  align-items: center;
+}
+.arrow-icon {
+  font-size: 3rem;
+  color: white;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.4s;
+  display: inline-block;
+}
+.arrow-icon:hover {
+  transform: scale(1.2);
+}
