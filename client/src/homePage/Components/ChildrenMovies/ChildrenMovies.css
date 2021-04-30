@@ -1,8 +1,6 @@
 .movie-category {
   margin: 3rem;
-  height: 25rem;
-  overflow: hidden;
-  position: relative;
+  height: 25.6rem;
   margin-right: 0;
 }
 .movie-category__img {
@@ -12,10 +10,15 @@
   position: absolute;
 }
 .movies-container {
-  border: 5px solid green;
   height: 100%;
-  position: relative;
 }
 .movie-category__heading {
   margin-bottom: 1rem;
+}
+.slider {
+  height: 100%;
+  transition: all 0.6s;
+}
+.no-padding {
+  position: relative;
 }

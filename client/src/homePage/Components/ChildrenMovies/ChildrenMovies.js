@@ -17,10 +17,9 @@ const ChildrenMovies = (props) => {
     // setShowRightArrow(false);
   };
 
-  const moveRightHandler = () => {
-    console.log("Move right");
+  const moveHandler = (number) => {
+    setCurView(curView + number);
   };
-
   const childrenMovies = props.childrenMovies;
   const moviesOutput =
     childrenMovies &&
@@ -37,23 +36,27 @@ const ChildrenMovies = (props) => {
     });
 
   return childrenMovies ? (
-    <div
-      onMouseEnter={showArrowHandler}
-      onMouseLeave={hideArrowHandler}
-      className="movie-category"
-    >
-      <h3 className="primary-heading movie-category__heading">
-        Children Movies
-      </h3>
-      <div className="movies-container">
-        {moviesOutput}
+    <div className="no-padding">
+      <div className="movie-category">
+        <h3 className="primary-heading movie-category__heading">
+          Children Movies
+        </h3>
+        <div
+          style={{ transform: `translateX(${curView}%)` }}
+          onMouseEnter={showArrowHandler}
+          onMouseLeave={hideArrowHandler}
+          className="slider"
+        >
+          <div className="movies-container">{moviesOutput}</div>
+        </div>
         <ArrowIcon
           style={{ left: "0" }}
           showArrow={showRightArrow}
           arrowType="left"
+          clicked={() => moveHandler(100)}
         />
         <ArrowIcon
-          clicked={moveRightHandler}
+          clicked={() => moveHandler(-100)}
           showArrow={showRightArrow}
           arrowType="right"
         />
