@@ -16,11 +16,12 @@
   color: rgba(255, 255, 255, 0.822);
 }
 
-.display-movie__content h3 {
+.primary-heading {
   font-size: 1.5rem;
   margin-bottom: 2.4rem;
+  color: rgba(255, 255, 255, 0.822);
 }
-.display-movie__content p {
+.netflix-text {
   font-weight: 500;
   letter-spacing: 1px;
 }

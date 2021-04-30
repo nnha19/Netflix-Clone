@@ -1,0 +1,15 @@
+.movie-category {
+  margin: 3rem;
+  height: 26rem;
+  width: 100vw;
+  overflow: hidden;
+}
+.movie-category__img {
+  display: inline-block;
+  width: 15rem;
+  margin-right: 1rem;
+  position: absolute;
+}
+.movie-category__heading {
+  margin-bottom: 1rem;
+}

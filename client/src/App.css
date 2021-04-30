@@ -2,3 +2,6 @@ html {
   font-family: sans-serif;
   background: #141414;
 }
+.wrapper {
+  min-height: 1rem;
+}
