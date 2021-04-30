@@ -9,18 +9,28 @@ const HomePageDisplayPage = (props) => {
 
   useEffect(() => {
     (async () => {
+      let rn;
       const result = await axios.get(
         "https://api.themoviedb.org/3/trending/all/day?api_key=a31d02795054ebca84e5c9d45e915e85"
       );
       const data = result.data.results;
-      const rn = Math.floor(Math.random() * data.length);
+
+      const date = JSON.parse(localStorage.getItem("date"));
+      const randomNumber = JSON.parse(localStorage.getItem("rn"));
+
+      if (date === new Date().getDate()) {
+        rn = randomNumber;
+      } else {
+        rn = Math.floor(Math.random() * data.length);
+        localStorage.setItem("date", JSON.stringify(new Date().getDate()));
+        localStorage.setItem("rn", rn);
+      }
+
       const movie = data[rn];
       setDisplayMovie(movie);
     })();
   }, []);
 
-  //791373
-  console.log(displayMovie);
   return (
     <>
       <HomePageDisplay displayMovie={displayMovie} />

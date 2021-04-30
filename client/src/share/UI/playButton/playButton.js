@@ -8,7 +8,7 @@ const PlayButton = (props) => {
       style={props.style}
       className={`play-button netflix-btn ${props.className}`}
     >
-      <i class="fas fa-play"></i>
+      <i className="fas fa-play"></i>
       {props.children}
     </button>
   );
