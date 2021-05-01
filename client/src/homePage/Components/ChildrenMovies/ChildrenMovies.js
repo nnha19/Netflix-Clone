@@ -3,6 +3,7 @@ import React, { useState, createRef, useEffect } from "react";
 import "./ChildrenMovies.css";
 
 import ArrowIcon from "../../../share/UI/arrowIcon/arrowIcon";
+import DisplaySlider from "./DisplaySlider/DisplaySlider";
 
 const ChildrenMovies = (props) => {
   const childrenMovies = props.childrenMovies;
@@ -12,6 +13,7 @@ const ChildrenMovies = (props) => {
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [curView, setCurView] = useState(0);
   const [moviesLeft, setMoviesLeft] = useState(null);
+  const [activeSlide, setActiveSlide] = useState(1);
 
   const getWidth = createRef();
 
@@ -31,9 +33,11 @@ const ChildrenMovies = (props) => {
     if (type === "right") {
       setCurView(curView + -width * moviesPerView);
       setMoviesLeft(moviesLeft - moviesPerView);
+      setActiveSlide(activeSlide + 1);
     } else if (type === "left") {
       setCurView(curView + width * moviesPerView);
       setMoviesLeft(moviesLeft + moviesPerView);
+      setActiveSlide(activeSlide - 1);
     }
   };
 
@@ -48,7 +52,7 @@ const ChildrenMovies = (props) => {
     setMoviesLeft(childrenMovies.length - moviesPerView);
   }, [childrenMovies.length]);
 
-  console.log(moviesLeft);
+  console.log(curView);
 
   const moviesOutput =
     childrenMovies &&
@@ -72,9 +76,16 @@ const ChildrenMovies = (props) => {
         onMouseLeave={hideArrowHandler}
         className="movie-category"
       >
-        <h3 className="primary-heading movie-category__heading">
-          Children Movies
-        </h3>
+        <div className="movie-category__header">
+          <h3 className="primary-heading movie-category__heading">
+            Children Movies
+          </h3>
+          <DisplaySlider
+            activeSlide={activeSlide}
+            moviesPerView={moviesPerView}
+            movies={childrenMovies}
+          />
+        </div>
 
         <div
           style={{ transform: `translateX(${curView}px)` }}
