@@ -7,7 +7,7 @@ import DisplaySlider from "./DisplaySlider/DisplaySlider";
 
 const ChildrenMovies = (props) => {
   const childrenMovies = props.childrenMovies;
-  const moviesPerView = 4;
+  const moviesPerView = 5;
 
   const [showRightArrow, setShowRightArrow] = useState(false);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
@@ -30,14 +30,32 @@ const ChildrenMovies = (props) => {
 
   const moveHandler = (type) => {
     const width = getWidth.current.offsetWidth;
+    function setValFunc(val1, val2, val3) {
+      setCurView(val1);
+      setMoviesLeft(val2);
+      setActiveSlide(val3);
+    }
     if (type === "right") {
-      setCurView(curView + -width * moviesPerView);
-      setMoviesLeft(moviesLeft - moviesPerView);
-      setActiveSlide(activeSlide + 1);
+      if (moviesLeft >= moviesPerView) {
+        setCurView(curView + (-width * moviesPerView - 90));
+        setMoviesLeft(moviesLeft - moviesPerView);
+        setActiveSlide(activeSlide + 1);
+      } else {
+        setCurView(curView + -width * moviesLeft);
+        setMoviesLeft(moviesLeft - moviesLeft);
+        setActiveSlide(activeSlide + 1);
+      }
     } else if (type === "left") {
-      setCurView(curView + width * moviesPerView);
-      setMoviesLeft(moviesLeft + moviesPerView);
-      setActiveSlide(activeSlide - 1);
+      if (childrenMovies.length - (moviesPerView + 5) >= moviesLeft) {
+        setCurView(curView + (width * moviesPerView + 90));
+        setMoviesLeft(moviesLeft + moviesPerView);
+        setActiveSlide(activeSlide - 1);
+      } else {
+        const moviesL = childrenMovies.length - moviesPerView - moviesLeft;
+        setCurView(curView + width * moviesL);
+        setMoviesLeft(moviesLeft + moviesL);
+        setActiveSlide(activeSlide - 1);
+      }
     }
   };
 
