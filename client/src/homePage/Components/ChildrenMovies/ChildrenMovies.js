@@ -6,17 +6,17 @@ import ArrowIcon from "../../../share/UI/arrowIcon/arrowIcon";
 
 const ChildrenMovies = (props) => {
   const childrenMovies = props.childrenMovies;
-  const moviesPerView = 5;
+  const moviesPerView = 4;
 
   const [showRightArrow, setShowRightArrow] = useState(false);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
-  const [leftMovies, setLeftMovies] = useState(null);
   const [curView, setCurView] = useState(0);
+  const [moviesLeft, setMoviesLeft] = useState(null);
 
   const getWidth = createRef();
 
   const showArrowHandler = () => {
-    setShowRightArrow(true);
+    moviesLeft !== 0 && setShowRightArrow(true);
     setShowLeftArrow(true);
   };
 
@@ -28,15 +28,20 @@ const ChildrenMovies = (props) => {
   const moveHandler = (type) => {
     const width = getWidth.current.offsetWidth;
     if (type === "right") {
-      //   setCurView(curView + (-width * moviesPerView + 16 * 5));
-      setLeftMovies(leftMovies - moviesPerView);
+      setCurView(curView + -width * moviesPerView);
+      setMoviesLeft(moviesLeft - moviesPerView);
     }
   };
 
   useEffect(() => {
-    setLeftMovies(childrenMovies.length - moviesPerView);
+    moviesLeft === 0 && setShowRightArrow(false);
+  }, [moviesLeft]);
+
+  useEffect(() => {
+    setMoviesLeft(childrenMovies.length - moviesPerView);
   }, [childrenMovies.length]);
-  console.log(leftMovies);
+
+  console.log(moviesLeft);
 
   const moviesOutput =
     childrenMovies &&
