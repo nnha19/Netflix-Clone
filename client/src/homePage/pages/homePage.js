@@ -2,14 +2,16 @@ import React from "react";
 
 import HomePageDisplayPage from "./homePageDisplayPage";
 import ChildrenMoviesPage from "./childrenMoviesPage";
-import MoviesListPage from "./moviesListPage";
+import PopularMoviesPage from "./popularMoviesPage";
+import PopularTvPage from "./popularTvPage";
 
 const homePage = (props) => {
   return (
     <>
       <HomePageDisplayPage />
       <ChildrenMoviesPage />
-      <MoviesListPage />
+      <PopularMoviesPage />
+      <PopularTvPage />
     </>
   );
 };

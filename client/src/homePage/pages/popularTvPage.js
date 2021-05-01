@@ -4,21 +4,21 @@ import axios from "axios";
 
 import ChildrenMovies from "../Components/ChildrenMovies/ChildrenMovies";
 
-const MoviesListPage = (props) => {
+const PopularTvPage = (props) => {
   const [moviesList, setMoviesList] = useState(null);
 
   useEffect(() => {
     (async () => {
       const data = await axios.get(
-        "https://api.themoviedb.org/3/discover/movie?api_key=a31d02795054ebca84e5c9d45e915e85&language=en-US&sort_by=popularity.desc&page=1&with_watch_monetization_types=flatrate"
+        "https://api.themoviedb.org/3/discover/tv?api_key=a31d02795054ebca84e5c9d45e915e85&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York"
       );
       setMoviesList(data.data.results);
     })();
   }, []);
 
   return moviesList ? (
-    <ChildrenMovies title={"Movies"} childrenMovies={moviesList} />
+    <ChildrenMovies title={"Popular Tv Show"} childrenMovies={moviesList} />
   ) : null;
 };
 
-export default MoviesListPage;
+export default PopularTvPage;
