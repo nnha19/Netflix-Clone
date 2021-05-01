@@ -28,6 +28,8 @@ const ChildrenMovies = (props) => {
     setShowLeftArrow(false);
   };
 
+  console.log(childrenMovies);
+
   const moveHandler = (type) => {
     const width = getWidth.current.offsetWidth;
     function setValFunc(val1, val2, val3) {
@@ -96,7 +98,7 @@ const ChildrenMovies = (props) => {
       >
         <div className="movie-category__header">
           <h3 className="primary-heading movie-category__heading">
-            Children Movies
+            {props.title}
           </h3>
           <DisplaySlider
             activeSlide={activeSlide}

@@ -21,7 +21,7 @@ const ChildrenMoviesPage = (props) => {
 
   return (
     <>
-      <ChildrenMovies childrenMovies={childrenMovies} />
+      <ChildrenMovies title="For Children" childrenMovies={childrenMovies} />
     </>
   );
 };
