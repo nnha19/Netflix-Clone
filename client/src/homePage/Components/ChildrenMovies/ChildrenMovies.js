@@ -17,7 +17,8 @@ const ChildrenMovies = (props) => {
 
   const showArrowHandler = () => {
     moviesLeft !== 0 && setShowRightArrow(true);
-    setShowLeftArrow(true);
+    childrenMovies.length - moviesPerView !== moviesLeft &&
+      setShowLeftArrow(true);
   };
 
   const hideArrowHandler = () => {
@@ -30,11 +31,17 @@ const ChildrenMovies = (props) => {
     if (type === "right") {
       setCurView(curView + -width * moviesPerView);
       setMoviesLeft(moviesLeft - moviesPerView);
+    } else if (type === "left") {
+      setCurView(curView + width * moviesPerView);
+      setMoviesLeft(moviesLeft + moviesPerView);
     }
   };
 
   useEffect(() => {
-    moviesLeft === 0 && setShowRightArrow(false);
+    moviesLeft === 0 ? setShowRightArrow(false) : setShowRightArrow(true);
+    childrenMovies.length - moviesPerView === moviesLeft
+      ? setShowLeftArrow(false)
+      : setShowLeftArrow(true);
   }, [moviesLeft]);
 
   useEffect(() => {
@@ -68,6 +75,7 @@ const ChildrenMovies = (props) => {
         <h3 className="primary-heading movie-category__heading">
           Children Movies
         </h3>
+
         <div
           style={{ transform: `translateX(${curView}px)` }}
           className="slider"

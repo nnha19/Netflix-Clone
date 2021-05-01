@@ -1,12 +1,12 @@
 .icon-container {
-  height: 88.5%;
+  height: 71.5%;
   position: absolute;
   display: flex;
   right: 0;
   background: rgba(0, 0, 0, 0.555);
   align-items: center;
   width: 4rem;
-  bottom: 0.3rem;
+  bottom: 52px;
   z-index: 5;
 }
 .arrow-icon {
