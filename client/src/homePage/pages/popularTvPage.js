@@ -9,10 +9,12 @@ const PopularTvPage = (props) => {
 
   useEffect(() => {
     (async () => {
-      const data = await axios.get(
+      const result = await axios.get(
         "https://api.themoviedb.org/3/discover/tv?api_key=a31d02795054ebca84e5c9d45e915e85&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York"
       );
-      setMoviesList(data.data.results);
+
+      const data = result.data.results;
+      setMoviesList(data);
     })();
   }, []);
 

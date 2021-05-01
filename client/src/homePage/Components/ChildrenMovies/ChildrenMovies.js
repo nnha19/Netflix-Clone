@@ -9,11 +9,12 @@ const ChildrenMovies = (props) => {
   const childrenMovies = props.childrenMovies;
   const moviesPerView = 5;
 
-  const [showRightArrow, setShowRightArrow] = useState(false);
-  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+  const [showLeftArrow, setShowLeftArrow] = useState(true);
   const [curView, setCurView] = useState(0);
   const [moviesLeft, setMoviesLeft] = useState(null);
   const [activeSlide, setActiveSlide] = useState(1);
+  const [showSlide, setShowSlide] = useState(false);
 
   const getWidth = createRef();
 
@@ -21,14 +22,14 @@ const ChildrenMovies = (props) => {
     moviesLeft !== 0 && setShowRightArrow(true);
     childrenMovies.length - moviesPerView !== moviesLeft &&
       setShowLeftArrow(true);
+    setShowSlide(true);
   };
 
   const hideArrowHandler = () => {
     setShowRightArrow(false);
     setShowLeftArrow(false);
+    setShowSlide(false);
   };
-
-  console.log(childrenMovies);
 
   const moveHandler = (type) => {
     const width = getWidth.current.offsetWidth;
@@ -72,8 +73,6 @@ const ChildrenMovies = (props) => {
     setMoviesLeft(childrenMovies.length - moviesPerView);
   }, [childrenMovies.length]);
 
-  console.log(curView);
-
   const moviesOutput =
     childrenMovies &&
     childrenMovies.map((movie, i) => {
@@ -100,11 +99,13 @@ const ChildrenMovies = (props) => {
           <h3 className="primary-heading movie-category__heading">
             {props.title}
           </h3>
-          <DisplaySlider
-            activeSlide={activeSlide}
-            moviesPerView={moviesPerView}
-            movies={childrenMovies}
-          />
+          {showSlide && (
+            <DisplaySlider
+              activeSlide={activeSlide}
+              moviesPerView={moviesPerView}
+              movies={childrenMovies}
+            />
+          )}
         </div>
 
         <div

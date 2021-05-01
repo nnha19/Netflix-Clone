@@ -12,12 +12,15 @@ const ChildrenMoviesPage = (props) => {
       const result = await axios.get(
         "https://api.themoviedb.org/3/discover/movie?api_key=a31d02795054ebca84e5c9d45e915e85&language=en-US&include_adult=false&page=3"
       );
-      const data = result.data.results;
+      const result2 = await axios.get(
+        "https://api.themoviedb.org/3/discover/movie?api_key=a31d02795054ebca84e5c9d45e915e85&language=en-US&include_adult=false&page=1"
+      );
+
+      const data = [...result.data.results, ...result2.data.results];
       setChildrenMovies(data);
+      console.log(result);
     })();
   }, []);
-
-  console.log(childrenMovies);
 
   return (
     <>
