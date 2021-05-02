@@ -5,6 +5,7 @@ import { FetchData as useFetchData } from "../../customHooks/fetchData";
 
 const PopularTvPage = (props) => {
   const [popularTv, fetch] = useFetchData();
+  const title = "Popular Tv Shows";
 
   useEffect(() => {
     fetch(
@@ -13,8 +14,14 @@ const PopularTvPage = (props) => {
     );
   }, []);
 
+  useEffect(() => {
+    popularTv &&
+      popularTv.length > 0 &&
+      props.setAllMovie({ [title]: popularTv });
+  }, [popularTv]);
+
   return popularTv ? (
-    <ChildrenMovies title={"Popular Tv Show"} childrenMovies={popularTv} />
+    <ChildrenMovies title={title} childrenMovies={popularTv} />
   ) : null;
 };
 

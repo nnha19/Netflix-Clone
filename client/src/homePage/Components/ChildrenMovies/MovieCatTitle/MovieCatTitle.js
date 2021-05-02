@@ -6,7 +6,6 @@ const MovieCatTitle = (props) => {
   const history = useHistory();
 
   const showMoviesHandler = () => {
-    console.log("Hello");
     history.push(`browse/${props.title}`);
   };
 

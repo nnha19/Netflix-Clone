@@ -2,12 +2,14 @@ import React from "react";
 
 import { useParams } from "react-router-dom";
 
+import ViewDetailByCate from "../Components/ViewDetailByCate/ViewDetailByCate";
+
 const ViewAllMovieCatePage = () => {
   const { movieCategory } = useParams();
 
   return (
     <>
-      <h3 className="primary-heading">{movieCategory}</h3>
+      <ViewDetailByCate title={movieCategory} />
     </>
   );
 };

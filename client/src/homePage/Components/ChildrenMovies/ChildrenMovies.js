@@ -96,6 +96,7 @@ const ChildrenMovies = (props) => {
           <MovieCatTitle
             title={props.title}
             className="primary-heading movie-category__heading"
+            movies={childrenMovies}
           />
           {showSlide && (
             <DisplaySlider

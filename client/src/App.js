@@ -3,7 +3,7 @@ import NavBar from "./share/UI/navbar/navbar";
 import { Route, Link, Switch, Redirect } from "react-router-dom";
 
 import HomePage from "./homePage/pages/homePage";
-import ViewAllMovieCatePage from "./homePage/pages/viewAllMovieCatePage";
+import ViewDetailByCate from "./viewDetailByCate/pages/viewDetailByCatePage";
 
 import "./App.css";
 
@@ -16,7 +16,7 @@ const App = () => {
         <Route
           exact
           path="/browse/:movieCategory"
-          component={ViewAllMovieCatePage}
+          component={ViewDetailByCate}
         />
       </Switch>
     </div>
