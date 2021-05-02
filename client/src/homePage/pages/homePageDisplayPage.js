@@ -11,7 +11,7 @@ const HomePageDisplayPage = (props) => {
     (async () => {
       let rn;
       const result = await axios.get(
-        "https://api.themoviedb.org/3/trending/all/day?api_key=a31d02795054ebca84e5c9d45e915e85"
+        `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}`
       );
       const data = result.data.results;
 

@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from "react";
 
-import axios from "axios";
-
 import ChildrenMovies from "../Components/ChildrenMovies/ChildrenMovies";
+import { FetchData as useFetchData } from "../../customHooks/fetchData";
 
 const PopularTvPage = (props) => {
-  const [moviesList, setMoviesList] = useState(null);
+  const [popularTv, fetch] = useFetchData();
 
   useEffect(() => {
-    (async () => {
-      const result = await axios.get(
-        "https://api.themoviedb.org/3/discover/tv?api_key=a31d02795054ebca84e5c9d45e915e85&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York"
-      );
-
-      const data = result.data.results;
-      setMoviesList(data);
-    })();
+    fetch(
+      `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York`,
+      "get"
+    );
   }, []);
 
-  return moviesList ? (
-    <ChildrenMovies title={"Popular Tv Show"} childrenMovies={moviesList} />
+  return popularTv ? (
+    <ChildrenMovies title={"Popular Tv Show"} childrenMovies={popularTv} />
   ) : null;
 };
 

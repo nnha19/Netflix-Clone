@@ -7,6 +7,7 @@ import HomePage from "./homePage/pages/homePage";
 import "./App.css";
 
 const App = () => {
+  console.log(process.env);
   return (
     <div className="wrapper">
       <NavBar />

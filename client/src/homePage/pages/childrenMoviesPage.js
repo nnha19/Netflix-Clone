@@ -3,30 +3,28 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import ChildrenMovies from "../Components/ChildrenMovies/ChildrenMovies";
+import { FetchData as useFetchData } from "../../customHooks/fetchData";
 
 const ChildrenMoviesPage = (props) => {
-  const [childrenMovies, setChildrenMovies] = useState(false);
+  const [data, fetchData] = useFetchData();
+  const [data2, fetchData2] = useFetchData();
+  const [data3, fetchData3] = useFetchData();
 
   useEffect(() => {
-    (async () => {
-      const result = await axios.get(
-        "https://api.themoviedb.org/3/discover/movie?api_key=a31d02795054ebca84e5c9d45e915e85&language=en-US&include_adult=false&page=3"
-      );
-      const result2 = await axios.get(
-        "https://api.themoviedb.org/3/discover/movie?api_key=a31d02795054ebca84e5c9d45e915e85&language=en-US&include_adult=false&page=1"
-      );
-
-      const data = [...result.data.results, ...result2.data.results];
-      setChildrenMovies(data);
-      console.log(result);
-    })();
+    const url = (pg) => {
+      return `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&include_adult=false&page=${pg}`;
+    };
+    fetchData(url(1), "get");
+    fetchData2(url(2), "get");
+    fetchData3(url(3), "get");
   }, []);
 
-  return (
-    <>
-      <ChildrenMovies title="For Children" childrenMovies={childrenMovies} />
-    </>
-  );
+  return data && data2 && data3 ? (
+    <ChildrenMovies
+      title="For Children"
+      childrenMovies={[...data, ...data2, ...data3]}
+    />
+  ) : null;
 };
 
 export default ChildrenMoviesPage;
