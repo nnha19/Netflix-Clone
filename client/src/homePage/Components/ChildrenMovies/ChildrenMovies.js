@@ -4,6 +4,7 @@ import "./ChildrenMovies.css";
 
 import ArrowIcon from "../../../share/UI/arrowIcon/arrowIcon";
 import DisplaySlider from "./DisplaySlider/DisplaySlider";
+import MovieCatTitle from "./MovieCatTitle/MovieCatTitle";
 
 const ChildrenMovies = (props) => {
   const childrenMovies = props.childrenMovies;
@@ -33,11 +34,7 @@ const ChildrenMovies = (props) => {
 
   const moveHandler = (type) => {
     const width = getWidth.current.offsetWidth;
-    function setValFunc(val1, val2, val3) {
-      setCurView(val1);
-      setMoviesLeft(val2);
-      setActiveSlide(val3);
-    }
+
     if (type === "right") {
       if (moviesLeft >= moviesPerView) {
         setCurView(curView + (-width * moviesPerView - 90));
@@ -96,9 +93,10 @@ const ChildrenMovies = (props) => {
         className="movie-category"
       >
         <div className="movie-category__header">
-          <h3 className="primary-heading movie-category__heading">
-            {props.title}
-          </h3>
+          <MovieCatTitle
+            title={props.title}
+            className="primary-heading movie-category__heading"
+          />
           {showSlide && (
             <DisplaySlider
               activeSlide={activeSlide}
