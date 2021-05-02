@@ -1,6 +1,8 @@
 import React from "react";
 import "./deskTop.css";
 
+import Search from "../search/search";
+
 const DeskTop = (props) => {
   return (
     <div className="desktop">
@@ -18,7 +20,7 @@ const DeskTop = (props) => {
         <li className="nav-bar__item nav-bar__hover">My List</li>
       </div>
       <div className="desktop__right">
-        <i className="nav-bar__icon fas fa-search nav-bar__item"></i>
+        <Search />
         <i className="nav-bar__icon fas fa-bell nav-bar__item"></i>
         <i className="nav-bar__item">Profile</i>
       </div>

@@ -27,8 +27,9 @@
   margin-left: auto;
   margin-right: 3rem;
   align-self: center;
+  display: flex;
 }
 .nav-bar__icon {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   margin-right: 2rem;
 }

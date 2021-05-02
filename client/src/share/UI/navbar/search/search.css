@@ -1,0 +1,30 @@
+.search {
+  display: flex;
+  position: relative;
+  margin-right: 2rem;
+}
+.search__input {
+  border: 0px solid white;
+  outline: none;
+  background: black;
+  width: 0;
+  padding: 0.6rem 0;
+  color: white;
+  transition: all 0.4s;
+}
+
+.show-search {
+  border: 1px solid white;
+  padding: 0.6rem 1rem;
+  width: 14rem;
+  padding-left: 3rem;
+}
+.search-icon {
+  z-index: 2;
+  position: relative;
+  font-size: 1.2rem;
+  margin-right: 1px;
+}
+.move-right {
+  margin-right: -2rem;
+}
