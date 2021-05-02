@@ -4,6 +4,7 @@ import { Route, Link, Switch, Redirect } from "react-router-dom";
 
 import HomePage from "./homePage/pages/homePage";
 import ViewDetailByCate from "./viewDetailByCate/pages/viewDetailByCatePage";
+import SearchResultPage from "./search/pages/searchResultPage";
 
 import "./App.css";
 
@@ -18,6 +19,8 @@ const App = () => {
           path="/browse/:movieCategory"
           component={ViewDetailByCate}
         />
+        <Route path="/search/:query" exact component={SearchResultPage} />
+        <Redirect to="/browse" />
       </Switch>
     </div>
   );

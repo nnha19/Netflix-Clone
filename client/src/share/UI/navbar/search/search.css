@@ -11,13 +11,15 @@
   padding: 0.6rem 0;
   color: white;
   transition: all 0.4s;
+  opacity: 0;
 }
 
 .show-search {
   border: 1px solid white;
   padding: 0.6rem 1rem;
-  width: 14rem;
+  width: 16rem;
   padding-left: 3rem;
+  opacity: 1;
 }
 .search-icon {
   z-index: 2;
