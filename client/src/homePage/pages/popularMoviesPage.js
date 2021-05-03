@@ -4,7 +4,7 @@ import ChildrenMovies from "../Components/ChildrenMovies/ChildrenMovies";
 import { FetchData as useFetchData } from "../../customHooks/fetchData";
 
 const PopularMoviesPage = (props) => {
-  const [popularMovies, fetch] = useFetchData(null);
+  const [popularMovies, fetch, , , setPopularMovies] = useFetchData(null);
   const title = "Popular Movies";
 
   useEffect(() => {
@@ -21,7 +21,11 @@ const PopularMoviesPage = (props) => {
   }, [popularMovies]);
 
   return popularMovies ? (
-    <ChildrenMovies title={title} childrenMovies={popularMovies} />
+    <ChildrenMovies
+      setChildrenMovies={(movie) => setPopularMovies(movie)}
+      title={title}
+      childrenMovies={popularMovies}
+    />
   ) : null;
 };
 

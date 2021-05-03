@@ -1,0 +1,25 @@
+.movie-category__body {
+  box-shadow: 0 4px 4px black;
+  width: 100%;
+  padding: 1rem 0.4rem;
+  margin-top: 0;
+}
+.movie-category__icons {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.movie-category__icon {
+  padding: 0.8rem;
+  margin-right: 0.5rem;
+  color: rgba(255, 255, 255, 0.596);
+  cursor: pointer;
+  font-size: 1.1rem;
+  margin-top: 0.6rem;
+  transition: all 0.5s;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.514);
+}
+.movie-category__icon:hover {
+  border: 3px solid white;
+}

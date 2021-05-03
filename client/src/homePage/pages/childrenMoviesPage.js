@@ -4,7 +4,7 @@ import ChildrenMovies from "../Components/ChildrenMovies/ChildrenMovies";
 import { FetchData as useFetchData } from "../../customHooks/fetchData";
 
 const ChildrenMoviesPage = (props) => {
-  const [data, fetchData] = useFetchData();
+  const [data, fetchData, , , setData] = useFetchData();
   const title = "For Children";
 
   useEffect(() => {
@@ -18,7 +18,13 @@ const ChildrenMoviesPage = (props) => {
     data && data.length > 0 && props.setAllMovie({ [title]: data });
   }, [data]);
 
-  return data ? <ChildrenMovies title={title} childrenMovies={data} /> : null;
+  return data ? (
+    <ChildrenMovies
+      setChildrenMovies={(movie) => setData(movie)}
+      title={title}
+      childrenMovies={data}
+    />
+  ) : null;
 };
 
 export default ChildrenMoviesPage;

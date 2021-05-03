@@ -5,6 +5,7 @@ import "./ChildrenMovies.css";
 import ArrowIcon from "../../../share/UI/arrowIcon/arrowIcon";
 import DisplaySlider from "./DisplaySlider/DisplaySlider";
 import MovieCatTitle from "./MovieCatTitle/MovieCatTitle";
+import ShowDetailWhenHover from "./ShowDetailWhenHover/ShowDetailWhenHover";
 
 const ChildrenMovies = (props) => {
   const childrenMovies = props.childrenMovies;
@@ -30,6 +31,15 @@ const ChildrenMovies = (props) => {
     setShowRightArrow(false);
     setShowLeftArrow(false);
     setShowSlide(false);
+  };
+
+  const showDetailHandler = (id) => {
+    let cloned = [...childrenMovies];
+    const hoveredOne = childrenMovies.find((cm) => cm.id === id);
+    const index = childrenMovies.findIndex((cm) => cm.id === id);
+    hoveredOne.showDetail = hoveredOne.showDetail ? false : true;
+    cloned[index] = hoveredOne;
+    props.setChildrenMovies(cloned);
   };
 
   const moveHandler = (type) => {
@@ -75,55 +85,69 @@ const ChildrenMovies = (props) => {
     childrenMovies.map((movie, i) => {
       const style = { transform: `translateX(${16 * i}rem)` };
       return (
-        <img
-          ref={getWidth}
-          key={movie.id}
+        <div
+          onMouseEnter={() => showDetailHandler(movie.id)}
+          onMouseLeave={() => showDetailHandler(movie.id)}
           style={style}
-          className="movie-category__img"
-          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-        />
+          className={`movie-category__detail ${
+            movie.showDetail ? "prolong-width" : ""
+          }`}
+        >
+          <img
+            ref={getWidth}
+            key={movie.id}
+            className={`movie-category__img ${
+              movie.showDetail ? "shorten-img" : ""
+            }`}
+            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+          />
+          {/* <ShowDetailWhenHover movie={movie} /> */}
+          {movie.showDetail && <ShowDetailWhenHover movie={movie} />}
+        </div>
       );
     });
 
   return childrenMovies ? (
-    <div className="no-padding">
-      <div
-        onMouseEnter={showArrowHandler}
-        onMouseLeave={hideArrowHandler}
-        className="movie-category"
-      >
-        <div className="movie-category__header">
-          <MovieCatTitle
-            title={props.title}
-            className="primary-heading movie-category__heading"
-            movies={childrenMovies}
-          />
-          {showSlide && (
-            <DisplaySlider
-              activeSlide={activeSlide}
-              moviesPerView={moviesPerView}
+    <div className="overflow-wrapper">
+      <div className="no-padding">
+        <div
+          onMouseEnter={showArrowHandler}
+          onMouseLeave={hideArrowHandler}
+          className="movie-category"
+        >
+          <div className="movie-category__header">
+            <MovieCatTitle
+              title={props.title}
+              className="primary-heading movie-category__heading"
               movies={childrenMovies}
             />
-          )}
-        </div>
+            {showSlide && (
+              <DisplaySlider
+                activeSlide={activeSlide}
+                moviesPerView={moviesPerView}
+                movies={childrenMovies}
+              />
+            )}
+          </div>
 
-        <div
-          style={{ transform: `translateX(${curView}px)` }}
-          className="slider"
-        >
-          <div className="movies-container">{moviesOutput}</div>
+          <div
+            style={{ transform: `translateX(${curView}px)` }}
+            className="slider"
+          >
+            <div className="movies-container">{moviesOutput}</div>
+          </div>
+          <ArrowIcon
+            style={{ left: "0" }}
+            showArrow={showLeftArrow}
+            arrowType="left"
+            clicked={() => moveHandler("left")}
+          />
+          <ArrowIcon
+            clicked={() => moveHandler("right")}
+            showArrow={showRightArrow}
+            arrowType="right"
+          />
         </div>
-        <ArrowIcon
-          style={{ left: "0" }}
-          showArrow={showLeftArrow}
-          arrowType="left"
-          clicked={() => moveHandler("left")}
-        />
-        <ArrowIcon
-          clicked={() => moveHandler("right")}
-          showArrow={showRightArrow}
-          arrowType="right"
-        />
       </div>
     </div>
   ) : null;
