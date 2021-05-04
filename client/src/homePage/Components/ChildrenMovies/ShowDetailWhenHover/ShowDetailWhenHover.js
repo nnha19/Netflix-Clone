@@ -7,7 +7,8 @@ const ShowDetailWhenHover = (props) => {
 
   const shortenTitleLength = (title) => {
     if (title.length > 20) {
-      // const shortenTitle =
+      const shortenTitle = title.substr(0, 20) + "...";
+      return shortenTitle;
     } else {
       return title;
     }
