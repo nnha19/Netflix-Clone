@@ -6,8 +6,10 @@
   height: 100%;
 }
 .movie-category__icons {
-  text-align: center;
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem;
 }
 .movie-category__icon {
   padding: 0.8rem;
@@ -20,10 +22,28 @@
   border: 1px solid transparent;
   border-radius: 50%;
   border: 3px solid rgba(255, 255, 255, 0.514);
+  animation: showSlowly 2s;
 }
 .movie-category__icon:hover {
   border: 3px solid white;
 }
 .center {
   text-align: center;
+}
+.movie-category__right i {
+  width: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes showSlowly {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+
+    /* opacity: 1; */
+  }
 }

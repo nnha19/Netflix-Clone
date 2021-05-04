@@ -17,10 +17,15 @@ const ShowDetailWhenHover = (props) => {
   return (
     <div className="movie-category__body">
       <div className="movie-category__icons">
-        <i className="movie-category__icon fas fa-play"></i>
-        <i className="movie-category__icon fas fa-plus"></i>
-        <i className="movie-category__icon far fa-thumbs-up"></i>
-        <i className="movie-category__icon fas fa-thumbs-down"></i>
+        <div className="movie-category__left">
+          <i className="movie-category__icon fas fa-play"></i>
+          <i className="movie-category__icon fas fa-plus"></i>
+          <i className="movie-category__icon far fa-thumbs-up"></i>
+          <i className="movie-category__icon fas fa-thumbs-down"></i>
+        </div>
+        <div className="movie-category__right">
+          <i className="movie-category__icon fas fa-angle-down"></i>
+        </div>
       </div>
       <h4 className="primary-heading center">
         {shortenTitleLength(movieTitle)}

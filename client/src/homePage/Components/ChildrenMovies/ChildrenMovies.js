@@ -115,6 +115,7 @@ const ChildrenMovies = (props) => {
             }`}
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
           />
+          {/* <ShowDetailWhenHover movie={movie} /> */}
           {movie.showDetail && <ShowDetailWhenHover movie={movie} />}
         </div>
       );
