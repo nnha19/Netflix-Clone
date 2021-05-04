@@ -55,7 +55,7 @@ const ChildrenMovies = (props) => {
     timer && clearTimeout(timer);
     showOrHideDetail(id);
   };
-  console.log(timer);
+
   const moveHandler = (type) => {
     const width = getWidth.current.offsetWidth;
 
@@ -150,7 +150,7 @@ const ChildrenMovies = (props) => {
             <div className="movies-container">{moviesOutput}</div>
           </div>
           <ArrowIcon
-            style={{ left: "0" }}
+            style={{ left: "-2.9rem" }}
             showArrow={showLeftArrow}
             arrowType="left"
             clicked={() => moveHandler("left")}
