@@ -7,6 +7,8 @@ import DisplaySlider from "./DisplaySlider/DisplaySlider";
 import MovieCatTitle from "./MovieCatTitle/MovieCatTitle";
 import ShowDetailWhenHover from "./ShowDetailWhenHover/ShowDetailWhenHover";
 
+let timer;
+
 const ChildrenMovies = (props) => {
   const childrenMovies = props.childrenMovies;
   const moviesPerView = 5;
@@ -33,15 +35,27 @@ const ChildrenMovies = (props) => {
     setShowSlide(false);
   };
 
-  const showDetailHandler = (id) => {
+  function showOrHideDetail(id, type) {
     let cloned = [...childrenMovies];
     const hoveredOne = childrenMovies.find((cm) => cm.id === id);
     const index = childrenMovies.findIndex((cm) => cm.id === id);
-    hoveredOne.showDetail = hoveredOne.showDetail ? false : true;
+    hoveredOne.showDetail = type ? true : false;
     cloned[index] = hoveredOne;
     props.setChildrenMovies(cloned);
+  }
+
+  const showDetailHandler = (id) => {
+    timer && clearTimeout(timer);
+    timer = setTimeout(() => {
+      showOrHideDetail(id, "show");
+    }, 800);
   };
 
+  const hideDetailHandler = (id) => {
+    timer && clearTimeout(timer);
+    showOrHideDetail(id);
+  };
+  console.log(timer);
   const moveHandler = (type) => {
     const width = getWidth.current.offsetWidth;
 
@@ -87,7 +101,7 @@ const ChildrenMovies = (props) => {
       return (
         <div
           onMouseEnter={() => showDetailHandler(movie.id)}
-          onMouseLeave={() => showDetailHandler(movie.id)}
+          onMouseLeave={() => hideDetailHandler(movie.id)}
           style={style}
           className={`movie-category__detail ${
             movie.showDetail ? "prolong-width" : ""
@@ -101,7 +115,6 @@ const ChildrenMovies = (props) => {
             }`}
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
           />
-          {/* <ShowDetailWhenHover movie={movie} /> */}
           {movie.showDetail && <ShowDetailWhenHover movie={movie} />}
         </div>
       );

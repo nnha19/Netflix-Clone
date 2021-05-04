@@ -3,7 +3,16 @@ import React from "react";
 import "./ShowDetailWhenHover.css";
 
 const ShowDetailWhenHover = (props) => {
-  console.log(props.movie);
+  const movieTitle = props.movie.title || props.movie.name;
+
+  const shortenTitleLength = (title) => {
+    if (title.length > 20) {
+      // const shortenTitle =
+    } else {
+      return title;
+    }
+  };
+
   return (
     <div className="movie-category__body">
       <div className="movie-category__icons">
@@ -13,7 +22,7 @@ const ShowDetailWhenHover = (props) => {
         <i className="movie-category__icon fas fa-thumbs-down"></i>
       </div>
       <h4 className="primary-heading center">
-        {props.movie.title || props.movie.name}
+        {shortenTitleLength(movieTitle)}
       </h4>
     </div>
   );
