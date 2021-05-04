@@ -12,7 +12,7 @@ const ShowDetailWhenHover = (props) => {
         <i className="movie-category__icon far fa-thumbs-up"></i>
         <i className="movie-category__icon fas fa-thumbs-down"></i>
       </div>
-      <h4 className="primary-heading">
+      <h4 className="primary-heading center">
         {props.movie.title || props.movie.name}
       </h4>
     </div>

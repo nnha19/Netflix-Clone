@@ -3,6 +3,7 @@
   width: 100%;
   padding: 1rem 0.4rem;
   margin-top: 0;
+  height: 100%;
 }
 .movie-category__icons {
   text-align: center;
@@ -22,4 +23,7 @@
 }
 .movie-category__icon:hover {
   border: 3px solid white;
+}
+.center {
+  text-align: center;
 }
