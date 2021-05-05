@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import ViewDetailIcon from "./ViewDetailIcon/ViewDetalIcon";
+import PlayButton from "../../../../../share/UI/playButton/playButton";
 
 import ShowTag from "../ShowTag/ShowTag";
 
@@ -25,15 +26,19 @@ const IconWithTag = (props) => {
   return (
     <>
       <div className="movie-category__left">
-        <i
-          onMouseEnter={() => showTagHandler("video", true)}
-          onMouseLeave={() => showTagHandler("video")}
-          className="movie-category__icon fas fa-play"
-        >
-          <ShowTag className="show-tag" show={showTag["video"]}>
-            Watch Video
-          </ShowTag>
-        </i>
+        {props.detailPage ? (
+          <PlayButton>Play</PlayButton>
+        ) : (
+          <i
+            onMouseEnter={() => showTagHandler("video", true)}
+            onMouseLeave={() => showTagHandler("video")}
+            className="movie-category__icon fas fa-play"
+          >
+            <ShowTag className="show-tag" show={showTag["video"]}>
+              Watch Video
+            </ShowTag>
+          </i>
+        )}
         <i
           onMouseEnter={() => showTagHandler("addToList", true)}
           onMouseLeave={() => showTagHandler("addToList")}
@@ -62,15 +67,17 @@ const IconWithTag = (props) => {
           </ShowTag>
         </i>
       </div>
-      <div className="movie-category__right">
-        <ViewDetailIcon
-          movie={props.movie}
-          showTagHandler={(tagName, type) => showTagHandler(tagName, type)}
-          className="movie-category__icon fas fa-angle-down"
-          showTag={showTag}
-          viewDetail={(movie) => props.viewDetail(movie)}
-        />
-      </div>
+      {!props.detailPage && (
+        <div className="movie-category__right">
+          <ViewDetailIcon
+            movie={props.movie}
+            showTagHandler={(tagName, type) => showTagHandler(tagName, type)}
+            className="movie-category__icon fas fa-angle-down"
+            showTag={showTag}
+            viewDetail={(movie) => props.viewDetail(movie)}
+          />
+        </div>
+      )}
     </>
   );
 };

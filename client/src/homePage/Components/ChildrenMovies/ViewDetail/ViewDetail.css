@@ -1,0 +1,16 @@
+.view-detail {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  width: 50rem;
+  background: rgba(0, 0, 0, 0.733);
+}
+.view-detail__img {
+  width: 100%;
+  height: 30rem;
+}
+.view-detail__body {
+  padding: 2rem 0;
+}

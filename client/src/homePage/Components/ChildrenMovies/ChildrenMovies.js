@@ -6,6 +6,7 @@ import ArrowIcon from "../../../share/UI/arrowIcon/arrowIcon";
 import DisplaySlider from "./DisplaySlider/DisplaySlider";
 import MovieCatTitle from "./MovieCatTitle/MovieCatTitle";
 import ShowDetailWhenHover from "./ShowDetailWhenHover/ShowDetailWhenHover";
+import ViewDetail from "./ViewDetail/ViewDetail";
 
 let timer;
 
@@ -132,11 +133,9 @@ const ChildrenMovies = (props) => {
       );
     });
 
-  console.log(viewDetail);
-
   return childrenMovies ? (
     <>
-      {viewDetail && <div className="view-detail">View Detail</div>}
+      {viewDetail && <ViewDetail movie={viewDetail} />}
       <div className="overflow-wrapper">
         <div className="no-padding">
           <div
