@@ -1,16 +1,32 @@
+.backdrop {
+  min-height: 100vh;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.418);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 1000;
+}
 .view-detail {
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
   width: 50rem;
   background: rgba(0, 0, 0, 0.733);
+  overflow-y: scroll;
 }
 .view-detail__img {
   width: 100%;
   height: 30rem;
 }
 .view-detail__body {
-  padding: 2rem 0;
+  padding: 2rem;
+}
+.view-detail__heading {
+  margin-top: 2rem;
+}
+.view-detail__heading span {
+  margin-right: 2rem;
 }
