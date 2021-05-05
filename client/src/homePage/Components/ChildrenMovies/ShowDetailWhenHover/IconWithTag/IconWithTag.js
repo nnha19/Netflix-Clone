@@ -3,8 +3,12 @@ import React, { useState } from "react";
 import ShowTag from "../ShowTag/ShowTag";
 
 const IconWithTag = (props) => {
-  const showTagHandler = (tagName) => {
-    const cloned = { ...showTag, [tagName]: !showTag[tagName] };
+  const showTagHandler = (tagName, type) => {
+    const cloned = { ...showTag };
+    for (let key in cloned) {
+      cloned[key] = false;
+    }
+    cloned[tagName] = type ? true : false;
     setShowTag(cloned);
   };
 
@@ -20,7 +24,7 @@ const IconWithTag = (props) => {
     <>
       <div className="movie-category__left">
         <i
-          onMouseEnter={() => showTagHandler("video")}
+          onMouseEnter={() => showTagHandler("video", true)}
           onMouseLeave={() => showTagHandler("video")}
           className="movie-category__icon fas fa-play"
         >
@@ -29,7 +33,7 @@ const IconWithTag = (props) => {
           </ShowTag>
         </i>
         <i
-          onMouseEnter={() => showTagHandler("addToList")}
+          onMouseEnter={() => showTagHandler("addToList", true)}
           onMouseLeave={() => showTagHandler("addToList")}
           className="movie-category__icon fas fa-plus"
         >
@@ -38,7 +42,7 @@ const IconWithTag = (props) => {
           </ShowTag>
         </i>
         <i
-          onMouseEnter={() => showTagHandler("like")}
+          onMouseEnter={() => showTagHandler("like", true)}
           onMouseLeave={() => showTagHandler("like")}
           className="movie-category__icon far fa-thumbs-up"
         >
@@ -47,7 +51,7 @@ const IconWithTag = (props) => {
           </ShowTag>
         </i>
         <i
-          onMouseEnter={() => showTagHandler("disLike")}
+          onMouseEnter={() => showTagHandler("disLike", true)}
           onMouseLeave={() => showTagHandler("disLike")}
           className="movie-category__icon fas fa-thumbs-down"
         >
@@ -58,7 +62,7 @@ const IconWithTag = (props) => {
       </div>
       <div className="movie-category__right">
         <i
-          onMouseEnter={() => showTagHandler("viewDetail")}
+          onMouseEnter={() => showTagHandler("viewDetail", true)}
           onMouseLeave={() => showTagHandler("viewDetail")}
           className="movie-category__icon fas fa-angle-down"
         >
