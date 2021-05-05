@@ -1,21 +1,27 @@
 .backdrop {
-  min-height: 100vh;
+  height: 100vh;
   position: fixed;
   background: rgba(0, 0, 0, 0.418);
   top: 0;
   left: 0;
   width: 100vw;
   z-index: 1000;
+  animation: showSlowly 1.5s;
 }
+
 .view-detail {
-  position: absolute;
-  top: 50%;
+  position: fixed;
+  top: 4rem;
+  transform: translate(-50%);
   left: 50%;
-  transform: translate(-50%, -50%);
   z-index: 1000;
   width: 50rem;
-  background: rgba(0, 0, 0, 0.733);
-  overflow-y: scroll;
+  background: #141414;
+  animation: showSlowly 1.5s;
+  height: max-content;
+  overflow: scroll;
+  height: 100vh;
+  padding-bottom: 4rem;
 }
 .view-detail__img {
   width: 100%;

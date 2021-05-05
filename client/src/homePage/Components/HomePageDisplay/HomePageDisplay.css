@@ -14,7 +14,6 @@
 
 .display-movie__content {
   margin-left: 3rem;
-  color: rgba(255, 255, 255, 0.822);
 }
 .display-movie__btns {
   margin-top: 2rem;
@@ -27,4 +26,5 @@
 .netflix-text {
   font-weight: 500;
   letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.822);
 }

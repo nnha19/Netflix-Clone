@@ -133,9 +133,15 @@ const ChildrenMovies = (props) => {
       );
     });
 
+  const hideViewDetailHandler = () => {
+    setViewDetail(null);
+  };
+
   return childrenMovies ? (
     <>
-      {viewDetail && <ViewDetail movie={viewDetail} />}
+      {viewDetail && (
+        <ViewDetail hideViewDetail={hideViewDetailHandler} movie={viewDetail} />
+      )}
       <div className="overflow-wrapper">
         <div className="no-padding">
           <div
