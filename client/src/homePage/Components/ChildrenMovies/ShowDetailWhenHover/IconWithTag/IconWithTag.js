@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import ViewDetailIcon from "./ViewDetailIcon/VideDetailIcon";
+import ViewDetailIcon from "./ViewDetailIcon/ViewDetalIcon";
 
 import ShowTag from "../ShowTag/ShowTag";
 
@@ -64,9 +64,11 @@ const IconWithTag = (props) => {
       </div>
       <div className="movie-category__right">
         <ViewDetailIcon
+          movie={props.movie}
           showTagHandler={(tagName, type) => showTagHandler(tagName, type)}
           className="movie-category__icon fas fa-angle-down"
           showTag={showTag}
+          viewDetail={(movie) => props.viewDetail(movie)}
         />
       </div>
     </>

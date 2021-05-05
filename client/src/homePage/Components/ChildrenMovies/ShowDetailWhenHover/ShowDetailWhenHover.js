@@ -19,7 +19,10 @@ const ShowDetailWhenHover = (props) => {
   return (
     <div className="movie-category__body">
       <div className="movie-category__icons">
-        <IconWithTag />
+        <IconWithTag
+          viewDetail={(movie) => props.viewDetail(movie)}
+          movie={props.movie}
+        />
       </div>
       <h4 className="primary-heading center">
         {shortenTitleLength(movieTitle)}

@@ -19,6 +19,7 @@ const ChildrenMovies = (props) => {
   const [moviesLeft, setMoviesLeft] = useState(null);
   const [activeSlide, setActiveSlide] = useState(1);
   const [showSlide, setShowSlide] = useState(false);
+  const [viewDetail, setViewDetail] = useState(false);
 
   const getWidth = createRef();
 
@@ -44,16 +45,16 @@ const ChildrenMovies = (props) => {
     props.setChildrenMovies(cloned);
   }
 
-  const showDetailHandler = (id) => {
+  const showDetailHandler = (movie) => {
     timer && clearTimeout(timer);
     timer = setTimeout(() => {
-      showOrHideDetail(id, "show");
+      showOrHideDetail(movie.id, "show");
     }, 800);
   };
 
-  const hideDetailHandler = (id) => {
+  const hideDetailHandler = (movie) => {
     timer && clearTimeout(timer);
-    showOrHideDetail(id);
+    showOrHideDetail(movie.id);
   };
 
   const moveHandler = (type) => {
@@ -94,76 +95,91 @@ const ChildrenMovies = (props) => {
     setMoviesLeft(childrenMovies.length - moviesPerView);
   }, [childrenMovies.length]);
 
+  const viewDetailHandler = (movie) => {
+    setViewDetail(movie);
+  };
+
   const moviesOutput =
     childrenMovies &&
     childrenMovies.map((movie, i) => {
       const style = { transform: `translateX(${16 * i}rem)` };
       return (
-        <div
-          onMouseEnter={() => showDetailHandler(movie.id)}
-          onMouseLeave={() => hideDetailHandler(movie.id)}
-          style={style}
-          className={`movie-category__detail ${
-            movie.showDetail ? "prolong-width" : ""
-          }`}
-        >
-          <img
-            ref={getWidth}
-            key={movie.id}
-            className={`movie-category__img ${
-              movie.showDetail ? "shorten-img" : ""
+        <>
+          <div
+            onMouseEnter={() => showDetailHandler(movie)}
+            onMouseLeave={() => hideDetailHandler(movie)}
+            style={style}
+            className={`movie-category__detail ${
+              movie.showDetail ? "prolong-width" : ""
             }`}
-            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-          />
-          {/* <ShowDetailWhenHover movie={movie} /> */}
-          {movie.showDetail && <ShowDetailWhenHover movie={movie} />}
-        </div>
-      );
-    });
-
-  return childrenMovies ? (
-    <div className="overflow-wrapper">
-      <div className="no-padding">
-        <div
-          onMouseEnter={showArrowHandler}
-          onMouseLeave={hideArrowHandler}
-          className="movie-category"
-        >
-          <div className="movie-category__header">
-            <MovieCatTitle
-              title={props.title}
-              className="primary-heading movie-category__heading"
-              movies={childrenMovies}
+          >
+            <img
+              ref={getWidth}
+              key={movie.id}
+              className={`movie-category__img ${
+                movie.showDetail ? "shorten-img" : ""
+              }`}
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
             />
-            {showSlide && (
-              <DisplaySlider
-                activeSlide={activeSlide}
-                moviesPerView={moviesPerView}
-                movies={childrenMovies}
+            {movie.showDetail && (
+              <ShowDetailWhenHover
+                viewDetail={viewDetailHandler}
+                movie={movie}
               />
             )}
           </div>
+        </>
+      );
+    });
 
+  console.log(viewDetail);
+
+  return childrenMovies ? (
+    <>
+      {viewDetail && <div className="view-detail">View Detail</div>}
+      <div className="overflow-wrapper">
+        <div className="no-padding">
           <div
-            style={{ transform: `translateX(${curView}px)` }}
-            className="slider"
+            onMouseEnter={showArrowHandler}
+            onMouseLeave={hideArrowHandler}
+            className="movie-category"
           >
-            <div className="movies-container">{moviesOutput}</div>
+            <div className="movie-category__header">
+              <MovieCatTitle
+                title={props.title}
+                className="primary-heading movie-category__heading"
+                movies={childrenMovies}
+              />
+              {showSlide && (
+                <DisplaySlider
+                  activeSlide={activeSlide}
+                  moviesPerView={moviesPerView}
+                  movies={childrenMovies}
+                />
+              )}
+            </div>
+
+            <div
+              style={{ transform: `translateX(${curView}px)` }}
+              className="slider"
+            >
+              <div className="movies-container">{moviesOutput}</div>
+            </div>
+            <ArrowIcon
+              style={{ left: "-2.9rem" }}
+              showArrow={showLeftArrow}
+              arrowType="left"
+              clicked={() => moveHandler("left")}
+            />
+            <ArrowIcon
+              clicked={() => moveHandler("right")}
+              showArrow={showRightArrow}
+              arrowType="right"
+            />
           </div>
-          <ArrowIcon
-            style={{ left: "-2.9rem" }}
-            showArrow={showLeftArrow}
-            arrowType="left"
-            clicked={() => moveHandler("left")}
-          />
-          <ArrowIcon
-            clicked={() => moveHandler("right")}
-            showArrow={showRightArrow}
-            arrowType="right"
-          />
         </div>
       </div>
-    </div>
+    </>
   ) : null;
 };
 
