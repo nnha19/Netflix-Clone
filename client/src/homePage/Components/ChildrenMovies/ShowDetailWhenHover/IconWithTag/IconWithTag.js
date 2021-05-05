@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import ViewDetailIcon from "./ViewDetailIcon/VideDetailIcon";
+
 import ShowTag from "../ShowTag/ShowTag";
 
 const IconWithTag = (props) => {
@@ -61,15 +63,11 @@ const IconWithTag = (props) => {
         </i>
       </div>
       <div className="movie-category__right">
-        <i
-          onMouseEnter={() => showTagHandler("viewDetail", true)}
-          onMouseLeave={() => showTagHandler("viewDetail")}
+        <ViewDetailIcon
+          showTagHandler={(tagName, type) => showTagHandler(tagName, type)}
           className="movie-category__icon fas fa-angle-down"
-        >
-          <ShowTag className="show-tag" show={showTag["viewDetail"]}>
-            View Detail
-          </ShowTag>
-        </i>
+          showTag={showTag}
+        />
       </div>
     </>
   );
