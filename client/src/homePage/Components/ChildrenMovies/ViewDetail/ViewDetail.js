@@ -6,7 +6,8 @@ import "./ViewDetail.css";
 
 const ViewDetail = (props) => {
   const movie = props.movie;
-  const releasedDate = movie.release_date.split("-")[0];
+  const airedDate = movie.release_date || movie.first_air_date;
+  const releasedDate = airedDate.split("-")[0];
 
   return (
     <>
@@ -21,7 +22,7 @@ const ViewDetail = (props) => {
             <IconWithTag detailPage={movie} />
             <h3 className="primary-heading view-detail__heading">
               <span className="primary-heading">
-                {movie.title} - {releasedDate}
+                {movie.title || movie.name} - {releasedDate}
               </span>
             </h3>
             <p className="netflix-text">{movie.overview}</p>

@@ -133,6 +133,8 @@ const ChildrenMovies = (props) => {
       );
     });
 
+  console.log(childrenMovies);
+
   useEffect(() => {
     if (viewDetail) {
       document.body.style.overflow = "hidden";
