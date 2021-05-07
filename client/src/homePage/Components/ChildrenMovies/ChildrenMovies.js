@@ -133,6 +133,16 @@ const ChildrenMovies = (props) => {
       );
     });
 
+  useEffect(() => {
+    if (viewDetail) {
+      document.body.style.overflow = "hidden";
+      document.body.style.height = "100%";
+    } else {
+      document.body.style.overflow = "auto";
+      document.body.style.height = "maxContent";
+    }
+  }, [viewDetail]);
+
   const hideViewDetailHandler = () => {
     setViewDetail(null);
   };
