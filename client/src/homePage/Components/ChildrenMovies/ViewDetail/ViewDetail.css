@@ -37,3 +37,8 @@
 .view-detail__heading span {
   margin-right: 2rem;
 }
+
+.view-detail__flex {
+  display: flex;
+  align-items: center;
+}

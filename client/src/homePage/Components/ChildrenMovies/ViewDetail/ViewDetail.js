@@ -1,6 +1,7 @@
 import React from "react";
 
 import IconWithTag from "../ShowDetailWhenHover/IconWithTag/IconWithTag";
+import MovieCast from "./MovieCast/MovieCast";
 
 import "./ViewDetail.css";
 
@@ -19,12 +20,17 @@ const ViewDetail = (props) => {
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           />
           <div className="view-detail__body">
-            <IconWithTag detailPage={movie} />
-            <h3 className="primary-heading view-detail__heading">
-              <span className="primary-heading">
-                {movie.title || movie.name} - {releasedDate}
-              </span>
-            </h3>
+            <div>
+              <IconWithTag detailPage={movie} />
+              <div className="view-detail__flex">
+                <h3 className="primary-heading view-detail__heading">
+                  <span className="primary-heading">
+                    {movie.title || movie.name} - {releasedDate}
+                  </span>
+                </h3>
+                <MovieCast />
+              </div>
+            </div>
             <p className="netflix-text">{movie.overview}</p>
           </div>
         </div>
