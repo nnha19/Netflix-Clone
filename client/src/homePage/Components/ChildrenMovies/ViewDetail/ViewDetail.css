@@ -32,7 +32,8 @@
   padding: 2rem;
 }
 .view-detail__heading {
-  margin-top: 2rem;
+  flex-basis: 50%;
+  margin-right: 1rem;
 }
 .view-detail__heading span {
   margin-right: 2rem;
@@ -41,7 +42,8 @@
 .view-detail__flex {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 .view-detail__right {
   flex-basis: 50%;
