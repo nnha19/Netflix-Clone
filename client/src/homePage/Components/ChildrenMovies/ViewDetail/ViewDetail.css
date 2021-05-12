@@ -41,4 +41,8 @@
 .view-detail__flex {
   display: flex;
   align-items: center;
+  margin-bottom: 1rem;
+}
+.view-detail__right {
+  flex-basis: 50%;
 }

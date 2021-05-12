@@ -1,7 +1,7 @@
 import React from "react";
 
 import IconWithTag from "../ShowDetailWhenHover/IconWithTag/IconWithTag";
-import MovieCast from "./MovieCast/MovieCast";
+import MovieCastOrGenres from "./MovieCastOrGenres/MovieCastOrGenres";
 
 import "./ViewDetail.css";
 
@@ -28,7 +28,12 @@ const ViewDetail = (props) => {
                     {movie.title || movie.name} - {releasedDate}
                   </span>
                 </h3>
-                <MovieCast />
+                <div className="view-detail__right">
+                  <MovieCastOrGenres
+                    type="Casts"
+                    url="https://api.themoviedb.org/3/movie/567189/credits?api_key=a31d02795054ebca84e5c9d45e915e85&language=en-US"
+                  />
+                </div>
               </div>
             </div>
             <p className="netflix-text">{movie.overview}</p>

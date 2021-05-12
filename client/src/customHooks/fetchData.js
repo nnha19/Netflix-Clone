@@ -18,7 +18,7 @@ export const FetchData = (initVal) => {
           "content-type": "Application/Json",
         },
       });
-      setData(result.data.results);
+      setData(result.data.results || result.data.cast);
       setLoading(false);
     } catch (err) {
       console.log(err);

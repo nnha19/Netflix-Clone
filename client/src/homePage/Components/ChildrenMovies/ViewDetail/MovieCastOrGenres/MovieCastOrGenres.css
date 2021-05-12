@@ -1,7 +1,14 @@
+.movie-cast {
+  flex-basis: 50%;
+  display: flex;
+}
 .movie-cast__text {
   color: grey;
 }
 .cast-names {
   color: white;
-  margin-left: 0.8rem;
+  line-height: 1.4;
+}
+.movie-cast__chars {
+  margin-left: 1rem;
 }
