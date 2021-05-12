@@ -14,22 +14,24 @@ const MovieGenres = (props) => {
       return <span className="cast-names">{genre}</span>;
     });
 
+  const allGenres = [];
+  const fetchData = async (movieType) => {
+    const result = await axios.get(
+      `https://api.themoviedb.org/3/genre/${movieType}/list?api_key=a31d02795054ebca84e5c9d45e915e85&language=en-US`
+    );
+    const movieGenres = [];
+    allGenres.push(result.data.genres);
+    allGenres.flat().forEach((genre) => {
+      genreIds.forEach((genreId) => {
+        genre.id === genreId && movieGenres.push(genre.name);
+      });
+    });
+    setGenres(movieGenres);
+  };
+
   useEffect(() => {
-    axios
-      .get(
-        "https://api.themoviedb.org/3/genre/movie/list?api_key=a31d02795054ebca84e5c9d45e915e85&language=en-US"
-      )
-      .then((res) => {
-        const allGenres = res.data.genres;
-        const genres = [];
-        allGenres.forEach((allG) => {
-          genreIds.forEach((chosenG) => {
-            allG.id === chosenG && genres.push(allG.name);
-          });
-          setGenres(genres);
-        });
-      })
-      .catch((err) => console.log(err));
+    fetchData("movie");
+    fetchData("tv");
   }, []);
 
   return (

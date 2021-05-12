@@ -13,4 +13,6 @@
 }
 .movie-cast__chars {
   margin-left: 1rem;
+  display: flex;
+  flex-wrap: wrap;
 }

@@ -29,6 +29,7 @@ const ViewDetail = (props) => {
                     {movie.title || movie.name} - {releasedDate}
                   </span>
                 </h3>
+
                 <div className="view-detail__right">
                   <MovieCastOrGenres
                     type="Casts"
