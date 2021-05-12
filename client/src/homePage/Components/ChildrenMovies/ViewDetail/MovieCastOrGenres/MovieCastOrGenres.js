@@ -8,7 +8,7 @@ const MovieCastOrGenres = (props) => {
   const [result, fetch] = useFetchData([]);
 
   useEffect(() => {
-    console.log(props.url);
+    if (props.type === "Genres") return;
     fetch(props.url, "get");
   }, []);
 

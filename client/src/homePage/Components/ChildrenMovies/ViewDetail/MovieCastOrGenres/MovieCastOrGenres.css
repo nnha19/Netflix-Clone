@@ -1,6 +1,7 @@
 .movie-cast {
   flex-basis: 50%;
   display: flex;
+  margin-top: 0.5rem;
 }
 .movie-cast__text {
   color: grey;
@@ -8,6 +9,7 @@
 .cast-names {
   color: white;
   line-height: 1.4;
+  margin-right: 0.4rem;
 }
 .movie-cast__chars {
   margin-left: 1rem;
