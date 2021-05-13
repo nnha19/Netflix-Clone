@@ -33,7 +33,7 @@ const ViewDetail = (props) => {
                 <div className="view-detail__right">
                   <MovieCastOrGenres
                     type="Casts"
-                    url="https://api.themoviedb.org/3/movie/567189/credits?api_key=a31d02795054ebca84e5c9d45e915e85&language=en-US"
+                    url={`https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`}
                   />
                   <MovieGenres genres={movie.genre_ids} />
                 </div>
