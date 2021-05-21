@@ -41,8 +41,8 @@ const ChildrenMovies = (props) => {
     let cloned = [...childrenMovies];
     const hoveredOne = childrenMovies.find((cm) => cm.id === id);
     const index = childrenMovies.findIndex((cm) => cm.id === id);
-    hoveredOne.showDetail = type ? true : false;
-    cloned[index] = hoveredOne;
+    const newObj = { ...hoveredOne, showDetail: type ? true : false };
+    cloned[index] = newObj;
     props.setChildrenMovies(cloned);
   }
 

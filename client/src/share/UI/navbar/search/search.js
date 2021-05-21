@@ -2,13 +2,19 @@ import React, { useState } from "react";
 
 import "./search.css";
 
+import axios from "axios";
+
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { FetchData as useFetchData } from "../../../../customHooks/fetchData";
+import { getResulsForSearch } from "../../../../store/slices/searchSlice";
 
 let timer;
 
 const Search = (props) => {
+  const dispatch = useDispatch();
+
   const history = useHistory();
   const [searchResult, fetchData] = useFetchData("");
   const [showSearch, setShowSearch] = useState(false);
@@ -24,11 +30,8 @@ const Search = (props) => {
     if (timer) {
       clearTimeout(timer);
     }
-    timer = setTimeout(() => {
-      fetchData(
-        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${e.target.value}&page=1&include_adult=false`,
-        "get"
-      );
+    timer = setTimeout(async () => {
+      dispatch(getResulsForSearch(e.target.value));
       history.push(`/search/q=${e.target.value}`);
     }, 1000);
   };
@@ -39,16 +42,6 @@ const Search = (props) => {
 
   return (
     <>
-      <div
-        onClick={hideSearchHandler}
-        style={{
-          width: "100vw",
-          height: "100vh",
-          position: "absolute",
-          right: "0",
-          zIndex: "-1",
-        }}
-      ></div>
       <form className="search nav-bar__icon">
         <i
           onClick={clickedSearchHandler}
