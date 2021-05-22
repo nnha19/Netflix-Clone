@@ -52,3 +52,16 @@
   width: 22rem;
   z-index: 10000;
 }
+.relative-position {
+  position: relative;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+.visible-overflow {
+  overflow: visible;
+}
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

@@ -5,23 +5,22 @@ import "./search.css";
 import axios from "axios";
 
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch, createDispatchHook } from "react-redux";
+import { searchToggleSliceActions } from "../../../../store/slices/searchToggle";
 
-import { FetchData as useFetchData } from "../../../../customHooks/fetchData";
 import { getResulsForSearch } from "../../../../store/slices/searchSlice";
 
 let timer;
 
 const Search = (props) => {
+  const showSearch = useSelector((state) => state.searchToggle.showSearch);
   const dispatch = useDispatch();
 
   const history = useHistory();
-  const [searchResult, fetchData] = useFetchData("");
-  const [showSearch, setShowSearch] = useState(false);
   const [searchVal, setSearchVal] = useState("");
 
   const clickedSearchHandler = () => {
-    setShowSearch(true);
+    dispatch(searchToggleSliceActions.showSearch());
   };
 
   const valChangeHandler = (e) => {
@@ -36,13 +35,9 @@ const Search = (props) => {
     }, 1000);
   };
 
-  const hideSearchHandler = () => {
-    setShowSearch(false);
-  };
-
   return (
     <>
-      <form className="search nav-bar__icon">
+      <form id="nav-bar__search" className="search nav-bar__icon">
         <i
           onClick={clickedSearchHandler}
           className={`${

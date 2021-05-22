@@ -31,6 +31,8 @@ const ChildrenMovies = (props) => {
     setShowSlide(true);
   };
 
+  console.log(props.detail);
+
   const hideArrowHandler = () => {
     setShowRightArrow(false);
     setShowLeftArrow(false);
@@ -103,7 +105,9 @@ const ChildrenMovies = (props) => {
   const moviesOutput =
     childrenMovies &&
     childrenMovies.map((movie, i) => {
-      const style = { transform: `translateX(${16 * i}rem)` };
+      const style = {
+        transform: !props.detail ? `translateX(${16 * i}rem)` : "",
+      };
       return (
         <>
           <div
@@ -112,7 +116,7 @@ const ChildrenMovies = (props) => {
             style={style}
             className={`movie-category__detail ${
               movie.showDetail ? "prolong-width" : ""
-            }`}
+            } ${props.detail ? "relative-position" : ""}`}
           >
             <img
               ref={getWidth}
@@ -153,7 +157,7 @@ const ChildrenMovies = (props) => {
         <ViewDetail hideViewDetail={hideViewDetailHandler} movie={viewDetail} />
       )}
       <div className="overflow-wrapper">
-        <div className="no-padding">
+        <div className={`no-padding ${props.detail ? "visible-overflow" : ""}`}>
           <div
             onMouseEnter={showArrowHandler}
             onMouseLeave={hideArrowHandler}
@@ -175,10 +179,14 @@ const ChildrenMovies = (props) => {
             </div>
 
             <div
-              style={{ transform: `translateX(${curView}px)` }}
+              style={{
+                transform: !props.detail ? `translateX(${curView}px)` : "",
+              }}
               className="slider"
             >
-              <div className="movies-container">{moviesOutput}</div>
+              <div className={`movies-container ${props.detail ? "flex" : ""}`}>
+                {moviesOutput}
+              </div>
             </div>
             <ArrowIcon
               style={{ left: "-2.9rem" }}

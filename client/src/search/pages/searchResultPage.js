@@ -22,6 +22,7 @@ const SearchResult = () => {
           showDetailHandler(movie);
         }}
         childrenMovies={searchResults}
+        detail={true}
       />
     </>
   ) : null;
