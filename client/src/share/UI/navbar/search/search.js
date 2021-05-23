@@ -2,8 +2,6 @@ import React, { useState } from "react";
 
 import "./search.css";
 
-import axios from "axios";
-
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch, createDispatchHook } from "react-redux";
 import { searchToggleSliceActions } from "../../../../store/slices/searchToggle";

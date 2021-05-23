@@ -31,7 +31,7 @@ const ChildrenMovies = (props) => {
     setShowSlide(true);
   };
 
-  console.log(props.detail);
+  console.log(childrenMovies);
 
   const hideArrowHandler = () => {
     setShowRightArrow(false);
@@ -43,7 +43,13 @@ const ChildrenMovies = (props) => {
     let cloned = [...childrenMovies];
     const hoveredOne = childrenMovies.find((cm) => cm.id === id);
     const index = childrenMovies.findIndex((cm) => cm.id === id);
-    const newObj = { ...hoveredOne, showDetail: type ? true : false };
+    const newObj = { ...hoveredOne };
+    if (type) {
+      cloned.map((movies) => (movies.showDetail = false));
+      newObj.showDetail = true;
+    } else {
+      newObj.showDetail = false;
+    }
     cloned[index] = newObj;
     props.setChildrenMovies(cloned);
   }
