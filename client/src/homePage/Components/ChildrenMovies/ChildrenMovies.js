@@ -45,7 +45,12 @@ const ChildrenMovies = (props) => {
     const index = childrenMovies.findIndex((cm) => cm.id === id);
     const newObj = { ...hoveredOne };
     if (type) {
-      cloned.map((movies) => (movies.showDetail = false));
+      const modified = cloned.map((movie) => {
+        const clonedMovie = { ...movie };
+        clonedMovie.showDetail = false;
+        return clonedMovie;
+      });
+      cloned = modified;
       newObj.showDetail = true;
     } else {
       newObj.showDetail = false;
