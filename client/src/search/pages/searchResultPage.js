@@ -15,13 +15,13 @@ const SearchResult = () => {
 
   return searchResults && searchResults.length > 0 ? (
     <>
-      <h1 className="primary-heading">Search Result</h1>
       <DisplayMovies
         setChildrenMovies={(movie) => {
           showDetailHandler(movie);
         }}
         childrenMovies={searchResults}
         detail={true}
+        title="Search Results"
       />
     </>
   ) : null;

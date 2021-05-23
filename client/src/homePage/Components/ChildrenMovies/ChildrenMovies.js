@@ -121,28 +121,30 @@ const ChildrenMovies = (props) => {
       };
       return (
         <>
-          <div
-            onMouseEnter={() => showDetailHandler(movie)}
-            onMouseLeave={() => hideDetailHandler(movie)}
-            style={style}
-            className={`movie-category__detail ${
-              movie.showDetail ? "prolong-width" : ""
-            } ${props.detail ? "relative-position" : ""}`}
-          >
-            <img
-              ref={getWidth}
-              key={movie.id}
-              className={`movie-category__img ${
-                movie.showDetail ? "shorten-img" : ""
-              }`}
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-            />
-            {movie.showDetail && (
-              <ShowDetailWhenHover
-                viewDetail={viewDetailHandler}
-                movie={movie}
+          <div className={props.detail ? "fixed-parent" : ""}>
+            <div
+              onMouseEnter={() => showDetailHandler(movie)}
+              onMouseLeave={() => hideDetailHandler(movie)}
+              style={style}
+              className={`movie-category__detail ${
+                movie.showDetail ? "prolong-width" : ""
+              } ${props.detail ? "relative-position" : ""}`}
+            >
+              <img
+                ref={getWidth}
+                key={movie.id}
+                className={`movie-category__img ${
+                  movie.showDetail ? "shorten-img" : ""
+                }`}
+                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
               />
-            )}
+              {movie.showDetail && (
+                <ShowDetailWhenHover
+                  viewDetail={viewDetailHandler}
+                  movie={movie}
+                />
+              )}
+            </div>
           </div>
         </>
       );
