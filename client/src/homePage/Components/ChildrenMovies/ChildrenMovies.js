@@ -201,17 +201,21 @@ const ChildrenMovies = (props) => {
                 {moviesOutput}
               </div>
             </div>
-            <ArrowIcon
-              style={{ left: "-2.9rem" }}
-              showArrow={showLeftArrow}
-              arrowType="left"
-              clicked={() => moveHandler("left")}
-            />
-            <ArrowIcon
-              clicked={() => moveHandler("right")}
-              showArrow={showRightArrow}
-              arrowType="right"
-            />
+            {!props.detail && (
+              <>
+                <ArrowIcon
+                  style={{ left: "-2.9rem" }}
+                  showArrow={showLeftArrow}
+                  arrowType="left"
+                  clicked={() => moveHandler("left")}
+                />
+                <ArrowIcon
+                  clicked={() => moveHandler("right")}
+                  showArrow={showRightArrow}
+                  arrowType="right"
+                />
+              </>
+            )}
           </div>
         </div>
       </div>
