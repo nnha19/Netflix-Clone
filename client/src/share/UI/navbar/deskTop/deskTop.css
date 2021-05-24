@@ -19,6 +19,7 @@
 }
 .logo {
   margin-right: 3rem;
+  cursor: pointer;
 }
 .logo__img {
   width: 4rem;

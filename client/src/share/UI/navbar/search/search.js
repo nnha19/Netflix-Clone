@@ -11,11 +11,12 @@ import { getResulsForSearch } from "../../../../store/slices/searchSlice";
 let timer;
 
 const Search = (props) => {
+  const { searchVal, setSearchVal } = props;
+
   const showSearch = useSelector((state) => state.searchToggle.showSearch);
   const dispatch = useDispatch();
 
   const history = useHistory();
-  const [searchVal, setSearchVal] = useState("");
 
   const clickedSearchHandler = () => {
     dispatch(searchToggleSliceActions.showSearch());
