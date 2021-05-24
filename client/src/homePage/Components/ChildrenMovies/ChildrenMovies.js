@@ -174,7 +174,7 @@ const ChildrenMovies = (props) => {
           <div
             onMouseEnter={showArrowHandler}
             onMouseLeave={hideArrowHandler}
-            className="movie-category"
+            className={`movie-category ${props.detail ? "min-height" : ""}`}
           >
             <div className="movie-category__header">
               <MovieCatTitle
@@ -182,7 +182,7 @@ const ChildrenMovies = (props) => {
                 className="primary-heading movie-category__heading"
                 movies={childrenMovies}
               />
-              {showSlide && (
+              {showSlide && !props.detail && (
                 <DisplaySlider
                   activeSlide={activeSlide}
                   moviesPerView={moviesPerView}

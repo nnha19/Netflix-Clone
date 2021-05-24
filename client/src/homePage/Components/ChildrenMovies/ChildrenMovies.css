@@ -71,3 +71,6 @@
   position: relative;
   margin-bottom: 2rem;
 }
+.min-height {
+  height: min-content;
+}
