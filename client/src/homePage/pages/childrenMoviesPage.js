@@ -13,10 +13,6 @@ const ChildrenMoviesPage = (props) => {
     fetchData(url(1), "get");
   }, []);
 
-  useEffect(() => {
-    data && data.length > 0 && props.setAllMovie({ [title]: data });
-  }, [data]);
-
   return data ? (
     <ChildrenMovies
       setChildrenMovies={(movie) => {

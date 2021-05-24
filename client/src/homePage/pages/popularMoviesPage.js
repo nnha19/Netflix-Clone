@@ -14,12 +14,6 @@ const PopularMoviesPage = (props) => {
     );
   }, []);
 
-  useEffect(() => {
-    popularMovies &&
-      popularMovies.length > 0 &&
-      props.setAllMovie({ [title]: popularMovies });
-  }, [popularMovies]);
-
   return popularMovies ? (
     <ChildrenMovies
       setChildrenMovies={(movie) => setPopularMovies(movie)}

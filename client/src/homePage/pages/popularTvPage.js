@@ -14,12 +14,6 @@ const PopularTvPage = (props) => {
     );
   }, []);
 
-  useEffect(() => {
-    popularTv &&
-      popularTv.length > 0 &&
-      props.setAllMovie({ [title]: popularTv });
-  }, [popularTv]);
-
   return popularTv ? (
     <ChildrenMovies
       setChildrenMovies={(movie) => setPopularTv(movie)}
