@@ -3,7 +3,7 @@ import NavBar from "./share/UI/navbar/navbar";
 import { Route, Link, Switch, Redirect } from "react-router-dom";
 
 import { searchToggleSliceActions } from "./store/slices/searchToggle";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import HomePage from "./homePage/pages/homePage";
 import ViewDetailByCate from "./viewDetailByCate/pages/viewDetailByCatePage";
@@ -13,9 +13,11 @@ import "./App.css";
 
 const App = () => {
   const dispatch = useDispatch();
+  const showSearch = useSelector((state) => state.searchToggle.showSearch);
 
   const hideSearchHandler = (e) => {
-    !e.target.closest("#nav-bar__search") &&
+    showSearch &&
+      !e.target.closest("#nav-bar__search") &&
       dispatch(searchToggleSliceActions.hideSearch());
   };
 

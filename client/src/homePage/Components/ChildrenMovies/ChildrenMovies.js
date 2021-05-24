@@ -31,8 +31,6 @@ const ChildrenMovies = (props) => {
     setShowSlide(true);
   };
 
-  console.log(childrenMovies);
-
   const hideArrowHandler = () => {
     setShowRightArrow(false);
     setShowLeftArrow(false);

@@ -10,7 +10,7 @@ const searchToggleSlice = createSlice({
       state.showSearch = true;
     },
     hideSearch(state, action) {
-      state.showSearch = false;
+      state.showSearch = state.hideAbleSearch && false;
     },
   },
 });

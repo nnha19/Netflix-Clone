@@ -23,7 +23,6 @@ const Search = (props) => {
 
   const valChangeHandler = (e) => {
     setSearchVal(e.target.value);
-
     if (timer) {
       clearTimeout(timer);
     }
@@ -31,6 +30,12 @@ const Search = (props) => {
       dispatch(getResulsForSearch(e.target.value));
       history.push(`/search/q=${e.target.value}`);
     }, 1000);
+  };
+
+  const hideSearchAndMoveHomeHandler = () => {
+    dispatch(searchToggleSliceActions.hideSearch());
+    history.push("/");
+    setSearchVal("");
   };
 
   return (
@@ -49,6 +54,12 @@ const Search = (props) => {
           type="text"
           placeholder="Search Movies"
         />
+        {showSearch && searchVal.length > 0 && (
+          <i
+            onClick={hideSearchAndMoveHomeHandler}
+            class="fas fa-times hide-search"
+          ></i>
+        )}
       </form>
     </>
   );

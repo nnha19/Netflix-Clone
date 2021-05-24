@@ -4,11 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { searchSliceActions } from "../../store/slices/searchSlice";
 
+import Error from "../../share/Components/Error/Error";
 import DisplayMovies from "../../homePage/Components/ChildrenMovies/ChildrenMovies";
 
 const SearchResult = () => {
   const dispatch = useDispatch();
   const searchResults = useSelector((state) => state.search.searchResults);
+
   const showDetailHandler = (movies) => {
     dispatch(searchSliceActions.setChildrenMovies(movies));
   };
@@ -24,7 +26,9 @@ const SearchResult = () => {
         title="Search Results"
       />
     </>
-  ) : null;
+  ) : (
+    <Error errorMsg={`No results found.`} />
+  );
 };
 
 export default SearchResult;

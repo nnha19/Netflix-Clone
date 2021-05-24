@@ -1,6 +1,8 @@
 import React from "react";
 import "./deskTop.css";
 
+import { Link } from "react-router-dom";
+
 import Search from "../search/search";
 
 const DeskTop = (props) => {
@@ -8,10 +10,12 @@ const DeskTop = (props) => {
     <div className="desktop">
       <div className="desktop__left">
         <div className="logo">
-          <img
-            src="https://www.freepnglogos.com/uploads/netflix-logo-app-png-16.png"
-            className="logo__img"
-          />
+          <Link to="/netflix/browse">
+            <img
+              src="https://www.freepnglogos.com/uploads/netflix-logo-app-png-16.png"
+              className="logo__img"
+            />
+          </Link>
         </div>
         <li className="nav-bar__item nav-bar__hover">Home</li>
         <li className="nav-bar__item nav-bar__hover">TV Shows</li>

@@ -2,6 +2,8 @@
   display: flex;
   position: relative;
   margin-right: 2rem;
+  justify-content: center;
+  align-items: center;
 }
 .search__input {
   border: 0px solid white;
@@ -29,4 +31,15 @@
 }
 .move-right {
   margin-right: -2rem;
+}
+.nav-bar__input-remove {
+  position: relative;
+}
+.hide-search {
+  color: white;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }

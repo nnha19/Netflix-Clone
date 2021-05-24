@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
 import axios from "axios";
 
 export const getResulsForSearch = createAsyncThunk(
@@ -18,7 +17,7 @@ export const getResulsForSearch = createAsyncThunk(
 
 const searchSlice = createSlice({
   name: "search",
-  initialState: { searchResults: [] },
+  initialState: { searchResults: [], searchValue: "" },
   reducers: {
     setChildrenMovies(state, action) {
       state.searchResults = action.payload;
