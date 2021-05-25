@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+
+import { useSelector, useDispatch } from "react-redux";
+import { moviesSliceActions } from "../../store/slices/moviesSlice";
 
 import ChildrenMovies from "../Components/ChildrenMovies/ChildrenMovies";
-import { FetchData as useFetchData } from "../../customHooks/fetchData";
 
 const PopularTvPage = (props) => {
-  const [popularTv, fetch, , , setPopularTv] = useFetchData();
-  const title = "Popular Tv Shows";
+  const dispatch = useDispatch();
+  const popularTv = useSelector((state) => state.movies.movies.PopularTv);
+  const title = "PopularTv";
 
-  useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York`,
-      "get"
-    );
-  }, []);
+  const setPopularTv = (movies) => {
+    dispatch(moviesSliceActions.setMovies({ movies, title }));
+  };
 
   return popularTv ? (
     <ChildrenMovies

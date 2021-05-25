@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+
+import { useSelector, useDispatch } from "react-redux";
+import { moviesSliceActions } from "../../store/slices/moviesSlice";
 
 import ChildrenMovies from "../Components/ChildrenMovies/ChildrenMovies";
-import { FetchData as useFetchData } from "../../customHooks/fetchData";
 
 const ChildrenMoviesPage = (props) => {
-  const [data, fetchData, , , setData] = useFetchData();
-  const title = "For Children";
-  useEffect(() => {
-    const url = (pg) => {
-      return `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&include_adult=false&page=${pg}`;
-    };
-    fetchData(url(1), "get");
-  }, []);
+  const dispatch = useDispatch();
+  const childrenMovies = useSelector(
+    (state) => state.movies.movies.ChildrenMovies
+  );
 
-  return data ? (
+  const title = "ChildrenMovies";
+
+  const setChildrenMovies = (movies) => {
+    dispatch(moviesSliceActions.setMovies({ movies, title }));
+  };
+
+  return childrenMovies && childrenMovies.length > 0 ? (
     <ChildrenMovies
-      setChildrenMovies={(movie) => {
-        setData(movie);
-      }}
+      setChildrenMovies={(movie) => setChildrenMovies(movie)}
       title={title}
-      childrenMovies={data}
+      childrenMovies={childrenMovies}
     />
   ) : null;
 };

@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+
+import { useSelector, useDispatch } from "react-redux";
+import { moviesSliceActions } from "../../store/slices/moviesSlice";
 
 import ChildrenMovies from "../Components/ChildrenMovies/ChildrenMovies";
-import { FetchData as useFetchData } from "../../customHooks/fetchData";
 
 const PopularMoviesPage = (props) => {
-  const [popularMovies, fetch, , , setPopularMovies] = useFetchData(null);
-  const title = "Popular Movies";
+  const dispatch = useDispatch();
+  const popularMovies = useSelector(
+    (state) => state.movies.movies.PopularMovies
+  );
+  const title = "PopularMovies";
 
-  useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&page=97&with_watch_monetization_types=flatrate`,
-      "get"
-    );
-  }, []);
+  const setPopularMovies = (movies) => {
+    dispatch(moviesSliceActions.setMovies({ movies, title }));
+  };
 
   return popularMovies ? (
     <ChildrenMovies
