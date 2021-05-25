@@ -41,7 +41,11 @@ const Search = (props) => {
 
   return (
     <>
-      <form id="nav-bar__search" className="search nav-bar__icon">
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        id="nav-bar__search"
+        className="search nav-bar__icon"
+      >
         <i
           onClick={clickedSearchHandler}
           className={`${
