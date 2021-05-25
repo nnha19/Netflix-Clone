@@ -179,6 +179,7 @@ const ChildrenMovies = (props) => {
                 title={props.title}
                 className="primary-heading movie-category__heading"
                 movies={childrenMovies}
+                detail={props.detail}
               />
               {showSlide && !props.detail && (
                 <DisplaySlider
