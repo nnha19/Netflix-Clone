@@ -16,8 +16,11 @@
 .sign-up__text {
   margin-bottom: 1rem;
 }
+.input-container {
+  width: 100%;
+}
 .sign-up__input {
-  width: 80%;
+  width: 100%;
   border: none;
   padding: 1rem;
   outline: none;
@@ -32,4 +35,8 @@
   outline: none;
   font-size: 1.2rem;
   cursor: pointer;
+  align-self: flex-start;
+}
+.sign-up__input-container {
+  display: flex;
 }
