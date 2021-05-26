@@ -1,0 +1,35 @@
+.sign-up {
+  height: 100%;
+  margin-top: 20rem;
+  color: white;
+  width: 60%;
+  text-align: center;
+}
+.sign-up__heading {
+  font-size: 3rem;
+}
+.sign-up__sec-heading {
+  font-size: 1.6rem;
+  margin: 2rem 0;
+  font-weight: 300;
+}
+.sign-up__text {
+  margin-bottom: 1rem;
+}
+.sign-up__input {
+  width: 80%;
+  border: none;
+  padding: 1rem;
+  outline: none;
+  font-size: 1.2rem;
+}
+.sign-up__btn {
+  width: 20%;
+  background: red;
+  padding: 1rem;
+  color: white;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}

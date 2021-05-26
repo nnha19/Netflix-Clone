@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./Auth.css";
 
 import Login from "./Login/Login";
+import Signup from "./Signup/Signup";
 
 const Auth = (props) => {
   const [inputVals, setInputVals] = useState({
@@ -36,6 +37,7 @@ const Auth = (props) => {
           inputVals={inputVals}
         />
       )}
+      {!loginMode && <Signup />}
     </div>
   );
 };

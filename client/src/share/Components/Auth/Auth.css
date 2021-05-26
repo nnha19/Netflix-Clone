@@ -41,10 +41,10 @@
   color: grey;
   margin-top: 2rem;
 }
-.sign-up {
+.sign-up-btn {
   color: white;
 }
-.sign-up:hover {
+.sign-up-btn:hover {
   text-decoration: underline;
   cursor: pointer;
 }

@@ -24,7 +24,7 @@ const Login = (props) => {
         />
         <button className="btn auth-form__btn">Sign in</button>
         <p onClick={props.changeMode} className="auth-form__text">
-          New to Netflix? <span className="sign-up">Sign up now.</span>
+          New to Netflix? <span className="sign-up-btn">Sign up now.</span>
         </p>
       </form>
     </div>
