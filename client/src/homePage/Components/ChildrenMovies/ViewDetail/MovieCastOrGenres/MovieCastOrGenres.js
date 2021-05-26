@@ -20,7 +20,7 @@ const MovieCastOrGenres = (props) => {
     result &&
     result.length > 0 &&
     result.map((output) => {
-      return <span className="cast-names">{output.name}</span>;
+      return <span className="cast-names">{output.name},</span>;
     });
 
   return (

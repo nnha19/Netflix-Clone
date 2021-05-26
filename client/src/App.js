@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import HomePage from "./homePage/pages/homePage";
 import ViewDetailByCate from "./viewDetailByCate/pages/viewDetailByCatePage";
 import SearchResultPage from "./search/pages/searchResultPage";
+import Auth from "./share/Components/Auth/Auth";
 
 import "./App.css";
 
@@ -24,6 +25,7 @@ const App = () => {
   return (
     <div onClick={hideSearchHandler} className="wrapper">
       <NavBar />
+      <Auth />
       <Switch>
         <Route exact path="/browse" component={HomePage} />
         <Route
