@@ -3,28 +3,18 @@ import React, { useState } from "react";
 import "./Signup.css";
 
 import Input from "../../../../share/Components/Input/Input";
+import PrimaryBtn from "../../../UI/primaryBtn/primaryBtn";
 
 const Signup = (props) => {
   const [email, setEmail] = useState({
     value: "",
     isValid: false,
-    errorMsg: "",
   });
 
   const changeValHandler = (e, id) => {
     const value = e.target.value;
-    setEmail({ value, isValid: value.length > 1 });
+    setEmail({ ...email, value, isValid: e.target.value.length > 0 });
   };
-
-  const checkValidHandler = (e) => {
-    if (email.isValid) {
-      return;
-    } else {
-      setEmail({ ...email, errorMsg: "Email is required." });
-    }
-  };
-
-  console.log(email);
 
   return (
     <div className="sign-up">
@@ -44,11 +34,10 @@ const Signup = (props) => {
               placeholder="Email"
               id="email"
               className="sign-up__input"
-              error="Email is required"
-              checkValid={(e) => checkValidHandler(e)}
-              errorMsg={email.errorMsg}
+              errorMsg="Email is required"
+              inputVal={email}
             />
-            <button className="sign-up__btn btn">Get Started </button>
+            <PrimaryBtn>Get Started</PrimaryBtn>
           </div>
         </form>
       </div>
