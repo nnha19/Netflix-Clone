@@ -5,10 +5,17 @@ import axios from "axios";
 export const createUser = createAsyncThunk(
   "user/createUser",
   async (userObj, { rejectWithValue }) => {
-    console.log(userObj);
+    console.log(process.env.REACT_APP_BACKEND_URL);
     try {
-      //send http request to the backend to create user.
-    } catch (err) {}
+      const resp = await axios({
+        url: `${process.env.REACT_APP_BACKEND_URL}/user/signup`,
+        method: "post",
+        data: userObj,
+      });
+      console.log(resp);
+    } catch (err) {
+      console.log(err);
+    }
   }
 );
 
@@ -21,10 +28,14 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: {
     [createUser.fulfilled]: (state, action) => {
-      state.token = action.payload;
+      state.token = action.payload.data;
+      state.loading = false;
     },
     [createUser.pending]: (state, action) => {
       state.loading = true;
+    },
+    [createUser.rejected]: (state, action) => {
+      state.loading = false;
     },
   },
 });

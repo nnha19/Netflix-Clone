@@ -7,6 +7,7 @@ const User = require("../Modal/User");
 const createUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
+    console.log(password);
     const existingUser = await User.find({ email });
     if (existingUser.length > 0) {
       res.status(400).json({

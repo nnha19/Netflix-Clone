@@ -13,6 +13,7 @@ import Auth from "./share/Components/Auth/Auth";
 import "./App.css";
 
 const App = () => {
+  const isAuthenticated = useSelector((state) => !!state.token);
   const dispatch = useDispatch();
   const showSearch = useSelector((state) => state.searchToggle.showSearch);
 
@@ -22,20 +23,28 @@ const App = () => {
       dispatch(searchToggleSliceActions.hideSearch());
   };
 
+  const authenticatedRoutes = (
+    <>
+      <Route exact path="/browse" component={HomePage} />
+      <Route exact path="/browse/:movieCategory" component={ViewDetailByCate} />
+      <Route path="/search/:query" exact component={SearchResultPage} />
+    </>
+  );
+
+  const unAuthenticatedRoutes = (
+    <>
+      <Route exact path="/login" component={Auth} />
+    </>
+  );
+
   return (
     <div onClick={hideSearchHandler} className="wrapper">
       <NavBar />
-      <Auth />
       <Switch>
-        <Route exact path="/browse" component={HomePage} />
-        <Route
-          exact
-          path="/browse/:movieCategory"
-          component={ViewDetailByCate}
-        />
-        <Route path="/search/:query" exact component={SearchResultPage} />
-        <Redirect to="/browse" />
+        {isAuthenticated && authenticatedRoutes}
+        {!isAuthenticated && unAuthenticatedRoutes}
       </Switch>
+      <Redirect to={isAuthenticated ? "/browse" : "/login"} />
     </div>
   );
 };
