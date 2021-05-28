@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createUser } from "../../../../../store/slices/userSlice";
 
 import "./Password.css";
 
@@ -7,6 +9,8 @@ import PrimaryBtn from "../../../../UI/primaryBtn/primaryBtn";
 import LoadingSpinner from "../../../../UI/loadingSpinner/loadingSpinner";
 
 const Password = (props) => {
+  const loading = useSelector((state) => state.user.loading);
+  const dispatch = useDispatch();
   const [inputVal, setInputVal] = useState({
     password: {
       value: "",
@@ -25,8 +29,14 @@ const Password = (props) => {
     setInputVal(updatedValue);
   };
 
-  const createAccountHandler = (e) => {
+  const createAccountHandler = async (e) => {
     e.preventDefault();
+    dispatch(
+      createUser({
+        email: props.email,
+        password: inputVal.password.value,
+      })
+    );
   };
 
   return (
@@ -42,21 +52,21 @@ const Password = (props) => {
         <p className="email-input">
           <span>Email</span>
           <span>
-            <strong>Email@gmail.com</strong>
+            <strong>{props.email}</strong>
           </span>
         </p>
         <form onSubmit={createAccountHandler}>
           <Input
             className="password-content__input"
             changeValue={(e, id) => changeValHandler(e, id)}
-            type="text"
-            placeholder="Email"
-            id="email"
+            type="password"
+            placeholder="Password"
+            id="password"
             errorMsg="Password is required"
             inputVal={inputVal.password}
           />
           <PrimaryBtn className="password-content__btn">
-            <LoadingSpinner />
+            {loading ? <LoadingSpinner /> : "Continue"}
           </PrimaryBtn>
         </form>
       </div>
