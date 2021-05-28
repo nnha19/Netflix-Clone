@@ -4,6 +4,7 @@ import "./Password.css";
 
 import Input from "../../../Input/Input";
 import PrimaryBtn from "../../../../UI/primaryBtn/primaryBtn";
+import LoadingSpinner from "../../../../UI/loadingSpinner/loadingSpinner";
 
 const Password = (props) => {
   const [inputVal, setInputVal] = useState({
@@ -54,7 +55,9 @@ const Password = (props) => {
             errorMsg="Password is required"
             inputVal={inputVal.password}
           />
-          <PrimaryBtn className="password-content__btn">Continue</PrimaryBtn>
+          <PrimaryBtn className="password-content__btn">
+            <LoadingSpinner />
+          </PrimaryBtn>
         </form>
       </div>
     </div>
