@@ -4,8 +4,10 @@ import "./Signup.css";
 
 import Input from "../../../../share/Components/Input/Input";
 import PrimaryBtn from "../../../UI/primaryBtn/primaryBtn";
+import Password from "./Password/Password";
 
 const Signup = (props) => {
+  const [enteredEmail, setEnteredEmail] = useState(false);
   const [email, setEmail] = useState({
     value: "",
     isValid: false,
@@ -16,7 +18,11 @@ const Signup = (props) => {
     setEmail({ ...email, value, isValid: e.target.value.length > 0 });
   };
 
-  return (
+  const formSubmitHandler = (e) => {
+    setEnteredEmail(true);
+  };
+
+  return !enteredEmail ? (
     <div className="sign-up">
       <h4 className="sign-up__heading">
         Unlimited movies, TV shows, and more.
@@ -26,7 +32,7 @@ const Signup = (props) => {
         <p className="sign-up__text">
           Ready to watch? Enter your email to create or restart your membership.
         </p>
-        <form className="form sign-up__form">
+        <form onSubmit={formSubmitHandler} className="form sign-up__form">
           <div className="sign-up__input-container">
             <Input
               changeValue={(e, id) => changeValHandler(e, id)}
@@ -42,6 +48,8 @@ const Signup = (props) => {
         </form>
       </div>
     </div>
+  ) : (
+    <Password />
   );
 };
 

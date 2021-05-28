@@ -1,6 +1,5 @@
 .nav-bar {
-  margin-top: 2rem;
   z-index: 3;
   position: relative;
-  margin: 2rem 3rem;
+  padding: 1rem 3rem;
 }
