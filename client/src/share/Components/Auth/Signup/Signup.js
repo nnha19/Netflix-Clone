@@ -43,7 +43,7 @@ const Signup = (props) => {
               errorMsg="Email is required"
               inputVal={email}
             />
-            <PrimaryBtn email={email.value}>Get Started</PrimaryBtn>
+            <PrimaryBtn className="sign-up__btn">Get Started</PrimaryBtn>
           </div>
         </form>
       </div>

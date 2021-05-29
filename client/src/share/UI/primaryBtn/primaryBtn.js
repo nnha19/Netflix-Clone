@@ -6,7 +6,7 @@ const primaryBtn = (props) => {
   return (
     <button
       disabled={props.disabled}
-      className={`sign-up__btn btn ${props.className}`}
+      className={`btn primary-btn ${props.className}`}
     >
       {props.children}
     </button>

@@ -12,7 +12,7 @@ export const createUser = createAsyncThunk(
         method: "post",
         data: userObj,
       });
-      console.log(resp);
+      return resp.data;
     } catch (err) {
       console.log(err);
     }
@@ -24,12 +24,14 @@ const userSlice = createSlice({
   initialState: {
     token: "",
     loading: false,
+    isAuthenticated: false,
   },
   reducers: {},
   extraReducers: {
     [createUser.fulfilled]: (state, action) => {
-      state.token = action.payload.data;
+      state.token = action.payload.token;
       state.loading = false;
+      state.isAuthenticated = !!action.payload.token;
     },
     [createUser.pending]: (state, action) => {
       state.loading = true;

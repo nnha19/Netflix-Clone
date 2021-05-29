@@ -13,7 +13,8 @@ import Auth from "./share/Components/Auth/Auth";
 import "./App.css";
 
 const App = () => {
-  const isAuthenticated = useSelector((state) => !!state.token);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+
   const dispatch = useDispatch();
   const showSearch = useSelector((state) => state.searchToggle.showSearch);
 
@@ -41,6 +42,7 @@ const App = () => {
     <div onClick={hideSearchHandler} className="wrapper">
       <NavBar />
       <Switch>
+        <Route exact path="/" component={isAuthenticated ? HomePage : Auth} />
         {isAuthenticated && authenticatedRoutes}
         {!isAuthenticated && unAuthenticatedRoutes}
       </Switch>

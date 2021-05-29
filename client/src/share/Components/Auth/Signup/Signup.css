@@ -2,7 +2,7 @@
   height: 100%;
   margin-top: 20rem;
   color: white;
-  width: 60%;
+  width: 45%;
   text-align: center;
 }
 .sign-up__heading {
@@ -29,4 +29,7 @@
 
 .sign-up__input-container {
   display: flex;
+}
+.sign-up__btn {
+  width: 30%;
 }

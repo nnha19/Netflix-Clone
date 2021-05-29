@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcryptjs = require("bcryptjs");
 const User = require("../Modal/User");
 
-User.remove({}).then(() => console.log("Deleted"));
+// User.remove({}).then(() => console.log("Deleted"));
 
 const createUser = async (req, res, next) => {
   try {
