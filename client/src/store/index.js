@@ -4,6 +4,7 @@ import searchSlice from "./slices/searchSlice";
 import searchToggleSlice from "./slices/searchToggle";
 import moviesSlice from "./slices/moviesSlice";
 import userSlice from "./slices/userSlice";
+import loginModeSlice from "./slices/loginModeSlice";
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     searchToggle: searchToggleSlice,
     movies: moviesSlice,
     user: userSlice,
+    loginMode: loginModeSlice,
   },
 });
 

@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import "./deskTop.css";
 
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import Search from "../search/search";
+import PrimaryBtn from "../../primaryBtn/primaryBtn";
 
 const DeskTop = (props) => {
+  const loginMode = useSelector((state) => state.loginMode);
+  console.log(loginMode);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const [searchVal, setSearchVal] = useState("");
   const history = useHistory();
 
@@ -23,16 +28,26 @@ const DeskTop = (props) => {
             className="logo__img"
           />
         </div>
-        <li className="nav-bar__item nav-bar__hover">Home</li>
-        <li className="nav-bar__item nav-bar__hover">TV Shows</li>
-        <li className="nav-bar__item nav-bar__hover">Movies</li>
-        <li className="nav-bar__item nav-bar__hover">Latest</li>
-        <li className="nav-bar__item nav-bar__hover">My List</li>
+        {isAuthenticated && (
+          <>
+            <li className="nav-bar__item nav-bar__hover">Home</li>
+            <li className="nav-bar__item nav-bar__hover">TV Shows</li>
+            <li className="nav-bar__item nav-bar__hover">Movies</li>
+            <li className="nav-bar__item nav-bar__hover">Latest</li>
+            <li className="nav-bar__item nav-bar__hover">My List</li>
+          </>
+        )}
       </div>
       <div className="desktop__right">
-        <Search searchVal={searchVal} setSearchVal={setSearchVal} />
-        <i className="nav-bar__icon fas fa-bell nav-bar__item"></i>
-        <i className="nav-bar__item">Profile</i>
+        {isAuthenticated ? (
+          <>
+            <Search searchVal={searchVal} setSearchVal={setSearchVal} />
+            <i className="nav-bar__icon fas fa-bell nav-bar__item"></i>
+            <i className="nav-bar__item">Profile</i>
+          </>
+        ) : (
+          <PrimaryBtn className="desktop__btn">Sign in</PrimaryBtn>
+        )}
       </div>
     </div>
   );
