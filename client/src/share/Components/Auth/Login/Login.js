@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+
+import { useDispatch } from "react-redux";
+import { createUser } from "../../../../store/slices/userSlice";
 
 import Input from "../../Input/Input";
 import PrimaryBtn from "../../../UI/primaryBtn/primaryBtn";
 import { useCheckAllVaid } from "../../../../customHook/useCheckAllValid";
 
 const Login = (props) => {
+  const dispatch = useDispatch();
   const [inputVals, setInputVals] = useState({
     email: {
       isValid: false,
@@ -27,10 +31,21 @@ const Login = (props) => {
     setInputVals({ ...inputVals, [id]: oldInput });
   };
 
+  const loginHandler = (e) => {
+    e.preventDefault();
+    dispatch(
+      createUser({
+        type: "login",
+        email: inputVals.email.value,
+        password: inputVals.password.value,
+      })
+    );
+  };
+
   return (
     <div className="auth">
       <h4 className="auth__heading">Sign in</h4>
-      <form className="form auth-form">
+      <form onSubmit={loginHandler} className="form auth-form">
         <Input
           inputVal={inputVals.email}
           type="email"
@@ -49,7 +64,9 @@ const Login = (props) => {
           className="auth-form__input"
           errorMsg="Password is required."
         />
-        <PrimaryBtn className="auth-form__btn">Sign in</PrimaryBtn>
+        <PrimaryBtn disabled={!allValid} className="auth-form__btn">
+          Sign in
+        </PrimaryBtn>
         <p onClick={props.changeMode} className="auth-form__text">
           New to Netflix? <span className="sign-up-btn">Sign up now.</span>
         </p>

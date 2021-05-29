@@ -5,12 +5,13 @@ import axios from "axios";
 export const createUser = createAsyncThunk(
   "user/createUser",
   async (userObj, { rejectWithValue }) => {
-    console.log(process.env.REACT_APP_BACKEND_URL);
+    console.log(userObj);
     try {
+      const { type, email, password } = userObj;
       const resp = await axios({
-        url: `${process.env.REACT_APP_BACKEND_URL}/user/signup`,
+        url: `${process.env.REACT_APP_BACKEND_URL}/user/${type}`,
         method: "post",
-        data: userObj,
+        data: { email, password },
       });
       return resp.data;
     } catch (err) {

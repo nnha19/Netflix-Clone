@@ -40,6 +40,7 @@ const createUser = async (req, res, next) => {
 };
 
 const loginUser = async (req, res, next) => {
+  console.log("Login route.");
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
@@ -50,6 +51,10 @@ const loginUser = async (req, res, next) => {
         expiresIn: "1h",
       });
       res.status(200).json({ email, token });
+    } else {
+      res
+        .status(400)
+        .json({ msg: "The password you provided is incorrect. Try again." });
     }
   } catch (err) {
     console.log(err);

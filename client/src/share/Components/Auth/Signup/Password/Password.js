@@ -35,6 +35,7 @@ const Password = (props) => {
       createUser({
         email: props.email,
         password: inputVal.password.value,
+        type: "signup",
       })
     );
   };

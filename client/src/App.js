@@ -46,7 +46,7 @@ const App = () => {
         {isAuthenticated && authenticatedRoutes}
         {!isAuthenticated && unAuthenticatedRoutes}
       </Switch>
-      <Redirect to={isAuthenticated ? "/browse" : "/login"} />
+      <Redirect from="/" to={isAuthenticated ? "/browse" : "/login"} />
     </div>
   );
 };
