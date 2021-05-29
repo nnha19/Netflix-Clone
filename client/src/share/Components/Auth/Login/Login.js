@@ -1,26 +1,30 @@
 import React, { useState } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../../../store/slices/userSlice";
 
 import Input from "../../Input/Input";
 import PrimaryBtn from "../../../UI/primaryBtn/primaryBtn";
-import { useCheckAllVaid } from "../../../../customHook/useCheckAllValid";
+import { useCheckAllValid } from "../../../../customHook/useCheckAllValid";
+import LoadingSpinner from "../../../UI/loadingSpinner/loadingSpinner";
+import FormError from "../../Error/FormError/FormError";
 
 const Login = (props) => {
+  const error = useSelector((state) => state.user.error);
+  const loading = useSelector((state) => state.user.loading);
   const dispatch = useDispatch();
   const [inputVals, setInputVals] = useState({
     email: {
       isValid: false,
-      value: null,
+      value: "",
     },
     password: {
       isValid: false,
-      value: null,
+      value: "",
     },
   });
 
-  const [allValid] = useCheckAllVaid(inputVals);
+  const [allValid] = useCheckAllValid(inputVals);
   const changeValueHandler = (e, id) => {
     const value = e.target.value;
     const oldInput = {
@@ -45,6 +49,7 @@ const Login = (props) => {
   return (
     <div className="auth">
       <h4 className="auth__heading">Sign in</h4>
+      <FormError error={error} />
       <form onSubmit={loginHandler} className="form auth-form">
         <Input
           inputVal={inputVals.email}
@@ -65,7 +70,7 @@ const Login = (props) => {
           errorMsg="Password is required."
         />
         <PrimaryBtn disabled={!allValid} className="auth-form__btn">
-          Sign in
+          {loading ? <LoadingSpinner /> : "Sign in"}
         </PrimaryBtn>
         <p onClick={props.changeMode} className="auth-form__text">
           New to Netflix? <span className="sign-up-btn">Sign up now.</span>

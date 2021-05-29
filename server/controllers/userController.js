@@ -43,17 +43,22 @@ const loginUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-
-    const correctPass = await bcryptjs.compare(password, user.password);
-    if (correctPass) {
-      const token = jwt.sign({ email }, process.env.SECRET_KEY, {
-        expiresIn: "1h",
-      });
-      res.status(200).json({ email, token });
+    if (user) {
+      const correctPass = await bcryptjs.compare(password, user.password);
+      if (correctPass) {
+        const token = jwt.sign({ email }, process.env.SECRET_KEY, {
+          expiresIn: "1h",
+        });
+        res.status(200).json({ email, token });
+      } else {
+        res
+          .status(400)
+          .json({ msg: "The password you provided is incorrect. Try again." });
+      }
     } else {
-      res
-        .status(400)
-        .json({ msg: "The password you provided is incorrect. Try again." });
+      res.status(400).json({
+        msg: "User with the provided email doesn't exist. Sign in instead.",
+      });
     }
   } catch (err) {
     console.log(err);

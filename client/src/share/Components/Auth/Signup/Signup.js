@@ -2,20 +2,34 @@ import React, { useState } from "react";
 
 import "./Signup.css";
 
+import { useCheckAllValid } from "../../../../customHook/useCheckAllValid";
 import Input from "../../../../share/Components/Input/Input";
 import PrimaryBtn from "../../../UI/primaryBtn/primaryBtn";
 import Password from "./Password/Password";
 
 const Signup = (props) => {
   const [enteredEmail, setEnteredEmail] = useState(false);
-  const [email, setEmail] = useState({
-    value: "",
-    isValid: false,
+  const [inputVal, setInputVal] = useState({
+    email: {
+      value: "",
+      isValid: false,
+    },
   });
+
+  const [allValid] = useCheckAllValid(inputVal);
 
   const changeValHandler = (e, id) => {
     const value = e.target.value;
-    setEmail({ ...email, value, isValid: e.target.value.length > 0 });
+
+    const updatedInputval = {
+      ...inputVal[id],
+      value,
+      isValid: value.length > 0,
+    };
+    setInputVal({
+      ...inputVal,
+      [id]: updatedInputval,
+    });
   };
 
   const formSubmitHandler = (e) => {
@@ -41,15 +55,17 @@ const Signup = (props) => {
               id="email"
               className="sign-up__input"
               errorMsg="Email is required"
-              inputVal={email}
+              inputVal={inputVal.email}
             />
-            <PrimaryBtn className="sign-up__btn">Get Started</PrimaryBtn>
+            <PrimaryBtn disabled={!allValid} className="sign-up__btn">
+              Get Started
+            </PrimaryBtn>
           </div>
         </form>
       </div>
     </div>
   ) : (
-    <Password email={email.value} />
+    <Password email={inputVal.email.value} />
   );
 };
 

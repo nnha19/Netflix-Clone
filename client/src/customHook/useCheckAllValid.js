@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const useCheckAllVaid = (obj) => {
+export const useCheckAllValid = (obj) => {
   const [allValid, setAllValid] = useState(false);
   useEffect(() => {
     const overAllValid = [];

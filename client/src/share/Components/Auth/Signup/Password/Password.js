@@ -4,6 +4,7 @@ import { createUser } from "../../../../../store/slices/userSlice";
 
 import "./Password.css";
 
+import { useCheckAllValid } from "../../../../../customHook/useCheckAllValid";
 import Input from "../../../Input/Input";
 import PrimaryBtn from "../../../../UI/primaryBtn/primaryBtn";
 import LoadingSpinner from "../../../../UI/loadingSpinner/loadingSpinner";
@@ -17,6 +18,8 @@ const Password = (props) => {
       isValid: false,
     },
   });
+
+  const [allValid] = useCheckAllValid(inputVal);
 
   const changeValHandler = (e) => {
     const value = e.target.value;
@@ -66,7 +69,7 @@ const Password = (props) => {
             errorMsg="Password is required"
             inputVal={inputVal.password}
           />
-          <PrimaryBtn className="password-content__btn">
+          <PrimaryBtn disabled={!allValid} className="password-content__btn">
             {loading ? <LoadingSpinner /> : "Continue"}
           </PrimaryBtn>
         </form>

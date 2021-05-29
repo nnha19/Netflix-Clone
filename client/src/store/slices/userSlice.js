@@ -5,7 +5,6 @@ import axios from "axios";
 export const createUser = createAsyncThunk(
   "user/createUser",
   async (userObj, { rejectWithValue }) => {
-    console.log(userObj);
     try {
       const { type, email, password } = userObj;
       const resp = await axios({
@@ -15,7 +14,7 @@ export const createUser = createAsyncThunk(
       });
       return resp.data;
     } catch (err) {
-      console.log(err);
+      return rejectWithValue(err.response.data.msg);
     }
   }
 );
@@ -26,6 +25,7 @@ const userSlice = createSlice({
     token: "",
     loading: false,
     isAuthenticated: false,
+    error: null,
   },
   reducers: {},
   extraReducers: {
@@ -39,6 +39,7 @@ const userSlice = createSlice({
     },
     [createUser.rejected]: (state, action) => {
       state.loading = false;
+      state.error = action.payload;
     },
   },
 });

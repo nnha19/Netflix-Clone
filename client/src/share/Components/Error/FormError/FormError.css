@@ -1,0 +1,7 @@
+.form-error {
+  background: rgba(255, 166, 0, 0.719);
+  border-radius: 4px;
+  padding: 1rem;
+  color: white;
+  margin: 1rem 0;
+}
