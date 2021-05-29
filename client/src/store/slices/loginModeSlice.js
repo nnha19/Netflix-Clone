@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const loginModeSlice = createSlice({
   name: "loginMode",
-  initialState: true,
+  initialState: { loginMode: true },
   reducers: {
     setLoginMode(state, action) {
-      state = action.payload;
+      state.loginMode = action.payload;
     },
   },
 });

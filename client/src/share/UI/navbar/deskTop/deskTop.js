@@ -6,10 +6,10 @@ import { useSelector } from "react-redux";
 
 import Search from "../search/search";
 import PrimaryBtn from "../../primaryBtn/primaryBtn";
+import ChangeModeBtn from "./changeModeBtn/changeModeBtn";
 
 const DeskTop = (props) => {
-  const loginMode = useSelector((state) => state.loginMode);
-  console.log(loginMode);
+  const loginMode = useSelector((state) => state.loginMode.loginMode);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const [searchVal, setSearchVal] = useState("");
   const history = useHistory();
@@ -39,15 +39,14 @@ const DeskTop = (props) => {
         )}
       </div>
       <div className="desktop__right">
-        {isAuthenticated ? (
+        {isAuthenticated && (
           <>
             <Search searchVal={searchVal} setSearchVal={setSearchVal} />
             <i className="nav-bar__icon fas fa-bell nav-bar__item"></i>
             <i className="nav-bar__item">Profile</i>
           </>
-        ) : (
-          <PrimaryBtn className="desktop__btn">Sign in</PrimaryBtn>
         )}
+        {!isAuthenticated && !loginMode && <ChangeModeBtn />}
       </div>
     </div>
   );

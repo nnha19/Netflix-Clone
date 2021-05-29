@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userSliceActions } from "../../../store/slices/userSlice";
+import { loginModeSliceActions } from "../../../store/slices/loginModeSlice";
 
 import "./Auth.css";
 
@@ -9,11 +10,11 @@ import Login from "./Login/Login";
 import Signup from "./Signup/Signup";
 
 const Auth = (props) => {
+  const loginMode = useSelector((state) => state.loginMode.loginMode);
   const dispatch = useDispatch();
-  const [loginMode, setLoginMode] = useState(true);
 
   const changeModeHandler = (error) => {
-    setLoginMode(false);
+    dispatch(loginModeSliceActions.setLoginMode(false));
     error && dispatch(userSliceActions.deleteError());
   };
 
