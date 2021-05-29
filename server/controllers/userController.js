@@ -2,12 +2,11 @@ const jwt = require("jsonwebtoken");
 const bcryptjs = require("bcryptjs");
 const User = require("../Modal/User");
 
-// User.remove({}).then(() => console.log("Deleted"));
+User.remove({}).then(() => console.log("Deleted"));
 
 const createUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    console.log(password);
     const existingUser = await User.find({ email });
     if (existingUser.length > 0) {
       res.status(400).json({
