@@ -27,7 +27,11 @@ const userSlice = createSlice({
     isAuthenticated: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    deleteError(state, action) {
+      state.error = false;
+    },
+  },
   extraReducers: {
     [createUser.fulfilled]: (state, action) => {
       state.token = action.payload.token;
@@ -43,5 +47,5 @@ const userSlice = createSlice({
     },
   },
 });
-
+export const userSliceActions = userSlice.actions;
 export default userSlice.reducer;

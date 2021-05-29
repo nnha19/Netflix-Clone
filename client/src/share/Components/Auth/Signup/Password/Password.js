@@ -8,9 +8,11 @@ import { useCheckAllValid } from "../../../../../customHook/useCheckAllValid";
 import Input from "../../../Input/Input";
 import PrimaryBtn from "../../../../UI/primaryBtn/primaryBtn";
 import LoadingSpinner from "../../../../UI/loadingSpinner/loadingSpinner";
+import FormError from "../../../Error/FormError/FormError";
 
 const Password = (props) => {
   const loading = useSelector((state) => state.user.loading);
+  const error = useSelector((state) => state.user.error);
   const dispatch = useDispatch();
   const [inputVal, setInputVal] = useState({
     password: {
@@ -18,7 +20,6 @@ const Password = (props) => {
       isValid: false,
     },
   });
-
   const [allValid] = useCheckAllValid(inputVal);
 
   const changeValHandler = (e) => {
@@ -46,6 +47,7 @@ const Password = (props) => {
   return (
     <div className="password">
       <div className="password-content">
+        {error && <FormError error={error} />}
         <h3 className="password-content__header">
           <span>Welcome back!</span>
           <span>Joining Netflix is easy.</span>

@@ -49,7 +49,7 @@ const Login = (props) => {
   return (
     <div className="auth">
       <h4 className="auth__heading">Sign in</h4>
-      <FormError error={error} />
+      {error && <FormError error={error} />}
       <form onSubmit={loginHandler} className="form auth-form">
         <Input
           inputVal={inputVals.email}
@@ -72,8 +72,11 @@ const Login = (props) => {
         <PrimaryBtn disabled={!allValid} className="auth-form__btn">
           {loading ? <LoadingSpinner /> : "Sign in"}
         </PrimaryBtn>
-        <p onClick={props.changeMode} className="auth-form__text">
-          New to Netflix? <span className="sign-up-btn">Sign up now.</span>
+        <p className="auth-form__text">
+          New to Netflix?{" "}
+          <span onClick={() => props.changeMode(error)} className="sign-up-btn">
+            Sign up now.
+          </span>
         </p>
       </form>
     </div>

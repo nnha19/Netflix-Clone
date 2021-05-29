@@ -26,7 +26,7 @@ const Input = (props) => {
         onChange={(e) => props.changeValue(e, props.id)}
       />
       {error && !props.inputVal.isValid && (
-        <p className="form-error">{props.errorMsg}</p>
+        <p className="invalid-input">{props.errorMsg}</p>
       )}
     </div>
   );
