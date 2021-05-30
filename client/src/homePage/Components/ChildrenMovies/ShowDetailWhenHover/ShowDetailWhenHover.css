@@ -25,7 +25,8 @@
   animation: showSlowly 2s;
   position: relative;
 }
-.movie-category__icon:hover {
+.movie-category__icon:hover,
+.applied-icon {
   border: 3px solid white;
 }
 .center {

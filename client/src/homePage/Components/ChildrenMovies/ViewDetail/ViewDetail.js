@@ -10,7 +10,6 @@ const ViewDetail = (props) => {
   const movie = props.movie;
   const airedDate = movie.release_date || movie.first_air_date;
   const releasedDate = airedDate.split("-")[0];
-  console.log(movie);
   return (
     <>
       <div onClick={props.hideViewDetail} className="backdrop"></div>
@@ -22,7 +21,7 @@ const ViewDetail = (props) => {
           />
           <div className="view-detail__body">
             <div>
-              <IconWithTag detailPage={movie} />
+              <IconWithTag movie={movie} detailPage={movie} />
               <div className="view-detail__flex">
                 <h3 className="primary-heading view-detail__heading">
                   <span className="primary-heading">
