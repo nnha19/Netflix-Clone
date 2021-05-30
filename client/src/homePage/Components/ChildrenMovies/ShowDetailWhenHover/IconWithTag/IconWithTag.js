@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 import ViewDetailIcon from "./ViewDetailIcon/ViewDetalIcon";
 import PlayButton from "../../../../../share/UI/playButton/playButton";
-
 import ShowTag from "../ShowTag/ShowTag";
+import AddToList from "./AddToList/AddToList";
 
 const IconWithTag = (props) => {
   const showTagHandler = (tagName, type) => {
@@ -39,15 +39,10 @@ const IconWithTag = (props) => {
             </ShowTag>
           </i>
         )}
-        <i
-          onMouseEnter={() => showTagHandler("addToList", true)}
-          onMouseLeave={() => showTagHandler("addToList")}
-          className="movie-category__icon fas fa-plus"
-        >
-          <ShowTag className="show-tag" show={showTag["addToList"]}>
-            Add To List
-          </ShowTag>
-        </i>
+        <AddToList
+          show={showTag["addToList"]}
+          showTagHandler={(tagName, type) => showTagHandler(tagName, type)}
+        />
         <i
           onMouseEnter={() => showTagHandler("like", true)}
           onMouseLeave={() => showTagHandler("like")}
