@@ -37,6 +37,12 @@ const moviesSlice = createSlice({
       const { title, movies } = action.payload;
       state.movies[title] = movies;
     },
+    setMovieList(state, action) {
+      const { title, index } = action.payload;
+      const oldState = [...state.movies[title]];
+      oldState[index].myList = true;
+      state.movies[title] = oldState;
+    },
   },
   extraReducers: {
     [getAllMovies.fulfilled]: (state, action) => {

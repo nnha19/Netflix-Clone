@@ -24,11 +24,28 @@ export const createUserList = createAsyncThunk(
   }
 );
 
+export const getUserList = createAsyncThunk(
+  "userInfo/getUserList",
+  async (param, { rejectWithValue }) => {
+    try {
+      const { userId } = param;
+      const resp = await axios({
+        url: `${process.env.REACT_APP_BACKEND_URL}/${userId}/my-list`,
+        method: "get",
+      });
+      return resp.data.userList;
+    } catch (err) {}
+  }
+);
+
 const userInfoSlice = createSlice({
   name: "userInfo",
   initialState: userInfoInitState,
   reducers: {},
   extraReducers: {
+    [getUserList.fulfilled]: (state, action) => {
+      state.userList = action.payload;
+    },
     [createUserList.fulfilled]: (state, action) => {
       state.myList.push(action.payload);
     },

@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
-import { useDispatch } from "react-redux";
-import { getAllMovies } from "../../store/slices/moviesSlice";
+import { useDispatch, useSelector } from "react-redux";
+import moviesSlice, {
+  getAllMovies,
+  moviesSliceActions,
+} from "../../store/slices/moviesSlice";
 
 import HomePageDisplayPage from "./homePageDisplayPage";
 import ChildrenMoviesPage from "./childrenMoviesPage";
@@ -9,6 +12,24 @@ import PopularMoviesPage from "./popularMoviesPage";
 import PopularTvPage from "./popularTvPage";
 
 const HomePage = (props) => {
+  const userList = useSelector((state) => state.userInfo.userList);
+  const allMovies = useSelector((state) => state.movies.movies);
+
+  useEffect(() => {
+    for (let key in allMovies) {
+      allMovies[key].map((movie, index) => {
+        userList &&
+          userList.map((userList) => {
+            if (userList.movieId === movie.id.toString()) {
+              dispatch(moviesSliceActions.setMovieList({ title: key, index }));
+            }
+          });
+      });
+    }
+  }, [userList]);
+
+  console.log(allMovies);
+
   const moviesArr = [
     {
       title: "Children Movies",

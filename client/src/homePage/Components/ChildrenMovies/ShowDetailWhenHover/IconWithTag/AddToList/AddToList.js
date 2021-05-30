@@ -16,10 +16,12 @@ const AddToList = (props) => {
       onClick={addToListHandler}
       onMouseEnter={() => props.showTagHandler("addToList", true)}
       onMouseLeave={() => props.showTagHandler("addToList")}
-      className="movie-category__icon fas fa-plus"
+      className={`movie-category__icon ${
+        !props.movie.myList ? "fas fa-plus" : "fas fa-check"
+      }`}
     >
       <ShowTag className="show-tag" show={props.show}>
-        Add To List
+        {!props.movie.myList ? "Add To List" : "Remove from list"}
       </ShowTag>
     </i>
   );

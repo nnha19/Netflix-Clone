@@ -1,10 +1,11 @@
-import NavBar from "./share/UI/navbar/navbar";
-
-import { Route, Link, Switch, Redirect } from "react-router-dom";
+import { useEffect } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import { searchToggleSliceActions } from "./store/slices/searchToggle";
 import { useDispatch, useSelector } from "react-redux";
+import { getUserList } from "./store/slices/userInfo";
 
+import NavBar from "./share/UI/navbar/navbar";
 import HomePage from "./homePage/pages/homePage";
 import ViewDetailByCate from "./viewDetailByCate/pages/viewDetailByCatePage";
 import SearchResultPage from "./search/pages/searchResultPage";
@@ -14,8 +15,13 @@ import "./App.css";
 
 const App = () => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-
+  const userId = useSelector((state) => state.user.userId);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    isAuthenticated && dispatch(getUserList({ userId }));
+  }, [isAuthenticated]);
+
   const showSearch = useSelector((state) => state.searchToggle.showSearch);
 
   const hideSearchHandler = (e) => {
