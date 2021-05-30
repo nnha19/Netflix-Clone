@@ -30,6 +30,7 @@ const createUser = async (req, res, next) => {
           token,
           msg: "User has been created successfully.",
           email,
+          userId: newUser._id,
         });
       }
     }
@@ -49,7 +50,7 @@ const loginUser = async (req, res, next) => {
         const token = jwt.sign({ email }, process.env.SECRET_KEY, {
           expiresIn: "1h",
         });
-        res.status(200).json({ email, token });
+        res.status(200).json({ email, token, userId: user._id });
       } else {
         res
           .status(400)

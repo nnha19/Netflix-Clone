@@ -26,6 +26,7 @@ const userSlice = createSlice({
     loading: false,
     isAuthenticated: false,
     error: null,
+    userId: null,
   },
   reducers: {
     deleteError(state, action) {
@@ -37,6 +38,7 @@ const userSlice = createSlice({
       state.token = action.payload.token;
       state.loading = false;
       state.isAuthenticated = !!action.payload.token;
+      state.userId = action.payload.userId;
     },
     [createUser.pending]: (state, action) => {
       state.loading = true;

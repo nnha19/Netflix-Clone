@@ -40,6 +40,7 @@ const IconWithTag = (props) => {
           </i>
         )}
         <AddToList
+          movie={props.movie}
           show={showTag["addToList"]}
           showTagHandler={(tagName, type) => showTagHandler(tagName, type)}
         />

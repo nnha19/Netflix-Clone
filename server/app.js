@@ -18,7 +18,7 @@ const userRoute = require("./routes/userRoute");
 const myListRoute = require("./routes/myListRoute");
 
 app.use("/user", userRoute);
-app.use("/mylist/:uid", myListRoute);
+app.use("/:uid/my-list", myListRoute);
 
 const port = process.env.port || 5000;
 app.listen(port, function () {
