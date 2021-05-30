@@ -1,8 +1,20 @@
 const User = require("../Modal/User");
 const MyList = require("../Modal/MyList");
 
-const getAllLists = async (req, res, next) => {
+const getListByUserId = async (req, res, next) => {
   try {
+    const { uid } = req.params;
+    await User.findById(uid)
+      .populate("myList")
+      .exec((err, user) => {
+        if (err) {
+          res
+            .status(400)
+            .json({ msg: "User with the provided id couldn't be found.", err });
+        } else {
+          res.status(200).json({ userList: user.myList });
+        }
+      });
   } catch (err) {
     res
       .status(400)
@@ -52,5 +64,5 @@ const createList = async (req, res, next) => {
   }
 };
 
-exports.getAllLists = getAllLists;
+exports.getListByUserId = getListByUserId;
 exports.createList = createList;
