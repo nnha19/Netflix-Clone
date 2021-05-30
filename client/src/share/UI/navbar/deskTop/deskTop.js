@@ -5,7 +5,6 @@ import { useHistory, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import Search from "../search/search";
-import PrimaryBtn from "../../primaryBtn/primaryBtn";
 import ChangeModeBtn from "./changeModeBtn/changeModeBtn";
 
 const DeskTop = (props) => {
