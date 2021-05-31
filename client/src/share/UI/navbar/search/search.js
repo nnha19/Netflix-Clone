@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createRef } from "react";
 
 import "./search.css";
 
@@ -11,6 +11,7 @@ import { getResulsForSearch } from "../../../../store/slices/searchSlice";
 let timer;
 
 const Search = (props) => {
+  const myRef = createRef();
   const { searchVal, setSearchVal } = props;
 
   const showSearch = useSelector((state) => state.searchToggle.showSearch);
@@ -19,6 +20,7 @@ const Search = (props) => {
   const history = useHistory();
 
   const clickedSearchHandler = () => {
+    myRef.current.focus();
     dispatch(searchToggleSliceActions.showSearch());
   };
 
@@ -53,6 +55,7 @@ const Search = (props) => {
           } search-icon fas fa-search nav-bar__item`}
         ></i>
         <input
+          ref={myRef}
           value={searchVal}
           onChange={valChangeHandler}
           className={`search__input ${showSearch ? "show-search" : ""}`}
