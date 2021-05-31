@@ -9,6 +9,8 @@ const userSchema = mongoose.Schema({
       ref: "MyList",
     },
   ],
+  likeMovies: [String],
+  disLikeMovies: [String],
 });
 
 module.exports = mongoose.model("User", userSchema);
