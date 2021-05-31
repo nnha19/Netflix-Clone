@@ -10,6 +10,7 @@ import HomePage from "./homePage/pages/homePage";
 import ViewDetailByCate from "./viewDetailByCate/pages/viewDetailByCatePage";
 import SearchResultPage from "./search/pages/searchResultPage";
 import Auth from "./share/Components/Auth/Auth";
+import UserListPage from "./userList/pages/userListPage";
 
 import "./App.css";
 
@@ -35,6 +36,7 @@ const App = () => {
       <Route exact path="/browse" component={HomePage} />
       <Route exact path="/browse/:movieCategory" component={ViewDetailByCate} />
       <Route path="/search/:query" exact component={SearchResultPage} />
+      <Route path="/:uid/my-list" exact component={UserListPage} />
     </>
   );
 

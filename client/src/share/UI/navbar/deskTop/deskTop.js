@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./deskTop.css";
 
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import Search from "../search/search";
@@ -10,6 +10,7 @@ import ChangeModeBtn from "./changeModeBtn/changeModeBtn";
 const DeskTop = (props) => {
   const loginMode = useSelector((state) => state.loginMode.loginMode);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const userId = useSelector((state) => state.user.userId);
   const [searchVal, setSearchVal] = useState("");
   const history = useHistory();
 
@@ -33,7 +34,13 @@ const DeskTop = (props) => {
             <li className="nav-bar__item nav-bar__hover">TV Shows</li>
             <li className="nav-bar__item nav-bar__hover">Movies</li>
             <li className="nav-bar__item nav-bar__hover">Latest</li>
-            <li className="nav-bar__item nav-bar__hover">My List</li>
+            <NavLink
+              activeClassName="nav-bar__active"
+              className="nav-bar__link"
+              to={`/${userId}/my-list`}
+            >
+              <li className="nav-bar__item nav-bar__hover">My List</li>
+            </NavLink>
           </>
         )}
       </div>

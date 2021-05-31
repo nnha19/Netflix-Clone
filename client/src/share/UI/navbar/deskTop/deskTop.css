@@ -41,3 +41,11 @@
   padding: 0 !important;
   height: 2.5rem !important;
 }
+.nav-bar__link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.nav-bar__active {
+  color: #b3b390;
+}
