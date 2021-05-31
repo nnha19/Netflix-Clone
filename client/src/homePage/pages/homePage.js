@@ -13,22 +13,6 @@ import PopularTvPage from "./popularTvPage";
 
 const HomePage = (props) => {
   const userList = useSelector((state) => state.userInfo.userList);
-  const allMovies = useSelector((state) => state.movies.movies);
-
-  useEffect(() => {
-    for (let key in allMovies) {
-      allMovies[key].map((movie, index) => {
-        userList &&
-          userList.map((userList) => {
-            if (userList.movieId === movie.id.toString()) {
-              dispatch(moviesSliceActions.setMovieList({ title: key, index }));
-            }
-          });
-      });
-    }
-  }, [userList]);
-
-  console.log(allMovies);
 
   const moviesArr = [
     {

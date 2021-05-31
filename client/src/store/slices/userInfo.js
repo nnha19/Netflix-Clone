@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const userInfoInitState = {
-  myList: [],
+  userList: [],
 };
 
 export const createUserList = createAsyncThunk(
@@ -17,7 +17,7 @@ export const createUserList = createAsyncThunk(
           movieId: param.movieId,
         },
       });
-      return resp.data.addedMyList;
+      return { movieId: param.movieId, addedList: resp.data.addedMyList };
     } catch (err) {
       return rejectWithValue(err.response.data.msg);
     }
@@ -47,7 +47,15 @@ const userInfoSlice = createSlice({
       state.userList = action.payload;
     },
     [createUserList.fulfilled]: (state, action) => {
-      state.myList.push(action.payload);
+      const { movieId, addedList } = action.payload;
+      if (addedList) {
+        state.userList.push(addedList);
+      } else {
+        const updatedList = state.userList.filter((list) => {
+          return list.movieId !== movieId.toString();
+        });
+        state.userList = updatedList;
+      }
     },
   },
 });
