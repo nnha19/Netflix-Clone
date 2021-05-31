@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import DisplayMovies from "../../homePage/Components/ChildrenMovies/ChildrenMovies";
+import Error from "../../share/Components/Error/Error";
 
 const UserListPage = () => {
   const [userListMovies, setUserListMovies] = useState([]);
@@ -24,17 +25,17 @@ const UserListPage = () => {
     setUserListMovies(movie);
   };
 
-  return (
-    <>
-      <DisplayMovies
-        setChildrenMovies={(movie) => {
-          showDetailHandler(movie);
-        }}
-        childrenMovies={userListMovies}
-        detail={true}
-        title="My List"
-      />
-    </>
+  return userListMovies && userListMovies.length > 0 ? (
+    <DisplayMovies
+      setChildrenMovies={(movie) => {
+        showDetailHandler(movie);
+      }}
+      childrenMovies={userListMovies}
+      detail={true}
+      title="My List"
+    />
+  ) : (
+    <Error errorMsg="Your list will be displayed here." />
   );
 };
 

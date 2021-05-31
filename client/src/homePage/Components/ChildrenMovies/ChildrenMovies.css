@@ -63,7 +63,6 @@
 .flex {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 }
 .fixed-parent {
   width: 16rem;
