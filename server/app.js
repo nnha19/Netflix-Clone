@@ -16,9 +16,11 @@ mongoose
 
 const userRoute = require("./routes/userRoute");
 const myListRoute = require("./routes/myListRoute");
+const likeRoute = require("./routes/likeRoute");
 
 app.use("/user", userRoute);
 app.use("/:uid/my-list", myListRoute);
+app.use("/:uid/movie/:mid", likeRoute);
 
 const port = process.env.port || 5000;
 app.listen(port, function () {
