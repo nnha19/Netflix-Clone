@@ -7,8 +7,7 @@ const likeMovie = async (req, res, next) => {
     const { uid, mid } = req.params;
     const { type } = req.body;
     const user = await User.findById(uid);
-
-    if (user) {
+    if (!user) {
       res.status(400).json({ msg: "No user found with provided id." });
       return;
     }

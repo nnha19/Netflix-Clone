@@ -50,7 +50,10 @@ const loginUser = async (req, res, next) => {
         const token = jwt.sign({ email }, process.env.SECRET_KEY, {
           expiresIn: "1h",
         });
-        res.status(200).json({ email, token, userId: user._id });
+        const { likeMovies, disLikeMovies } = user;
+        res
+          .status(200)
+          .json({ email, token, userId: user._id, likeMovies, disLikeMovies });
       } else {
         res
           .status(400)

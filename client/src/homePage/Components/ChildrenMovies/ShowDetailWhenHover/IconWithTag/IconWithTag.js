@@ -4,6 +4,7 @@ import ViewDetailIcon from "./ViewDetailIcon/ViewDetalIcon";
 import PlayButton from "../../../../../share/UI/playButton/playButton";
 import ShowTag from "../ShowTag/ShowTag";
 import AddToList from "./AddToList/AddToList";
+import LikeMovie from "./LikeMovie/LikeMovie";
 
 const IconWithTag = (props) => {
   const showTagHandler = (tagName, type) => {
@@ -44,15 +45,11 @@ const IconWithTag = (props) => {
           show={showTag["addToList"]}
           showTagHandler={(tagName, type) => showTagHandler(tagName, type)}
         />
-        <i
-          onMouseEnter={() => showTagHandler("like", true)}
-          onMouseLeave={() => showTagHandler("like")}
-          className="movie-category__icon far fa-thumbs-up"
-        >
-          <ShowTag className="show-tag" show={showTag["like"]}>
-            I Like This
-          </ShowTag>
-        </i>
+        <LikeMovie
+          movie={props.movie}
+          show={showTag["like"]}
+          showTagHandler={(tagName, type) => showTagHandler(tagName, type)}
+        />
         <i
           onMouseEnter={() => showTagHandler("disLike", true)}
           onMouseLeave={() => showTagHandler("disLike")}
