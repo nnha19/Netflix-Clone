@@ -25,7 +25,6 @@ export const likeMovie = createAsyncThunk(
     //param contains movie id and userId and type
     try {
       const { movieId, userId, type } = param;
-      console.log(userId);
       const resp = await axios({
         url: `${process.env.REACT_APP_BACKEND_URL}/${userId}/movie/${movieId}`,
         method: "post",

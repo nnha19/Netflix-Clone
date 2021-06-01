@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { likeMovie } from "../../../../../../store/slices/userSlice";
+import { useLikedOrDisLiked } from "../../../../../../customHook/useLikedOrDisLiked";
+
 import ShowTag from "../../ShowTag/ShowTag";
 
 const LikeMovie = (props) => {
-  const [isLiked, setIsLiked] = useState(false);
   const userLikedMovies = useSelector((state) => state.user.likeMovies);
-  console.log(userLikedMovies);
-  useEffect(() => {
-    const isLiked = userLikedMovies.some((likedList) => {
-      return likedList === props.movie.id.toString();
-    });
 
-    isLiked ? setIsLiked(true) : setIsLiked(false);
-  }, [userLikedMovies]);
+  const [isLiked] = useLikedOrDisLiked({
+    likeMovies: userLikedMovies,
+    movieId: props.movie.id,
+  });
 
   const userId = useSelector((state) => state.user.userId);
   const dispatch = useDispatch();
