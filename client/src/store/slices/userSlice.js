@@ -69,6 +69,17 @@ const userSlice = createSlice({
     },
     [likeMovie.fulfilled]: (state, action) => {
       const { movieId, type } = action.payload;
+      function unLikeIfDisLiked(oppositeType) {
+        const liked = state[oppositeType].some(
+          (liked) => liked === movieId.toString()
+        );
+        if (liked) {
+          const removedLike = state[oppositeType].filter(
+            (liked) => liked !== movieId.toString()
+          );
+          state[oppositeType] = removedLike;
+        }
+      }
       function likeUnLike(type) {
         const alreadyLiked = state[type].some(
           (likedMovie) => likedMovie === movieId.toString()
@@ -83,6 +94,7 @@ const userSlice = createSlice({
         }
       }
       likeUnLike(type);
+      unLikeIfDisLiked(type === "likeMovies" ? "disLikeMovies" : "likeMovies");
     },
   },
 });
