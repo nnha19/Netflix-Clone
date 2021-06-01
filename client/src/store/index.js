@@ -6,6 +6,7 @@ import moviesSlice from "./slices/moviesSlice";
 import userSlice from "./slices/userSlice";
 import loginModeSlice from "./slices/loginModeSlice";
 import userInfoSlice from "./slices/userInfo";
+import fixedNavSlice from "./slices/fixedNavSlice";
 
 const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
     user: userSlice,
     loginMode: loginModeSlice,
     userInfo: userInfoSlice,
+    fixedNav: fixedNavSlice,
   },
 });
 

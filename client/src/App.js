@@ -15,6 +15,7 @@ import UserListPage from "./userList/pages/userListPage";
 import "./App.css";
 
 const App = () => {
+  document.title = "Netflix";
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const userId = useSelector((state) => state.user.userId);
   const dispatch = useDispatch();
