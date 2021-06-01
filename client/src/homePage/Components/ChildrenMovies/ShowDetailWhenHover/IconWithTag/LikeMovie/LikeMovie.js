@@ -6,12 +6,12 @@ import ShowTag from "../../ShowTag/ShowTag";
 const LikeMovie = (props) => {
   const [isLiked, setIsLiked] = useState(false);
   const userLikedMovies = useSelector((state) => state.user.likeMovies);
-
+  console.log(userLikedMovies);
   useEffect(() => {
     const isLiked = userLikedMovies.some((likedList) => {
       return likedList === props.movie.id.toString();
     });
-    console.log(isLiked);
+
     isLiked ? setIsLiked(true) : setIsLiked(false);
   }, [userLikedMovies]);
 

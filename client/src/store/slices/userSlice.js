@@ -31,6 +31,7 @@ export const likeMovie = createAsyncThunk(
         method: "post",
         data: { type },
       });
+      return { type, movieId };
     } catch (err) {
       return rejectWithValue(err.response.data.msg);
     }
@@ -66,6 +67,23 @@ const userSlice = createSlice({
     [createUser.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
+    },
+    [likeMovie.fulfilled]: (state, action) => {
+      const { movieId, type } = action.payload;
+      function likeUnLike(type) {
+        const alreadyLiked = state[type].some(
+          (likedMovie) => likedMovie === movieId.toString()
+        );
+        if (alreadyLiked) {
+          const removedAlreadyLiked = state[type].filter(
+            (likedM) => likedM !== movieId.toString()
+          );
+          state[type] = removedAlreadyLiked;
+        } else {
+          state[type].push(movieId.toString());
+        }
+      }
+      likeUnLike(type);
     },
   },
 });
