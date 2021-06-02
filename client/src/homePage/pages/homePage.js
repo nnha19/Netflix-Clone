@@ -10,22 +10,34 @@ import HomePageDisplayPage from "./homePageDisplayPage";
 import ChildrenMoviesPage from "./childrenMoviesPage";
 import PopularMoviesPage from "./popularMoviesPage";
 import PopularTvPage from "./popularTvPage";
+import FamilyMoviePage from "./familyMoviesPage";
 
 const HomePage = (props) => {
-  const userList = useSelector((state) => state.userInfo.userList);
-
   const moviesArr = [
     {
       title: "Children Movies",
-      url: `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&include_adult=false&page=1`,
+      url: (pageNum) => {
+        return `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&include_adult=false&include_video=false&page=${pageNum}&with_genres=16`;
+      },
+      count: 3,
     },
     {
       title: "Popular Movies",
-      url: `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&page=97&with_watch_monetization_types=flatrate`,
+      url: (pageNum) =>
+        `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&page=${pageNum}&with_watch_monetization_types=flatrate`,
+      count: 4,
     },
     {
       title: "Popular Tv",
-      url: `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York`,
+      url: (pageNum) =>
+        `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&page=${pageNum}&timezone=America%2FNew_York`,
+      count: 6,
+    },
+    {
+      title: "Comedy",
+      url: (pageNum) =>
+        `https://api.themoviedb.org/3/discover/movie?api_key=a31d02795054ebca84e5c9d45e915e85&language=en-US&include_adult=false&include_video=false&page=${pageNum}&with_genres=35`,
+      count: 3,
     },
   ];
   const dispatch = useDispatch();
@@ -40,6 +52,7 @@ const HomePage = (props) => {
       <ChildrenMoviesPage />
       <PopularMoviesPage />
       <PopularTvPage />
+      <FamilyMoviePage />
     </>
   );
 };

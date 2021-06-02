@@ -8,13 +8,17 @@ export const getAllMovies = createAsyncThunk(
     try {
       const finalObj = {};
 
-      const func = async (url) => {
-        const resp = await axios.get(url);
-        return resp.data.results;
+      const func = async (url, count) => {
+        const moviesResult = [];
+        for (let i = 1; i <= count; i++) {
+          const resp = await axios.get(url(i));
+          moviesResult.push(resp.data.results);
+        }
+        return moviesResult.flat();
       };
 
       const result = async () => {
-        return Promise.all(arr.map((arr) => func(arr.url)));
+        return Promise.all(arr.map((arr) => func(arr.url, arr.count)));
       };
 
       const finalResult = await result();
