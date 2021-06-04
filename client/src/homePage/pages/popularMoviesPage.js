@@ -19,7 +19,7 @@ const PopularMoviesPage = (props) => {
   return popularMovies ? (
     <ChildrenMovies
       setChildrenMovies={(movie) => setPopularMovies(movie)}
-      title={title}
+      title={"Popular Movies"}
       childrenMovies={popularMovies}
     />
   ) : null;

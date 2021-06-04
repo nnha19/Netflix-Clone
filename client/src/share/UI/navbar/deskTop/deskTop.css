@@ -8,8 +8,6 @@
   font-size: 14px;
   list-style: none;
   margin-right: 1rem;
-
-  color: #f3fcff;
   transition: all 0.4s;
   cursor: pointer;
   align-self: center;
@@ -45,7 +43,8 @@
   text-decoration: none;
   display: flex;
   align-items: center;
+  color: #f3fcff;
 }
 .nav-bar__active {
-  color: #b3b390;
+  color: green;
 }

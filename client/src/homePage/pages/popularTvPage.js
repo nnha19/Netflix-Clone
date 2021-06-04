@@ -17,7 +17,7 @@ const PopularTvPage = (props) => {
   return popularTv ? (
     <ChildrenMovies
       setChildrenMovies={(movie) => setPopularTv(movie)}
-      title={title}
+      title={"Popular Tv"}
       childrenMovies={popularTv}
     />
   ) : null;

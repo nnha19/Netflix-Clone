@@ -20,7 +20,7 @@ const ChildrenMoviesPage = (props) => {
   return childrenMovies && childrenMovies.length > 0 ? (
     <ChildrenMovies
       setChildrenMovies={(movie) => setChildrenMovies(movie)}
-      title={title}
+      title={"For Children"}
       childrenMovies={childrenMovies}
     />
   ) : null;

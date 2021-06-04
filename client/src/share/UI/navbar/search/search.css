@@ -4,6 +4,7 @@
   margin-right: 2rem;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 .search__input {
   border: 0px solid white;

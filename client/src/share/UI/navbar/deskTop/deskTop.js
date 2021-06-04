@@ -30,13 +30,43 @@ const DeskTop = (props) => {
         </div>
         {isAuthenticated && (
           <>
-            <li className="nav-bar__item nav-bar__hover">Home</li>
-            <li className="nav-bar__item nav-bar__hover">TV Shows</li>
-            <li className="nav-bar__item nav-bar__hover">Movies</li>
-            <li className="nav-bar__item nav-bar__hover">Latest</li>
             <NavLink
-              activeClassName="nav-bar__active"
+              exact
+              to="/"
               className="nav-bar__link"
+              activeClassName="nav-bar__active"
+            >
+              <li className="nav-bar__item nav-bar__hover">Home</li>
+            </NavLink>
+            <NavLink
+              exact
+              to="/browse/tv-shows"
+              className="nav-bar__link"
+              activeClassName="nav-bar__active"
+            >
+              <li className="nav-bar__item nav-bar__hover">TV Shows</li>
+            </NavLink>
+            <NavLink
+              exact
+              to="/browse/movies"
+              className="nav-bar__link"
+              activeClassName="nav-bar__active"
+            >
+              <li className="nav-bar__item nav-bar__hover">Movies</li>
+            </NavLink>
+            <NavLink
+              exact
+              to="/browse/latest"
+              className="nav-bar__link"
+              activeClassName="nav-bar__active"
+            >
+              <li className="nav-bar__item nav-bar__hover">Latest</li>
+            </NavLink>
+
+            <NavLink
+              exact
+              className="nav-bar__link"
+              activeClassName="nav-bar__active"
               to={`/${userId}/my-list`}
             >
               <li className="nav-bar__item nav-bar__hover">My List</li>
@@ -48,8 +78,8 @@ const DeskTop = (props) => {
         {isAuthenticated && (
           <>
             <Search searchVal={searchVal} setSearchVal={setSearchVal} />
-            <i className="nav-bar__icon fas fa-bell nav-bar__item"></i>
-            <i className="nav-bar__item">Profile</i>
+            <i className="nav-bar__link nav-bar__icon fas fa-bell nav-bar__item"></i>
+            <i className="nav-bar__link nav-bar__item">Profile</i>
           </>
         )}
         {!isAuthenticated && !loginMode && <ChangeModeBtn />}

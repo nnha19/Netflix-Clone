@@ -65,7 +65,7 @@ const Search = (props) => {
         {showSearch && searchVal.length > 0 && (
           <i
             onClick={hideSearchAndMoveHomeHandler}
-            class="fas fa-times hide-search"
+            class="nav-bar__link fas fa-times hide-search"
           ></i>
         )}
       </form>
