@@ -7,21 +7,17 @@ import ChildrenMovies from "../Components/ChildrenMovies/ChildrenMovies";
 
 const ChildrenMoviesPage = (props) => {
   const dispatch = useDispatch();
-  const childrenMovies = useSelector(
-    (state) => state.movies.movies.ChildrenMovies
-  );
-
-  const title = "ChildrenMovies";
+  const movies = useSelector((state) => state.movies.movies[props.component]);
 
   const setChildrenMovies = (movies) => {
-    dispatch(moviesSliceActions.setMovies({ movies, title }));
+    dispatch(moviesSliceActions.setMovies({ movies, title: props.component }));
   };
 
-  return childrenMovies && childrenMovies.length > 0 ? (
+  return movies && movies.length > 0 ? (
     <ChildrenMovies
       setChildrenMovies={(movie) => setChildrenMovies(movie)}
-      title={"For Children"}
-      childrenMovies={childrenMovies}
+      title={props.title}
+      childrenMovies={movies}
     />
   ) : null;
 };

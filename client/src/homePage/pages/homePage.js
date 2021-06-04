@@ -1,16 +1,10 @@
 import React, { useEffect } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
-import moviesSlice, {
-  getAllMovies,
-  moviesSliceActions,
-} from "../../store/slices/moviesSlice";
+import { useDispatch } from "react-redux";
+import { getAllMovies } from "../../store/slices/moviesSlice";
 
 import HomePageDisplayPage from "./homePageDisplayPage";
 import ChildrenMoviesPage from "./childrenMoviesPage";
-import PopularMoviesPage from "./popularMoviesPage";
-import PopularTvPage from "./popularTvPage";
-import FamilyMoviePage from "./familyMoviesPage";
 
 const HomePage = (props) => {
   const moviesArr = [
@@ -49,10 +43,10 @@ const HomePage = (props) => {
   return (
     <>
       <HomePageDisplayPage />
-      <ChildrenMoviesPage />
-      <PopularMoviesPage />
-      <PopularTvPage />
-      <FamilyMoviePage />
+      <ChildrenMoviesPage component={"ChildrenMovies"} title="For Children" />
+      <ChildrenMoviesPage component={"PopularMovies"} title="Popular Movies" />
+      <ChildrenMoviesPage component={"PopularTv"} title="Popular Tv" />
+      <ChildrenMoviesPage component={"Comedy"} title="Comedy" />
     </>
   );
 };
