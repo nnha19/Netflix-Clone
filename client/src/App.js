@@ -12,6 +12,7 @@ import SearchResultPage from "./search/pages/searchResultPage";
 import Auth from "./share/Components/Auth/Auth";
 import UserListPage from "./userList/pages/userListPage";
 import TvShowPage from "./tvShowsPage/page/tvShowPage";
+import MoviesPage from "./moviesPage/pages/moviesPage";
 
 import "./App.css";
 
@@ -37,6 +38,7 @@ const App = () => {
     <>
       <Route exact path="/browse" component={HomePage} />
       <Route exact path="/browse/tv-shows" component={TvShowPage} />
+      <Route exact path="/browse/movies" component={MoviesPage} />
       <Route exact path="/browse/:movieCategory" component={ViewDetailByCate} />
       <Route exact path="/search/:query" component={SearchResultPage} />
       <Route exact path="/:uid/my-list" component={UserListPage} />

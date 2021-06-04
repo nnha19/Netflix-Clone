@@ -1,39 +1,38 @@
 import React, { useEffect } from "react";
-
 import { useSelector, useDispatch } from "react-redux";
 import { getMovies } from "../../store/slices/getMoviesSlice";
 import { getMoviesSliceActions } from "../../store/slices/getMoviesSlice";
 
 import DisplayMovies from "../../homePage/Components/ChildrenMovies/ChildrenMovies";
 
-const TvShowPage = () => {
-  const tvShows = useSelector((state) => state.getMovies.singleMovies.tvShows);
+const MoviesPage = (props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(
       getMovies({
         url: (pageNum) =>
-          `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${pageNum}`,
-        pageNum: 7,
-        title: "tvShows",
+          `https://api.themoviedb.org/3/movie/popular?api_key=a31d02795054ebca84e5c9d45e915e85&language=en-US&page=${pageNum}`,
+        pageNum: 10,
+        title: "movies",
       })
     );
   }, []);
+  const movies = useSelector((state) => state.getMovies.singleMovies.movies);
 
   const showDetailHandler = (movies) => {
-    dispatch(getMoviesSliceActions.setMovies({ movies, title: "tvShows" }));
+    dispatch(getMoviesSliceActions.setMovies({ title: "movies", movies }));
   };
 
-  return tvShows && tvShows.length > 0 ? (
+  return movies && movies.length > 0 ? (
     <DisplayMovies
       setChildrenMovies={(movie) => {
         showDetailHandler(movie);
       }}
-      childrenMovies={tvShows}
+      childrenMovies={movies}
       detail={true}
-      title="Tv Shows"
+      title="Movies"
     />
   ) : null;
 };
 
-export default TvShowPage;
+export default MoviesPage;
