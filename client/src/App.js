@@ -36,7 +36,7 @@ const App = () => {
   const authenticatedRoutes = (
     <>
       <Route exact path="/browse" component={HomePage} />
-      {/* <Route exact path="/browse/tv-shows" component={TvShowPage} /> */}
+      <Route exact path="/browse/tv-shows" component={TvShowPage} />
       <Route exact path="/browse/:movieCategory" component={ViewDetailByCate} />
       <Route exact path="/search/:query" component={SearchResultPage} />
       <Route exact path="/:uid/my-list" component={UserListPage} />

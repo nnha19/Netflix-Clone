@@ -5,20 +5,30 @@ import axios from "axios";
 export const getMovies = createAsyncThunk(
   "getMovies/getMoviesSlice",
   async (param, { rejectWithValue }) => {
-    const resp = await axios.get(param.url);
-    return resp.data.results;
+    const allMovies = [];
+    const { url, pageNum } = param;
+    for (let i = 1; i < pageNum; i++) {
+      const resp = await axios.get(url(i));
+      allMovies.push(resp.data.results);
+    }
+    return allMovies.flat();
   }
 );
 
 const getMoviesSlice = createSlice({
   name: "getMovies",
-  initialState: { movies: [] },
-  reducers: {},
+  initialState: { singleMovies: [] },
+  reducers: {
+    setMovies(state, action) {
+      state.singleMovies = action.payload;
+    },
+  },
   extraReducers: {
     [getMovies.fulfilled]: (state, action) => {
-      console.log(action.payload);
+      state.singleMovies = action.payload;
     },
   },
 });
 
+export const getMoviesSliceActions = getMoviesSlice.actions;
 export default getMoviesSlice.reducer;

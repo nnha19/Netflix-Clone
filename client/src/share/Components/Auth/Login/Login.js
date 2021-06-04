@@ -15,12 +15,12 @@ const Login = (props) => {
   const dispatch = useDispatch();
   const [inputVals, setInputVals] = useState({
     email: {
-      isValid: false,
-      value: "",
+      isValid: true,
+      value: "nyinyiprince12345@gmail.com",
     },
     password: {
-      isValid: false,
-      value: "",
+      isValid: true,
+      value: "password123",
     },
   });
 
