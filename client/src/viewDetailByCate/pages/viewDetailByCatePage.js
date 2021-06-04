@@ -9,7 +9,6 @@ import ChildrenMovies from "../../homePage/Components/ChildrenMovies/ChildrenMov
 const ViewAllMovieCatePage = () => {
   const dispatch = useDispatch();
   const { movieCategory } = useParams();
-
   const moviesByCate = useSelector(
     (state) => state.movies.movies[movieCategory]
   );
@@ -18,16 +17,14 @@ const ViewAllMovieCatePage = () => {
     dispatch(moviesSliceActions.setMovies({ movies, title: movieCategory }));
   };
 
-  return (
-    <>
-      <ChildrenMovies
-        title={movieCategory}
-        setChildrenMovies={(movie) => setChildrenMovies(movie)}
-        childrenMovies={moviesByCate}
-        detail="true"
-      />
-    </>
-  );
+  return moviesByCate && moviesByCate.length > 0 ? (
+    <ChildrenMovies
+      title={movieCategory}
+      setChildrenMovies={(movie) => setChildrenMovies(movie)}
+      childrenMovies={moviesByCate}
+      detail="true"
+    />
+  ) : null;
 };
 
 export default ViewAllMovieCatePage;

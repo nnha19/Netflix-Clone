@@ -18,6 +18,7 @@ const ChildrenMoviesPage = (props) => {
       setChildrenMovies={(movie) => setChildrenMovies(movie)}
       title={props.title}
       childrenMovies={movies}
+      component={props.component}
     />
   ) : null;
 };

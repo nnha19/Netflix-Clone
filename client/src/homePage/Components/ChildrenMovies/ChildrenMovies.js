@@ -176,10 +176,11 @@ const ChildrenMovies = (props) => {
           >
             <div className="movie-category__header">
               <MovieCatTitle
-                title={props.title}
+                component={props.component}
                 className="primary-heading movie-category__heading"
                 movies={childrenMovies}
                 detail={props.detail}
+                title={props.title}
               />
               {showSlide && !props.detail && (
                 <DisplaySlider
