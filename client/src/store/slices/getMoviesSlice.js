@@ -12,6 +12,7 @@ export const getMovies = createAsyncThunk(
       allMovies.push(resp.data.results);
     }
     const movies = allMovies.flat();
+    console.log(movies);
     return { movies, title };
   }
 );
