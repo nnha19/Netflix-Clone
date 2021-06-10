@@ -2,6 +2,7 @@
   z-index: 100000;
   position: relative;
   padding: 1rem 3rem;
+  background: black;
 }
 .nav-bar__fixed {
   position: fixed;

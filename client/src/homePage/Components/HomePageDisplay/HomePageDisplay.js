@@ -27,11 +27,12 @@ const HomePageDisplay = (props) => {
         />
       )}
       <div className="display-movie">
-        <div className="container">
-          <img
-            className="display-movie__poster"
-            src={`https://image.tmdb.org/t/p/w500/${displayMovie.poster_path}`}
-          />
+        <div
+          style={{
+            backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${displayMovie.poster_path})`,
+          }}
+          className="container"
+        >
           <div className="display-movie__content">
             <h3 className="primary-heading">
               {displayMovie.title || displayMovie.name}
