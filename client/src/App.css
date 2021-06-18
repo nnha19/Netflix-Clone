@@ -1,6 +1,13 @@
 html {
   font-family: sans-serif;
   background: #141414;
+  overflow-x: hidden;
+  height: max-content;
+}
+body {
+  width: 100%;
+  overflow: hidden !important;
+  padding-bottom: 2rem;
 }
 * {
   padding: 0;

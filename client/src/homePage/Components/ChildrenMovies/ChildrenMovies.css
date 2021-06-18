@@ -25,7 +25,6 @@
   display: inline-block;
   height: 14rem;
   width: 100%;
-  margin-right: 1rem;
   transform: all 0.4s;
 }
 .movies-container {
@@ -49,13 +48,13 @@
   height: 15rem;
 }
 .prolong-width {
-  transition: all 0.4s;
+  transition: all 0.6s;
   height: 12rem;
-  width: 28rem;
+  width: 24rem;
   z-index: 2000;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  z-index: 1000;
   justify-content: center;
 }
 .relative-position {
@@ -93,6 +92,7 @@
   height: max-content;
   top: 0;
   width: 20%;
+  z-index: 0 !important;
 }
 .swiper-pagination-bullet {
   background: white !important;

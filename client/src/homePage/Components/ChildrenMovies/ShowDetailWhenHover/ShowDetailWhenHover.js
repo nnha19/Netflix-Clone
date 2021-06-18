@@ -24,7 +24,7 @@ const ShowDetailWhenHover = (props) => {
           movie={props.movie}
         />
       </div>
-      <h4 className="primary-heading center">
+      <h4 className="primary-heading movie-category__heading center">
         {shortenTitleLength(movieTitle)}
       </h4>
     </div>
