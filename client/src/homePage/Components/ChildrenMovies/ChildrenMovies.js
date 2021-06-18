@@ -60,36 +60,32 @@ const ChildrenMovies = (props) => {
   const moviesOutput =
     childrenMovies &&
     childrenMovies.map((movie, i) => {
-      const returnResult = (
-        <SwiperSlide>
-          <div
-            onMouseEnter={() => showDetailHandler(movie)}
-            onMouseLeave={() => hideDetailHandler(movie)}
-            className={`movie-category__detail ${
-              movie.showDetail ? "prolong-width" : ""
-            } ${props.detail ? "relative-position" : ""}`}
-          >
-            <img
-              ref={getWidth}
-              key={movie.id}
-              className={`movie-category__img ${
-                movie.showDetail ? "shorten-img" : ""
-              }`}
-              src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`}
-            />
-            {movie.showDetail && (
-              <ShowDetailWhenHover
-                viewDetail={viewDetailHandler}
-                movie={movie}
-              />
-            )}
-          </div>
-        </SwiperSlide>
+      const movies = (
+        <div
+          onMouseEnter={() => showDetailHandler(movie)}
+          onMouseLeave={() => hideDetailHandler(movie)}
+          className={`movie-category__detail ${
+            movie.showDetail ? "prolong-width" : ""
+          } ${props.detail ? "relative-position" : ""}`}
+        >
+          <img
+            ref={getWidth}
+            key={movie.id}
+            className={`movie-category__img ${
+              movie.showDetail ? "shorten-img" : ""
+            }`}
+            src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`}
+          />
+          {movie.showDetail && (
+            <ShowDetailWhenHover viewDetail={viewDetailHandler} movie={movie} />
+          )}
+        </div>
       );
+
       return props.detail ? (
-        <div className="fixed-parent">{returnResult}</div>
+        <div className="fixed-parent">{movies}</div>
       ) : (
-        returnResult
+        <SwiperSlide>{movies}</SwiperSlide>
       );
     });
 
@@ -122,17 +118,20 @@ const ChildrenMovies = (props) => {
             title={props.title}
           />
         </div>
-
-        <Swiper
-          navigation
-          pagination={{ clickable: true }}
-          slidesPerGroup={5}
-          spaceBetween={50}
-          slidesPerView={5}
-          direction="horizontal"
-        >
-          {moviesOutput}
-        </Swiper>
+        {props.detail ? (
+          <div className="flex">{moviesOutput}</div>
+        ) : (
+          <Swiper
+            navigation
+            pagination={{ clickable: true }}
+            slidesPerGroup={4}
+            spaceBetween={50}
+            slidesPerView={5}
+            direction="horizontal"
+          >
+            {moviesOutput}
+          </Swiper>
+        )}
       </div>
     </>
   ) : null;

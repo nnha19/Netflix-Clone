@@ -69,12 +69,13 @@
 }
 .fixed-parent {
   width: 16rem;
-  height: 18rem;
+  height: 14rem;
   position: relative;
   margin-bottom: 2rem;
 }
 .min-height {
   height: min-content;
+  padding-right: 3rem;
 }
 .show-detail {
   height: 28rem;
