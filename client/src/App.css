@@ -1,12 +1,10 @@
 html {
   font-family: sans-serif;
   background: #141414;
-  overflow-x: hidden;
-  height: max-content;
 }
 body {
+  overflow-x: hidden !important;
   width: 100%;
-  overflow: hidden !important;
   padding-bottom: 2rem;
 }
 * {

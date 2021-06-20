@@ -43,10 +43,15 @@ const HomePage = (props) => {
   return (
     <>
       <HomePageDisplayPage />
-      <ChildrenMoviesPage component={"ChildrenMovies"} title="For Children" />
-      <ChildrenMoviesPage component={"PopularMovies"} title="Popular Movies" />
-      <ChildrenMoviesPage component={"PopularTv"} title="Popular Tv" />
-      <ChildrenMoviesPage component={"Comedy"} title="Comedy" />
+      <div style={{ padding: "4rem" }}>
+        <ChildrenMoviesPage component={"ChildrenMovies"} title="For Children" />
+        <ChildrenMoviesPage
+          component={"PopularMovies"}
+          title="Popular Movies"
+        />
+        <ChildrenMoviesPage component={"PopularTv"} title="Popular Tv" />
+        <ChildrenMoviesPage component={"Comedy"} title="Comedy" />
+      </div>
     </>
   );
 };

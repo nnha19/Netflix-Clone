@@ -1,118 +1,36 @@
-.overflow-wrapper {
-  height: max-content;
-  width: 100%;
-}
-.no-padding {
-  width: 100%;
-}
 .movie-category {
-  margin: 3rem;
-  height: 14rem;
-  margin-right: 0;
-  position: relative;
-  transition: all 0.8s;
-  margin-bottom: 5rem;
+  margin-top: 2rem;
+}
+.movie-category__title {
+  font-size: 1.4rem;
+  color: white;
+  margin: 1rem 0;
+  cursor: pointer;
+  margin-left: -1rem;
 }
 .movie-category__detail {
-  width: 15rem;
-  transition: all 0.3s;
-  background: rgb(0, 0, 0);
-  height: 100%;
-  cursor: pointer;
-  position: absolute;
+  transition: all 0;
+  width: 246px;
 }
 .movie-category__img {
-  display: inline-block;
-  height: 14rem;
   width: 100%;
-  transform: all 0.4s;
+  height: 227px;
+  display: block;
 }
-.movies-container {
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-.movie-category__heading {
-  margin-bottom: 1rem;
-  cursor: pointer;
-}
-.slider {
-  height: 100%;
-  transition: all 0.6s;
-}
-.movie-category__header {
-  display: flex;
-  justify-content: space-between;
-}
-.shorten-img {
-  height: 15rem;
-}
-.prolong-width {
-  transition: all 0.6s;
-  height: 12rem;
-  width: 24rem;
-  z-index: 2000;
-  display: flex;
-  flex-direction: column;
-  z-index: 1000;
-  justify-content: center;
-}
-.relative-position {
+.movie-hovered {
+  width: 22rem;
   position: absolute;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
+  z-index: 1;
+  height: 22rem;
 }
-
-.flex {
-  display: flex;
-  flex-wrap: wrap;
-}
-.fixed-parent {
-  width: 16rem;
-  height: 14rem;
-  position: relative;
-  margin-bottom: 2rem;
-}
-.min-height {
-  height: min-content;
-  padding-right: 3rem;
-}
-.show-detail {
-  height: 28rem;
-}
-.hide-overflow {
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
-}
-.swiper-slide {
-  height: 23rem !important;
-}
-
-.swiper-pagination {
-  height: max-content;
-  top: 0;
-  width: 20%;
-  z-index: 0 !important;
-}
-.swiper-pagination-bullet {
-  background: white !important;
-  width: 1rem !important;
-  border-radius: 0 !important;
-  height: 3px !important;
-}
-.swiper-container {
-  position: static !important;
-}
-.swiper-button-prev,
-.swiper-button-next {
-  top: 9rem !important;
-  background: black !important;
-  color: white !important;
-}
-.swiper-slide {
-  height: 12rem !important;
-}
+/* Swiper style */
 .swiper-container {
   overflow: unset !important;
+}
+
+.swiper-slide {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center;
+  justify-content: center;
 }

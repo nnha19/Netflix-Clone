@@ -19,8 +19,6 @@ const ChildrenMovies = (props) => {
 
   const [viewDetail, setViewDetail] = useState(false);
 
-  const getWidth = createRef();
-
   function showOrHideDetail(id, type) {
     let cloned = [...childrenMovies];
     const hoveredOne = childrenMovies.find((cm) => cm.id === id);
@@ -57,42 +55,40 @@ const ChildrenMovies = (props) => {
     setViewDetail(movie);
   };
 
+  console.log(viewDetail);
+
   const moviesOutput =
     childrenMovies &&
     childrenMovies.map((movie, i) => {
       const movies = (
-        <div
-          onMouseEnter={() => showDetailHandler(movie)}
-          onMouseLeave={() => hideDetailHandler(movie)}
-          className={`movie-category__detail ${
-            movie.showDetail ? "prolong-width" : ""
-          } ${props.detail ? "relative-position" : ""}`}
-        >
-          <img
-            ref={getWidth}
-            key={movie.id}
-            className={`movie-category__img ${
-              movie.showDetail ? "shorten-img" : ""
+        <SwiperSlide>
+          <div
+            onMouseEnter={() => showDetailHandler(movie)}
+            onMouseLeave={() => hideDetailHandler(movie)}
+            className={`movie-category__detail ${
+              movie.showDetail ? "movie-hovered" : ""
             }`}
-            src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`}
-          />
-          {movie.showDetail && (
-            <ShowDetailWhenHover viewDetail={viewDetailHandler} movie={movie} />
-          )}
-        </div>
+          >
+            <img
+              className="movie-category__img"
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+            />
+            {movie.showDetail && (
+              <ShowDetailWhenHover
+                movie={movie}
+                viewDetail={(movie) => viewDetailHandler(movie)}
+              />
+            )}
+          </div>
+        </SwiperSlide>
       );
-
-      return props.detail ? (
-        <div className="fixed-parent">{movies}</div>
-      ) : (
-        <SwiperSlide>{movies}</SwiperSlide>
-      );
+      return movies;
     });
 
   useEffect(() => {
     if (viewDetail) {
-      document.body.style.overflow = "hidden";
       document.body.style.height = "100%";
+      document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
       document.body.style.height = "maxContent";
@@ -108,30 +104,17 @@ const ChildrenMovies = (props) => {
       {viewDetail && (
         <ViewDetail hideViewDetail={hideViewDetailHandler} movie={viewDetail} />
       )}
-      <div className={`movie-category ${props.detail ? "min-height" : ""}  `}>
-        <div className="movie-category__header">
-          <MovieCatTitle
-            component={props.component}
-            className="primary-heading movie-category__heading"
-            movies={childrenMovies}
-            detail={props.detail}
-            title={props.title}
-          />
-        </div>
-        {props.detail ? (
-          <div className="flex">{moviesOutput}</div>
-        ) : (
-          <Swiper
-            navigation
-            pagination={{ clickable: true }}
-            slidesPerGroup={4}
-            spaceBetween={50}
-            slidesPerView={5}
-            direction="horizontal"
-          >
-            {moviesOutput}
-          </Swiper>
-        )}
+      <div className="movie-category">
+        <MovieCatTitle className="movie-category__title" title={props.title} />
+        <Swiper
+          spaceBetween={50}
+          pagination
+          navigation
+          slidesPerView={5}
+          slidesPerGroup={5}
+        >
+          {moviesOutput}
+        </Swiper>
       </div>
     </>
   ) : null;
