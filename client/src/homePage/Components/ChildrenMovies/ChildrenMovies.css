@@ -20,7 +20,7 @@
 .movie-hovered {
   width: 22rem;
   position: absolute;
-  z-index: 1;
+  z-index: 10;
   height: 22rem;
 }
 /* Swiper style */
@@ -33,4 +33,48 @@
   flex-direction: column !important;
   align-items: center;
   justify-content: center;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  width: 1rem;
+  background-color: rgba(0, 0, 0, 0.377);
+  height: 100% !important;
+  top: 1.4rem !important;
+  width: 3rem !important;
+  color: white !important;
+  transition: all 0.4s;
+  opacity: 0;
+}
+.swiper-button-disabled {
+  opacity: 0 !important;
+}
+
+.swiper-button-prev {
+  left: -4rem !important;
+}
+.swiper-button-next {
+  right: -4rem !important;
+}
+.movie-category:hover .swiper-container .swiper-button-next,
+.movie-category:hover .swiper-container .swiper-button-prev {
+  opacity: 1;
+}
+.swiper-pagination {
+  top: -2.5rem;
+  height: max-content;
+  z-index: -1;
+}
+.swiper-pagination-bullet {
+  width: 0.8rem !important;
+  height: 1.4px !important;
+  background-color: white !important;
+  border-radius: 0 !important;
+}
+.swiper-pagination {
+  opacity: 0 !important;
+  z-index: -1 !important;
+}
+
+.movie-category:hover .swiper-container .swiper-pagination {
+  opacity: 1 !important;
 }

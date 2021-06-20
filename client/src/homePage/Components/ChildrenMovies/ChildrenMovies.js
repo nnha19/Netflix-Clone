@@ -18,6 +18,7 @@ const ChildrenMovies = (props) => {
   const childrenMovies = props.childrenMovies;
 
   const [viewDetail, setViewDetail] = useState(false);
+  const [rowHover, setRowHover] = useState(false);
 
   function showOrHideDetail(id, type) {
     let cloned = [...childrenMovies];
@@ -55,7 +56,9 @@ const ChildrenMovies = (props) => {
     setViewDetail(movie);
   };
 
-  console.log(viewDetail);
+  const rowHoverHandler = (boolean) => {
+    setRowHover(boolean);
+  };
 
   const moviesOutput =
     childrenMovies &&
@@ -104,11 +107,15 @@ const ChildrenMovies = (props) => {
       {viewDetail && (
         <ViewDetail hideViewDetail={hideViewDetailHandler} movie={viewDetail} />
       )}
-      <div className="movie-category">
+      <div
+        onMouseEnter={() => rowHoverHandler(true)}
+        onMouseLeave={() => rowHoverHandler(false)}
+        className="movie-category"
+      >
         <MovieCatTitle className="movie-category__title" title={props.title} />
         <Swiper
           spaceBetween={50}
-          pagination
+          pagination={{ clickable: true }}
           navigation
           slidesPerView={5}
           slidesPerGroup={5}
