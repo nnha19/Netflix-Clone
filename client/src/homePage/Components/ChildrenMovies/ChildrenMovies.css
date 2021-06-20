@@ -6,11 +6,11 @@
   color: white;
   margin: 1rem 0;
   cursor: pointer;
-  margin-left: -1rem;
+  padding: 0 4rem;
 }
 .movie-category__detail {
   transition: all 0;
-  width: 246px;
+  width: 100%;
 }
 .movie-category__img {
   width: 100%;
@@ -21,26 +21,33 @@
   transition: all 0.3s;
   width: 22rem;
   position: absolute;
+  height: 12rem;
   z-index: 10;
-  height: 22rem;
 }
 .flex {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
+  justify-content: center;
 }
+
 .fixed-parent {
   width: 246px;
   height: 227px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin: 1rem;
+}
+.edge {
+  align-items: flex-end !important;
+}
+.edge-start {
+  align-items: flex-start !important;
 }
 /* Swiper style */
 .swiper-container {
   overflow: unset !important;
+  padding: 0 2rem !important;
 }
 
 .swiper-slide {
@@ -48,6 +55,7 @@
   flex-direction: column !important;
   align-items: center;
   justify-content: center;
+  /* width: 18vw !important; */
 }
 .swiper-button-prev,
 .swiper-button-next {
@@ -65,10 +73,10 @@
 }
 
 .swiper-button-prev {
-  left: -4rem !important;
+  left: 0 !important;
 }
 .swiper-button-next {
-  right: -4rem !important;
+  right: 0 !important;
 }
 .movie-category:hover .swiper-container .swiper-button-next,
 .movie-category:hover .swiper-container .swiper-button-prev {
@@ -92,4 +100,16 @@
 
 .movie-category:hover .swiper-container .swiper-pagination {
   opacity: 1 !important;
+}
+
+@media (max-width: 1000px) {
+  .movie-hovered {
+    width: 19rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .swiper-pagination {
+    display: none;
+  }
 }

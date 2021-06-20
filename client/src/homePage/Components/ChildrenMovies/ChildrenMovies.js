@@ -18,7 +18,8 @@ const ChildrenMovies = (props) => {
   const childrenMovies = props.childrenMovies;
 
   const [viewDetail, setViewDetail] = useState(false);
-  const [rowHover, setRowHover] = useState(false);
+  const [moviesPerView, setMoviesPerView] = useState(5);
+  const [edgeStart, setEdgeStart] = useState([]);
 
   function showOrHideDetail(id, type) {
     let cloned = [...childrenMovies];
@@ -56,9 +57,17 @@ const ChildrenMovies = (props) => {
     setViewDetail(movie);
   };
 
-  const rowHoverHandler = (boolean) => {
-    setRowHover(boolean);
-  };
+  useEffect(() => {
+    let arr = [];
+    let i = 1;
+    while (i < childrenMovies.length) {
+      arr.push(i);
+      i = i + moviesPerView;
+    }
+    console.log(moviesPerView);
+    console.log(arr);
+    setEdgeStart(arr);
+  }, [childrenMovies.length]);
 
   const moviesOutput =
     childrenMovies &&
@@ -85,7 +94,19 @@ const ChildrenMovies = (props) => {
       );
       let movies;
       if (!props.detail) {
-        movies = <SwiperSlide>{result}</SwiperSlide>;
+        let className;
+        edgeStart.forEach((es) =>
+          es === i + 1 ? (className = "edge-start") : ""
+        );
+        movies = (
+          <SwiperSlide
+            className={`${(i + 1) % moviesPerView === 0 ? "edge" : ""} ${
+              i + 1 === childrenMovies.length ? "edge" : ""
+            } ${className}`}
+          >
+            {result}
+          </SwiperSlide>
+        );
       } else {
         movies = <div className="fixed-parent">{result}</div>;
       }
@@ -103,6 +124,16 @@ const ChildrenMovies = (props) => {
     }
   }, [viewDetail]);
 
+  useEffect(() => {
+    if (window.innerWidth <= 800 && window.width >= 600) {
+      setMoviesPerView(4);
+    } else if (window.innerWidth < 600) {
+      setMoviesPerView(3);
+    } else {
+      setMoviesPerView(5);
+    }
+  }, [window.innerWidth]);
+
   const hideViewDetailHandler = () => {
     setViewDetail(null);
   };
@@ -112,19 +143,20 @@ const ChildrenMovies = (props) => {
       {viewDetail && (
         <ViewDetail hideViewDetail={hideViewDetailHandler} movie={viewDetail} />
       )}
-      <div
-        onMouseEnter={() => rowHoverHandler(true)}
-        onMouseLeave={() => rowHoverHandler(false)}
-        className="movie-category"
-      >
-        <MovieCatTitle className="movie-category__title" title={props.title} />
+      <div className="movie-category">
+        <MovieCatTitle
+          detail={props.detail}
+          component={props.component}
+          className="movie-category__title"
+          title={props.title}
+        />
         {!props.detail ? (
           <Swiper
-            spaceBetween={50}
+            spaceBetween={10}
             pagination={{ clickable: true }}
             navigation
-            slidesPerView={5}
-            slidesPerGroup={5}
+            slidesPerView={moviesPerView}
+            slidesPerGroup={moviesPerView}
           >
             {moviesOutput}
           </Swiper>

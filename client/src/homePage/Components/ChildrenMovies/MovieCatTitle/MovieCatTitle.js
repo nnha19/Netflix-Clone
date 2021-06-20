@@ -8,10 +8,12 @@ const MovieCatTitle = (props) => {
   const showMoviesHandler = () => {
     !props.detail && history.push(`browse/${props.component}`);
   };
+  const detailTitleStyle = props.detail ? { textAlign: "center" } : null;
 
   return (
     <h3
-      className={props.className}
+      style={detailTitleStyle}
+      className={`props.detail`}
       onClick={showMoviesHandler}
       className={props.className}
     >

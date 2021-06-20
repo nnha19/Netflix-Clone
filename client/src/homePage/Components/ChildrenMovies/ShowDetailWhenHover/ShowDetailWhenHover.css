@@ -72,3 +72,9 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 1000px) {
+  .movie-category__icon {
+    font-size: 0.8rem;
+  }
+}
