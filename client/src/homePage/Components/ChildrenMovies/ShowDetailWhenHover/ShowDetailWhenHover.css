@@ -23,6 +23,8 @@
   border-radius: 50%;
   border: 3px solid rgba(255, 255, 255, 0.514);
   animation: showSlowly 2s;
+  animation-delay: 0.2s;
+  animation-fill-mode: backwards;
   position: relative;
 }
 .movie-category__icon:hover,
@@ -32,6 +34,7 @@
 .center {
   text-align: center;
 }
+
 .movie-category__right i {
   width: 3rem;
   display: flex;
@@ -56,7 +59,9 @@
 
 .movie-category__heading {
   opacity: 0.7;
-  /* animation: showSlowly 2s; */
+  animation: showSlowly 2s;
+  animation-delay: 0.2s;
+  animation-fill-mode: backwards;
 }
 
 @keyframes showSlowly {

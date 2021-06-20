@@ -18,10 +18,25 @@
   display: block;
 }
 .movie-hovered {
+  transition: all 0.3s;
   width: 22rem;
   position: absolute;
   z-index: 10;
   height: 22rem;
+}
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.fixed-parent {
+  width: 246px;
+  height: 227px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 /* Swiper style */
 .swiper-container {

@@ -63,28 +63,33 @@ const ChildrenMovies = (props) => {
   const moviesOutput =
     childrenMovies &&
     childrenMovies.map((movie, i) => {
-      const movies = (
-        <SwiperSlide>
-          <div
-            onMouseEnter={() => showDetailHandler(movie)}
-            onMouseLeave={() => hideDetailHandler(movie)}
-            className={`movie-category__detail ${
-              movie.showDetail ? "movie-hovered" : ""
-            }`}
-          >
-            <img
-              className="movie-category__img"
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+      const result = (
+        <div
+          onMouseEnter={() => showDetailHandler(movie)}
+          onMouseLeave={() => hideDetailHandler(movie)}
+          className={`movie-category__detail ${
+            movie.showDetail ? "movie-hovered" : ""
+          }`}
+        >
+          <img
+            className="movie-category__img"
+            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+          />
+          {movie.showDetail && (
+            <ShowDetailWhenHover
+              movie={movie}
+              viewDetail={(movie) => viewDetailHandler(movie)}
             />
-            {movie.showDetail && (
-              <ShowDetailWhenHover
-                movie={movie}
-                viewDetail={(movie) => viewDetailHandler(movie)}
-              />
-            )}
-          </div>
-        </SwiperSlide>
+          )}
+        </div>
       );
+      let movies;
+      if (!props.detail) {
+        movies = <SwiperSlide>{result}</SwiperSlide>;
+      } else {
+        movies = <div className="fixed-parent">{result}</div>;
+      }
+
       return movies;
     });
 
@@ -113,15 +118,19 @@ const ChildrenMovies = (props) => {
         className="movie-category"
       >
         <MovieCatTitle className="movie-category__title" title={props.title} />
-        <Swiper
-          spaceBetween={50}
-          pagination={{ clickable: true }}
-          navigation
-          slidesPerView={5}
-          slidesPerGroup={5}
-        >
-          {moviesOutput}
-        </Swiper>
+        {!props.detail ? (
+          <Swiper
+            spaceBetween={50}
+            pagination={{ clickable: true }}
+            navigation
+            slidesPerView={5}
+            slidesPerGroup={5}
+          >
+            {moviesOutput}
+          </Swiper>
+        ) : (
+          <div className="flex">{moviesOutput}</div>
+        )}
       </div>
     </>
   ) : null;
