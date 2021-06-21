@@ -80,7 +80,7 @@ const ChildrenMovies = (props) => {
       );
       let movies;
       if (!props.detail) {
-        movies = <SwiperSlide>{result}</SwiperSlide>;
+        movies = <SwiperSlide className="edge">{result}</SwiperSlide>;
       } else {
         movies = <div className="fixed-parent">{result}</div>;
       }
