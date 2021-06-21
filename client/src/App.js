@@ -14,6 +14,7 @@ import UserListPage from "./userList/pages/userListPage";
 import TvShowPage from "./tvShowsPage/page/tvShowPage";
 import MoviesPage from "./moviesPage/pages/moviesPage";
 import LatestMoviesPage from "./latestMovies/pages/latestMovies";
+import Footer from "./share/UI/footer/footer";
 
 import "./App.css";
 
@@ -62,6 +63,7 @@ const App = () => {
         {!isAuthenticated && unAuthenticatedRoutes}
       </Switch>
       <Redirect from="/" to={isAuthenticated ? "/browse" : "/login"} />
+      <Footer />
     </div>
   );
 };

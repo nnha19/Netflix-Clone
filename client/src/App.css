@@ -5,7 +5,6 @@ html {
 body {
   overflow-x: hidden !important;
   width: 100%;
-  padding-bottom: 2rem;
 }
 * {
   padding: 0;
@@ -14,4 +13,10 @@ body {
 }
 .wrapper {
   min-height: 1rem;
+}
+
+@media (max-width: 1000px) {
+  html {
+    font-size: 65%;
+  }
 }

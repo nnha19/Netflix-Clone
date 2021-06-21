@@ -12,11 +12,20 @@ const DeskTop = (props) => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const userId = useSelector((state) => state.user.userId);
   const [searchVal, setSearchVal] = useState("");
+  const [className, setClassName] = useState("desktop-left__items");
   const history = useHistory();
 
   const navigatePageHandler = (url) => {
     history.push(url);
     setSearchVal("");
+  };
+
+  const mobileHoveredHandler = (type) => {
+    // let cn;
+    // type === "show"
+    //   ? (cn = "show desktop-left__items")
+    //   : (cn = "desktop-left__items");
+    // setClassName(cn);
   };
 
   return (
@@ -28,52 +37,62 @@ const DeskTop = (props) => {
             className="logo__img"
           />
         </div>
-        {isAuthenticated && (
-          <>
-            <NavLink
-              exact
-              to="/"
-              className="nav-bar__link"
-              activeClassName="nav-bar__active"
-            >
-              <li className="nav-bar__item nav-bar__hover">Home</li>
-            </NavLink>
-            <NavLink
-              exact
-              to="/browse/tv-shows"
-              className="nav-bar__link"
-              activeClassName="nav-bar__active"
-            >
-              <li className="nav-bar__item nav-bar__hover">TV Shows</li>
-            </NavLink>
-            <NavLink
-              exact
-              to="/browse/movies"
-              className="nav-bar__link"
-              activeClassName="nav-bar__active"
-            >
-              <li className="nav-bar__item nav-bar__hover">Movies</li>
-            </NavLink>
-            <NavLink
-              exact
-              to="/browse/latest"
-              className="nav-bar__link"
-              activeClassName="nav-bar__active"
-            >
-              <li className="nav-bar__item nav-bar__hover">Latest</li>
-            </NavLink>
+        <ul className="items">
+          <li
+            onMouseEnter={() => mobileHoveredHandler("show")}
+            onMouseLeave={() => mobileHoveredHandler()}
+            className="mobile"
+          >
+            Browse
+          </li>
+          {isAuthenticated && (
+            <div className={className}>
+              <NavLink
+                exact
+                to="/"
+                className="nav-bar__link "
+                activeClassName="nav-bar__active"
+              >
+                <li className="nav-bar__item nav-bar__hover">Home</li>
+              </NavLink>
+              <NavLink
+                exact
+                to="/browse/tv-shows"
+                className="nav-bar__link "
+                activeClassName="nav-bar__active"
+              >
+                <li className="nav-bar__item nav-bar__hover">TV Shows</li>
+              </NavLink>
+              <NavLink
+                exact
+                to="/browse/movies"
+                className="nav-bar__link "
+                activeClassName="nav-bar__active"
+              >
+                <li className="nav-bar__item nav-bar__hover">Movies</li>
+              </NavLink>
+              <NavLink
+                exact
+                to="/browse/latest"
+                className="nav-bar__link "
+                activeClassName="nav-bar__active"
+              >
+                <li className="nav-bar__item nav-bar__hover">Latest</li>
+              </NavLink>
 
-            <NavLink
-              exact
-              className="nav-bar__link"
-              activeClassName="nav-bar__active"
-              to={`/${userId}/my-list`}
-            >
-              <li className="nav-bar__item nav-bar__hover">My List</li>
-            </NavLink>
-          </>
-        )}
+              <NavLink
+                exact
+                className="nav-bar__link "
+                activeClassName="nav-bar__active"
+                to={`/${userId}/my-list`}
+              >
+                <li className="nav-bar__item nav-bar__hover">My List</li>
+              </NavLink>
+            </div>
+          )}
+        </ul>
       </div>
+
       <div className="desktop__right">
         {isAuthenticated && (
           <>
