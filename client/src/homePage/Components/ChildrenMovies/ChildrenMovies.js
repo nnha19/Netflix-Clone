@@ -1,4 +1,4 @@
-import React, { useState, createRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./ChildrenMovies.css";
 
@@ -8,9 +8,9 @@ import ViewDetail from "./ViewDetail/ViewDetail";
 
 import "swiper/swiper-bundle.min.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation, Pagination } from "swiper";
+import SwiperCore, { Navigation, Pagination, EffectFade } from "swiper";
 
-SwiperCore.use([Navigation, Pagination]);
+SwiperCore.use([Navigation, Pagination, EffectFade]);
 
 let timer;
 
@@ -18,8 +18,6 @@ const ChildrenMovies = (props) => {
   const childrenMovies = props.childrenMovies;
 
   const [viewDetail, setViewDetail] = useState(false);
-  const [moviesPerView, setMoviesPerView] = useState(5);
-  const [edgeStart, setEdgeStart] = useState([]);
 
   function showOrHideDetail(id, type) {
     let cloned = [...childrenMovies];
@@ -57,18 +55,6 @@ const ChildrenMovies = (props) => {
     setViewDetail(movie);
   };
 
-  useEffect(() => {
-    let arr = [];
-    let i = 1;
-    while (i < childrenMovies.length) {
-      arr.push(i);
-      i = i + moviesPerView;
-    }
-    console.log(moviesPerView);
-    console.log(arr);
-    setEdgeStart(arr);
-  }, [childrenMovies.length]);
-
   const moviesOutput =
     childrenMovies &&
     childrenMovies.map((movie, i) => {
@@ -94,19 +80,7 @@ const ChildrenMovies = (props) => {
       );
       let movies;
       if (!props.detail) {
-        let className;
-        edgeStart.forEach((es) =>
-          es === i + 1 ? (className = "edge-start") : ""
-        );
-        movies = (
-          <SwiperSlide
-            className={`${(i + 1) % moviesPerView === 0 ? "edge" : ""} ${
-              i + 1 === childrenMovies.length ? "edge" : ""
-            } ${className}`}
-          >
-            {result}
-          </SwiperSlide>
-        );
+        movies = <SwiperSlide>{result}</SwiperSlide>;
       } else {
         movies = <div className="fixed-parent">{result}</div>;
       }
@@ -123,16 +97,6 @@ const ChildrenMovies = (props) => {
       document.body.style.height = "maxContent";
     }
   }, [viewDetail]);
-
-  useEffect(() => {
-    if (window.innerWidth <= 800 && window.width >= 600) {
-      setMoviesPerView(4);
-    } else if (window.innerWidth < 600) {
-      setMoviesPerView(3);
-    } else {
-      setMoviesPerView(5);
-    }
-  }, [window.innerWidth]);
 
   const hideViewDetailHandler = () => {
     setViewDetail(null);
@@ -155,8 +119,22 @@ const ChildrenMovies = (props) => {
             spaceBetween={10}
             pagination={{ clickable: true }}
             navigation
-            slidesPerView={moviesPerView}
-            slidesPerGroup={moviesPerView}
+            slidesPerView={5}
+            slidesPerGroup={5}
+            breakpoints={{
+              400: {
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+              },
+              600: {
+                slidesPerView: 4,
+                slidesPerGroup: 4,
+              },
+              800: {
+                slidesPerView: 5,
+                slidesPerGroup: 5,
+              },
+            }}
           >
             {moviesOutput}
           </Swiper>
