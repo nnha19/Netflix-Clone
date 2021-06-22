@@ -26,10 +26,37 @@
   outline: none;
   font-size: 1.2rem;
 }
+.invalid-input {
+  margin-bottom: 0.8rem;
+}
 
 .sign-up__input-container {
   display: flex;
 }
 .sign-up__btn {
   width: 30%;
+  align-self: flex-end;
+}
+
+@media (max-width: 700px) {
+  .sign-up {
+    width: 70%;
+  }
+}
+
+@media (max-width: 500px) {
+  .sign-up {
+    width: 90%;
+  }
+  .sign-up__input-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .invalid-input {
+    order: -1;
+  }
+  .sign-up__btn {
+    margin-top: 1rem;
+    align-self: center;
+  }
 }

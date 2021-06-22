@@ -40,3 +40,16 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+@media (max-width: 800px) {
+  .auth {
+    width: 60vw;
+    height: 70vh;
+  }
+}
+
+@media (max-width: 400px) {
+  .auth {
+    width: 80vw;
+  }
+}
