@@ -3,6 +3,7 @@ import React from "react";
 import IconWithTag from "../ShowDetailWhenHover/IconWithTag/IconWithTag";
 import MovieCastOrGenres from "./MovieCastOrGenres/MovieCastOrGenres";
 import MovieGenres from "./MovieGenres/MovieGenres";
+import CloseViewDetailModal from "./CloseViewDetailModal/CloseViewDetailModal";
 
 import "./ViewDetail.css";
 
@@ -40,6 +41,7 @@ const ViewDetail = (props) => {
             </div>
             <p className="netflix-text">{movie.overview}</p>
           </div>
+          <CloseViewDetailModal hideViewDetail={props.hideViewDetail} />
         </div>
       </div>
     </>

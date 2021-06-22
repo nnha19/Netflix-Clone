@@ -1,0 +1,11 @@
+.close-viewdetail-modal {
+  font-size: 1.4rem;
+  color: white;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: black;
+  padding: 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+}

@@ -38,13 +38,15 @@ const DeskTop = (props) => {
           />
         </div>
         <ul className="items">
-          <li
-            onMouseEnter={() => mobileHoveredHandler("show")}
-            onMouseLeave={() => mobileHoveredHandler()}
-            className="mobile"
-          >
-            Browse
-          </li>
+          {isAuthenticated && (
+            <li
+              onMouseEnter={() => mobileHoveredHandler("show")}
+              onMouseLeave={() => mobileHoveredHandler()}
+              className="mobile"
+            >
+              Browse
+            </li>
+          )}
           {isAuthenticated && (
             <div className={className}>
               <NavLink
