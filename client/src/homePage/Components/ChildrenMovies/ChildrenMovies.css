@@ -22,7 +22,7 @@
   width: 22rem;
   position: absolute;
   height: 18rem;
-  z-index: 10;
+  z-index: 12;
 }
 .flex {
   display: grid;
@@ -86,7 +86,9 @@
 .swiper-pagination {
   top: -2.5rem;
   height: max-content;
-  z-index: -1;
+  width: max-content !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
 }
 .swiper-pagination-bullet {
   width: 0.8rem !important;

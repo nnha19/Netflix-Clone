@@ -122,7 +122,7 @@ const ChildrenMovies = (props) => {
             slidesPerView={5}
             slidesPerGroup={5}
             breakpoints={{
-              400: {
+              300: {
                 slidesPerView: 3,
                 slidesPerGroup: 3,
               },
