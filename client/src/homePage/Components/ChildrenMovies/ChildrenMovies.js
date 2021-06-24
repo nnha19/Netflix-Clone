@@ -40,6 +40,7 @@ const ChildrenMovies = (props) => {
   }
 
   const showDetailHandler = (movie) => {
+    if (window.innerWidth < 400) return;
     timer && clearTimeout(timer);
     timer = setTimeout(() => {
       showOrHideDetail(movie.id, "show");
@@ -62,6 +63,7 @@ const ChildrenMovies = (props) => {
         <div
           onMouseEnter={() => showDetailHandler(movie)}
           onMouseLeave={() => hideDetailHandler(movie)}
+          onClick={() => window.innerWidth < 400 && viewDetailHandler(movie)}
           className={`movie-category__detail ${
             movie.showDetail ? "movie-hovered" : ""
           }`}
@@ -122,7 +124,11 @@ const ChildrenMovies = (props) => {
             slidesPerView={5}
             slidesPerGroup={5}
             breakpoints={{
-              300: {
+              320: {
+                slidesPerView: 2,
+                slidesPerGroup: 2,
+              },
+              400: {
                 slidesPerView: 3,
                 slidesPerGroup: 3,
               },

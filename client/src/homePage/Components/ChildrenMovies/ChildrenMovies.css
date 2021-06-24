@@ -178,6 +178,10 @@
   .fixed-parent:nth-child(4n + 1) {
     justify-content: flex-start;
   }
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important;
+  }
 }
 
 @media (max-width: 600px) {
@@ -189,5 +193,11 @@
   }
   .fixed-parent:nth-child(3n) {
     justify-content: flex-end !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .movie-category__detail {
+    cursor: pointer;
   }
 }
