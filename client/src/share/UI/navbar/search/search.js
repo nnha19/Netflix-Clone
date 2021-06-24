@@ -3,7 +3,7 @@ import React, { createRef } from "react";
 import "./search.css";
 
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch, createDispatchHook } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { searchToggleSliceActions } from "../../../../store/slices/searchToggle";
 
 import { getResulsForSearch } from "../../../../store/slices/searchSlice";

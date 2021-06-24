@@ -10,6 +10,7 @@ import ChangeModeBtn from "./changeModeBtn/changeModeBtn";
 const DeskTop = (props) => {
   const loginMode = useSelector((state) => state.loginMode.loginMode);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const showSearch = useSelector((state) => state.searchToggle.showSearch);
   const userId = useSelector((state) => state.user.userId);
   const [searchVal, setSearchVal] = useState("");
   const [className, setClassName] = useState("desktop-left__items");
@@ -20,17 +21,9 @@ const DeskTop = (props) => {
     setSearchVal("");
   };
 
-  const mobileHoveredHandler = (type) => {
-    // let cn;
-    // type === "show"
-    //   ? (cn = "show desktop-left__items")
-    //   : (cn = "desktop-left__items");
-    // setClassName(cn);
-  };
-
   return (
     <div className="desktop">
-      <div className="desktop__left">
+      <div className={`desktop__left ${showSearch ? "hide-navitem" : ""}`}>
         <div onClick={() => navigatePageHandler("/")} className="logo">
           <img
             src="https://www.freepnglogos.com/uploads/netflix-logo-app-png-16.png"
@@ -38,15 +31,7 @@ const DeskTop = (props) => {
           />
         </div>
         <ul className="items">
-          {isAuthenticated && (
-            <li
-              onMouseEnter={() => mobileHoveredHandler("show")}
-              onMouseLeave={() => mobileHoveredHandler()}
-              className="mobile"
-            >
-              Browse
-            </li>
-          )}
+          {isAuthenticated && <li className="mobile">Browse</li>}
           {isAuthenticated && (
             <div className={className}>
               <NavLink
@@ -76,7 +61,7 @@ const DeskTop = (props) => {
               <NavLink
                 exact
                 to="/browse/latest"
-                className="nav-bar__link "
+                className={`nav-bar__link `}
                 activeClassName="nav-bar__active"
               >
                 <li className="nav-bar__item nav-bar__hover">Latest</li>
@@ -84,7 +69,7 @@ const DeskTop = (props) => {
 
               <NavLink
                 exact
-                className="nav-bar__link "
+                className={`nav-bar__link ${showSearch ? "hide-navitem" : ""}`}
                 activeClassName="nav-bar__active"
                 to={`/${userId}/my-list`}
               >
@@ -99,8 +84,18 @@ const DeskTop = (props) => {
         {isAuthenticated && (
           <>
             <Search searchVal={searchVal} setSearchVal={setSearchVal} />
-            <i className="nav-bar__link nav-bar__icon fas fa-bell nav-bar__item"></i>
-            <i className="nav-bar__link nav-bar__item">Profile</i>
+            <i
+              className={`nav-bar__link nav-bar__icon fas fa-bell nav-bar__item ${
+                showSearch ? "hide-navitem" : ""
+              }`}
+            ></i>
+            <i
+              className={`nav-bar__link nav-bar__item ${
+                showSearch ? "hide-navitem" : ""
+              }`}
+            >
+              Profile
+            </i>
           </>
         )}
         {!isAuthenticated && !loginMode && <ChangeModeBtn />}

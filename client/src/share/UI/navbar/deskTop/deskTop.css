@@ -100,3 +100,18 @@
     display: none;
   }
 }
+
+@media (max-width: 550px) {
+  .hide-navitem {
+    display: none !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .desktop__right {
+    margin-right: 0;
+  }
+  .nav-bar__link {
+    padding: 0;
+  }
+}

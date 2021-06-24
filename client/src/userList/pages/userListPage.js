@@ -15,7 +15,7 @@ const UserListPage = () => {
       allMovies[key].forEach((movie, i) => {
         userList.forEach((list) => {
           const exist = listMovies.some(
-            (m) => JSON.stringify(m) === JSON.stringify(movie)
+            (m) => JSON.stringify(m) == JSON.stringify(movie)
           );
           list.movieId === movie.id.toString() &&
             !exist &&
