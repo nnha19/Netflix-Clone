@@ -24,6 +24,8 @@ const App = () => {
   const userId = useSelector((state) => state.user.userId);
   const dispatch = useDispatch();
 
+  useSelector((state) => console.log(state.userInfo));
+
   useEffect(() => {
     isAuthenticated && dispatch(getUserList({ userId }));
   }, [isAuthenticated]);

@@ -14,7 +14,12 @@ const UserListPage = () => {
     for (let key in allMovies) {
       allMovies[key].forEach((movie, i) => {
         userList.forEach((list) => {
-          list.movieId === movie.id.toString() && listMovies.push(movie);
+          const exist = listMovies.some(
+            (m) => JSON.stringify(m) === JSON.stringify(movie)
+          );
+          list.movieId === movie.id.toString() &&
+            !exist &&
+            listMovies.push(movie);
         });
       });
     }
