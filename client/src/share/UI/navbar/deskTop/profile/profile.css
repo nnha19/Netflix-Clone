@@ -1,0 +1,25 @@
+.auth__dropdown {
+  position: absolute;
+  bottom: -14rem;
+  width: max-content;
+  background: black;
+  left: -6rem;
+  list-style: none;
+  padding: 1rem;
+  z-index: 30;
+  box-shadow: 0 1px 1px white;
+}
+.dropdown__list {
+  columns: rgba(255, 255, 255, 0.267);
+  padding: 0.6rem 0.3rem;
+  font-weight: 200;
+  font-size: 1rem;
+  color: #fff;
+  font-family: sans-serif;
+}
+.dropdown__list:hover {
+  text-decoration: underline;
+}
+.fa-user-alt {
+  position: relative;
+}

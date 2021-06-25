@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 
 import Search from "../search/search";
 import ChangeModeBtn from "./changeModeBtn/changeModeBtn";
+import Profile from "./profile/profile";
 
 const DeskTop = (props) => {
   const loginMode = useSelector((state) => state.loginMode.loginMode);
@@ -89,13 +90,7 @@ const DeskTop = (props) => {
                 showSearch ? "hide-navitem" : ""
               }`}
             ></i>
-            <i
-              className={`nav-bar__link nav-bar__item ${
-                showSearch ? "hide-navitem" : ""
-              }`}
-            >
-              Profile
-            </i>
+            <Profile showSearch={showSearch} />
           </>
         )}
         {!isAuthenticated && !loginMode && <ChangeModeBtn />}

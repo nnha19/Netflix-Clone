@@ -50,6 +50,12 @@ const userSlice = createSlice({
     deleteError(state, action) {
       state.error = false;
     },
+    signout(state, action) {
+      console.log("Sign out.");
+      state.token = null;
+      state.isAuthenticated = false;
+      state.userId = null;
+    },
   },
   extraReducers: {
     [createUser.fulfilled]: (state, action) => {

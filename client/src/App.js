@@ -4,6 +4,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { searchToggleSliceActions } from "./store/slices/searchToggle";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserList } from "./store/slices/userInfo";
+import { dropDownSliceActions } from "./store/slices/dropDownSlice";
 
 import NavBar from "./share/UI/navbar/navbar";
 import HomePage from "./homePage/pages/homePage";
@@ -24,8 +25,6 @@ const App = () => {
   const userId = useSelector((state) => state.user.userId);
   const dispatch = useDispatch();
 
-  useSelector((state) => console.log(state.userInfo));
-
   useEffect(() => {
     isAuthenticated && dispatch(getUserList({ userId }));
   }, [isAuthenticated]);
@@ -33,6 +32,8 @@ const App = () => {
   const showSearch = useSelector((state) => state.searchToggle.showSearch);
 
   const hideSearchHandler = (e) => {
+    !e.target.closest("#user-profile") &&
+      dispatch(dropDownSliceActions.toggleDropDown(false));
     showSearch &&
       !e.target.closest("#nav-bar__search") &&
       dispatch(searchToggleSliceActions.hideSearch());

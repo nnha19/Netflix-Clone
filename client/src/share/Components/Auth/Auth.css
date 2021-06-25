@@ -3,6 +3,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url("https://demo.vodlix.com/images/branding/custom/signin_image.gif?lu=1607692921");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 .auth {
   height: 90vh;
