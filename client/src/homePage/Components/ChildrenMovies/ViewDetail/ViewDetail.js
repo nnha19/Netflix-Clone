@@ -9,6 +9,7 @@ import "./ViewDetail.css";
 
 const ViewDetail = (props) => {
   const movie = props.movie;
+  console.log(movie);
   const airedDate = movie.release_date || movie.first_air_date;
   const releasedDate = airedDate.split("-")[0];
   return (
@@ -35,7 +36,7 @@ const ViewDetail = (props) => {
                     type="Casts"
                     url={`https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`}
                   />
-                  <MovieGenres genres={movie.genre_ids} />
+                  <MovieGenres movie={movie} genres={movie.genre_ids} />
                 </div>
               </div>
             </div>

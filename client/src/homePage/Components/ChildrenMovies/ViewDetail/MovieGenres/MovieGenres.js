@@ -6,6 +6,7 @@ import axios from "axios";
 
 const MovieGenres = (props) => {
   const [genres, setGenres] = useState([]);
+
   const genreIds = props.genres;
 
   const genreOutput =
@@ -30,8 +31,12 @@ const MovieGenres = (props) => {
   };
 
   useEffect(() => {
-    fetchData("movie");
-    fetchData("tv");
+    if (genreIds) {
+      fetchData("movie");
+      fetchData("tv");
+    } else {
+      setGenres(props.movie.genres.map((genre) => genre.name));
+    }
   }, []);
 
   return (
