@@ -5,6 +5,7 @@ import { searchToggleSliceActions } from "./store/slices/searchToggle";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserList } from "./store/slices/userInfo";
 import { dropDownSliceActions } from "./store/slices/dropDownSlice";
+import userSlice, { userSliceActions } from "./store/slices/userSlice";
 
 import NavBar from "./share/UI/navbar/navbar";
 import HomePage from "./homePage/pages/homePage";
@@ -38,6 +39,14 @@ const App = () => {
       !e.target.closest("#nav-bar__search") &&
       dispatch(searchToggleSliceActions.hideSearch());
   };
+
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem("userAuth"));
+    console.log(userInfo);
+    if (userInfo) {
+      dispatch(userSliceActions.autoLogin(userInfo));
+    }
+  }, [isAuthenticated]);
 
   const authenticatedRoutes = (
     <>

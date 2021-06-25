@@ -12,6 +12,7 @@ export const createUser = createAsyncThunk(
         method: "post",
         data: { email, password },
       });
+      localStorage.setItem("userAuth", JSON.stringify(resp.data));
       return resp.data;
     } catch (err) {
       return rejectWithValue(err.response.data.msg);
@@ -51,10 +52,18 @@ const userSlice = createSlice({
       state.error = false;
     },
     signout(state, action) {
-      console.log("Sign out.");
       state.token = null;
       state.isAuthenticated = false;
       state.userId = null;
+      localStorage.clear("userAuth");
+    },
+    autoLogin(state, action) {
+      state.token = action.payload.token;
+      state.loading = false;
+      state.isAuthenticated = !!action.payload.token;
+      state.userId = action.payload.userId;
+      state.likeMovies = action.payload.likeMovies;
+      state.disLikeMovies = action.payload.disLikeMovies;
     },
   },
   extraReducers: {
