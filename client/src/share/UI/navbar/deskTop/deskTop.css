@@ -111,7 +111,7 @@
   .desktop__right {
     margin-right: 0;
   }
-  .nav-bar__link {
+  .desktop__right .nav-bar__link {
     padding: 0;
   }
 }

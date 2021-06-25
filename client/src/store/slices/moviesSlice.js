@@ -26,6 +26,7 @@ export const getAllMovies = createAsyncThunk(
         const title = arr.title.replaceAll(" ", "");
         finalObj[title] = finalResult[i];
       });
+
       return finalObj;
     } catch (err) {
       console.log(err);

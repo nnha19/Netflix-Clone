@@ -4,26 +4,27 @@ import { useSelector } from "react-redux";
 import DisplayMovies from "../../homePage/Components/ChildrenMovies/ChildrenMovies";
 import Error from "../../share/Components/Error/Error";
 
+import axios from "axios";
+
 const UserListPage = () => {
   const [userListMovies, setUserListMovies] = useState([]);
   const userList = useSelector((state) => state.userInfo.userList);
-  const allMovies = useSelector((state) => state.movies.movies);
 
   useEffect(() => {
-    const listMovies = [];
-    for (let key in allMovies) {
-      allMovies[key].forEach((movie, i) => {
-        userList.forEach((list) => {
-          const exist = listMovies.some(
-            (m) => JSON.stringify(m) == JSON.stringify(movie)
-          );
-          list.movieId === movie.id.toString() &&
-            !exist &&
-            listMovies.push(movie);
-        });
-      });
-    }
-    setUserListMovies(listMovies);
+    const func = async (list) => {
+      const resp = await axios.get(
+        `https://api.themoviedb.org/3/movie/${list.movieId}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      );
+      return resp.data;
+    };
+
+    const makeRequest = () => {
+      return Promise.all(userList.map((list) => func(list)));
+    };
+
+    makeRequest()
+      .then((resp) => setUserListMovies(resp))
+      .catch((err) => console.log(err));
   }, [userList]);
 
   const showDetailHandler = (movie) => {
