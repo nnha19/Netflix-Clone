@@ -82,7 +82,11 @@ const ChildrenMovies = (props) => {
       );
       let movies;
       if (!props.detail) {
-        movies = <SwiperSlide className="edge">{result}</SwiperSlide>;
+        movies = (
+          <SwiperSlide key={movie.movieId} className="edge">
+            {result}
+          </SwiperSlide>
+        );
       } else {
         movies = <div className="fixed-parent">{result}</div>;
       }

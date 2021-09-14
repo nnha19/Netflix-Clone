@@ -11,8 +11,12 @@ const MovieGenres = (props) => {
 
   const genreOutput =
     genres.length > 0 &&
-    genres.map((genre) => {
-      return <span className="cast-names">{genre},</span>;
+    genres.map((genre, i) => {
+      return (
+        <span key={i} className="cast-names">
+          {genre},
+        </span>
+      );
     });
 
   const allGenres = [];

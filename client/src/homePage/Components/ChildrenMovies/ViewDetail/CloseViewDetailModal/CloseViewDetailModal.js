@@ -6,7 +6,7 @@ const CloseViewDetailModal = (props) => {
   return (
     <i
       onClick={props.hideViewDetail}
-      class="close-viewdetail-modal fas fa-times"
+      className="close-viewdetail-modal fas fa-times"
     ></i>
   );
 };

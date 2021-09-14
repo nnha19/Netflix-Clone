@@ -9,7 +9,6 @@ import "./ViewDetail.css";
 
 const ViewDetail = (props) => {
   const movie = props.movie;
-  console.log(movie);
   const airedDate = movie.release_date || movie.first_air_date;
   const releasedDate = airedDate.split("-")[0];
   return (

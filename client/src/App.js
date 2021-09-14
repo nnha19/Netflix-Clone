@@ -42,7 +42,7 @@ const App = () => {
 
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem("userAuth"));
-    console.log(userInfo);
+
     if (userInfo) {
       dispatch(userSliceActions.autoLogin(userInfo));
     }
